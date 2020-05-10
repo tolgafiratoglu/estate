@@ -14,7 +14,7 @@ class CreatePropertyExteriorFeatureTable extends Migration
     public function up()
     {
         Schema::create('property_exterior_feature', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('property');
                 $table->foreign('property')->references('id')->on('property');
             $table->unsignedBigInteger('exterior_feature');

@@ -21,7 +21,7 @@ class CreatePropertyTable extends Migration
     {
         if(Schema::hasTable('property') == false) {
             Schema::create('property', function (Blueprint $table) {
-                $table->id();
+                $table->bigIncrements('id');
                 $table->timestamps();
                 $table->unsignedBigInteger('location');
                     $table->foreign('location')->references('id')->on('location');
