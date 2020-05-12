@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +16,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Property related routes:
+Route::get('/property/new', 'PropertyController@new')->name('new_property');
+
+// API methods:
+Route::get('/api/locations', 'LocationController@getLocations')->name('get_locations');

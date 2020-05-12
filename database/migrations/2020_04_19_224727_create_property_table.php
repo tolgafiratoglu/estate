@@ -37,8 +37,6 @@ class CreatePropertyTable extends Migration
                 $table->unsignedBigInteger('featured_image')->nullable();
                     $table->foreign('featured_image')->references('id')->on('media');    
                 
-                $table->boolean('is_draft')->default(false);
-
                 $table->decimal('price', 10, 2)->nullable();
                 $table->text('address', 1000)->nullable();
                 
@@ -53,6 +51,8 @@ class CreatePropertyTable extends Migration
                 $table->decimal('lat', 18, 15)->nullable()->default(null);
                 $table->decimal('lon', 18, 15)->nullable()->default(null);
                 
+                $table->boolean('approved')->default(false);
+                $table->boolean('drafted')->default(false);
                 $table->boolean('deleted')->default(false);
                 
             });
