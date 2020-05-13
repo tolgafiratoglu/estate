@@ -16,8 +16,8 @@
             $locationsObject = Location::select('name', 'slug')
                                     ->where(
                                         [
-                                            'enabled'=>true,
-                                            'deleted'=>false
+                                            'enabled'=>$enabled,
+                                            'deleted'=>$deleted
                                         ]
                                     );
 
@@ -35,7 +35,7 @@
                 if($limit != NULL){
                     $locationsObject = $locationsObject->limit($offset);
                 }
-                                    
+
             return $locationsObject->get()->toArray();
 
         }

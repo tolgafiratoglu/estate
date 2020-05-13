@@ -26,8 +26,8 @@ class LocationController extends Controller
      */
     public function getLocations(Request $request, LocationRepository $locationRepository)
     {
-        $offset   = $request->offset ? $request->offset : 0;
-        $limit    = $request->limit ? $request->offset: 10;
+        $offset   = $request->offset ? $request->offset : NULL;
+        $limit    = $request->limit ? $request->offset: NULL;
         $parentId = $request->parent_id ? $request->parent_id : NULL;
         $keyword  = $request->keyword ? $request->keyword : NULL;  
 
