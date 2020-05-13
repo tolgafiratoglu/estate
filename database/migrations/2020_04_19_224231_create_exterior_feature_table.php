@@ -19,8 +19,8 @@ class CreateExteriorFeatureTable extends Migration
                 $table->timestamps();
                 $table->string('title');
                 $table->string('slug')->unique();
-                $table->boolean('enabled')->default(false);
-                $table->boolean('deleted')->default(false);
+                $table->boolean('is_enabled')->default(false);
+                $table->boolean('is_deleted')->default(false);
             });
         }
     }

@@ -20,7 +20,7 @@ class CreateNewsTable extends Migration
                 $table->text('content', 1000);
                 $table->unsignedBigInteger('created_by');
                     $table->foreign('created_by')->references('id')->on('users');
-                $table->boolean('deleted')->default(false);
+                $table->boolean('is_deleted')->default(false);
                 $table->timestamps();
             });
         }

@@ -26,3 +26,8 @@ Route::get('/property/new', 'PropertyController@new')->name('new_property');
 
 // API methods:
 Route::get('/api/locations', 'LocationController@getLocations')->name('get_locations');
+
+// Admin Routes:
+Route::get('/admin/property-status', 'AdminController@listPropertyStatus')->name('list_property_status')->middleware('admin');
+Route::get('/admin/property-status/new', 'AdminController@newPropertyStatus')->name('new_property_status')->middleware('admin');
+Route::get('/admin/property-status/new', 'AdminController@editPropertyStatus')->name('edit_property_status')->middleware('admin');

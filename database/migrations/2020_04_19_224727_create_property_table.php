@@ -51,9 +51,9 @@ class CreatePropertyTable extends Migration
                 $table->decimal('lat', 18, 15)->nullable()->default(null);
                 $table->decimal('lon', 18, 15)->nullable()->default(null);
                 
-                $table->boolean('approved')->default(false);
-                $table->boolean('drafted')->default(false);
-                $table->boolean('deleted')->default(false);
+                $table->boolean('is_approved')->default(false);
+                $table->boolean('is_drafted')->default(false);
+                $table->boolean('is_deleted')->default(false);
                 
             });
         }

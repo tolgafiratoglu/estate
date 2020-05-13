@@ -24,7 +24,7 @@ class CreateMediaTable extends Migration
                 $table->string('file_type', 20);
                 $table->unsignedBigInteger('user_id');
                     $table->foreign('user_id')->references('id')->on('users');
-                $table->boolean('deleted')->default(false);
+                $table->boolean('is_deleted')->default(false);
             });
         }
     }

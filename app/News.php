@@ -26,7 +26,7 @@ class News extends Model
     /**
      * @var array
      */
-    protected $fillable = ['created_by', 'title', 'content', 'deleted', 'created_at', 'updated_at'];
+    protected $fillable = ['created_by', 'title', 'content', 'is_deleted', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

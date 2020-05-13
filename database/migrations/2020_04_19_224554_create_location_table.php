@@ -22,8 +22,8 @@ class CreateLocationTable extends Migration
                 $table->text('description')->nullable();
                 $table->unsignedBigInteger('parent')->nullable();
                     $table->foreign('parent')->references('id')->on('location')->onDelete('set null');
-                $table->boolean('enabled')->default(false);
-                $table->boolean('deleted')->default(false);
+                $table->boolean('is_enabled')->default(false);
+                $table->boolean('is_deleted')->default(false);
             });
         }
     }

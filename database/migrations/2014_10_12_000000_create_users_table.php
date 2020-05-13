@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('blocked')->default(false);
-            $table->boolean('agent')->default(false);
-            $table->boolean('admin')->default(false);
-            $table->boolean('super_admin')->default(false);
+            $table->boolean('is_blocked')->default(false);
+            $table->boolean('is_agent')->default(false);
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_super_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

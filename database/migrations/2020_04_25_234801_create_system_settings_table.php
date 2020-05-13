@@ -16,7 +16,6 @@ class CreateSystemSettingsTable extends Migration
         Schema::create('system_settings', function (Blueprint $table) {
             $table->string('meta_key');
             $table->boolean('meta_value');
-            $table->boolean('deleted')->default(false);
         });
     }
 }

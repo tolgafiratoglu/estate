@@ -16,8 +16,8 @@
             $locationsObject = Location::select('name', 'slug')
                                     ->where(
                                         [
-                                            'enabled'=>$enabled,
-                                            'deleted'=>$deleted
+                                            'is_enabled'=>$enabled,
+                                            'is_deleted'=>$deleted
                                         ]
                                     );
 

@@ -19,7 +19,7 @@ class CreatePropertyStatusTable extends Migration
                 $table->timestamps();
                 $table->string('name');
                 $table->string('slug')->unique();
-                $table->boolean('deleted')->default(false);
+                $table->boolean('is_deleted')->default(false);
             });
         }
     }

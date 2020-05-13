@@ -16,7 +16,7 @@ class CreateSystemLimitsTable extends Migration
         Schema::create('system_limits', function (Blueprint $table) {
             $table->string('meta_key');
             $table->integer('meta_value');
-            $table->boolean('deleted')->default(false);
+            $table->boolean(')->default(false);
         });
     }
 }

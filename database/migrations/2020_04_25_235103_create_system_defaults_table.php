@@ -16,7 +16,6 @@ class CreateSystemDefaultsTable extends Migration
         Schema::create('system_defaults', function (Blueprint $table) {
             $table->string('meta_key');
             $table->string('meta_value');
-            $table->boolean('deleted')->default(false);
         });
     }
 }
