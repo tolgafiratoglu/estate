@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class AdminPropertyStatusController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,12 +17,12 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Lists admin propert status:
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        return view('home');
+        return view('admin.property-status');
     }
 }
