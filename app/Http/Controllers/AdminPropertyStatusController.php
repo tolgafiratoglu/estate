@@ -23,6 +23,6 @@ class AdminPropertyStatusController extends Controller
      */
     public function index()
     {
-        return view('admin.property-status');
+        return view('admin.property_status');
     }
 }

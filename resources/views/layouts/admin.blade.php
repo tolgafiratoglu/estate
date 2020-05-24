@@ -84,8 +84,10 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
+        <main>
+            <div class="admin-wrapper">
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>
