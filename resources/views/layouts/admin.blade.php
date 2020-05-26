@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/webview-layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fontawesome/all.min.css') }}">
 
@@ -85,8 +85,23 @@
         </nav>
 
         <main>
-            <div class="admin-wrapper">
-                @yield('content')
+            <div class="admin-wrapper shadowed-content wide-box">
+                <div class="admin-sidebar-wrapper">
+                    <ul>
+                        <li class="active"><i class="fas fa-tachometer-alt"></i><a href="{{ url('admin') }}">Dashboard</a></li>
+                        <li><a href="{{ url('admin/users') }}">Users</a></li>
+                        <li><a href="{{ url('admin/property') }}">Properties</a></li>
+                        <li><a href="{{ url('admin/location') }}">Location</a></li>
+                        <li><a href="{{ url('admin/media') }}">Media</a></li>
+                        <li><a href="{{ url('admin/property-type') }}">Property Type</a></li>
+                        <li><a href="{{ url('admin/property-status') }}">Property Status</a></li>
+                        <li><a href="{{ url('admin/interior-feature') }}">Interior Feature</a></li>
+                        <li><a href="{{ url('admin/exterior-feature') }}">Exterior Feature</a></li>
+                    </ul>
+                </div>
+                <div class="admin-content-wrapper">
+                    @yield('content')
+                </div>
             </div>
         </main>
     </div>

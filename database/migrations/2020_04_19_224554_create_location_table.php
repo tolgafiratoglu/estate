@@ -18,7 +18,7 @@ class CreateLocationTable extends Migration
                 $table->bigIncrements('id');
                 $table->timestamps();
                 $table->string('name');
-                $table->string('slug')->unique();
+                $table->string('slug')->unique()->nullable();
                 $table->text('description')->nullable();
                 $table->unsignedBigInteger('parent')->nullable();
                     $table->foreign('parent')->references('id')->on('location')->onDelete('set null');

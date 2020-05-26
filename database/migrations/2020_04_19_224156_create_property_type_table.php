@@ -18,7 +18,7 @@ class CreatePropertyTypeTable extends Migration
                 $table->bigIncrements('id');
                 $table->timestamps();
                 $table->string('name');
-                $table->string('slug')->unique();
+                $table->string('slug')->unique()->nullable();
                 $table->boolean('is_deleted')->default(false);
             });
         }

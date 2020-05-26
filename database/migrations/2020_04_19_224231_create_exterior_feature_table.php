@@ -18,7 +18,7 @@ class CreateExteriorFeatureTable extends Migration
                 $table->bigIncrements('id');
                 $table->timestamps();
                 $table->string('title');
-                $table->string('slug')->unique();
+                $table->string('slug')->unique()->nullable();
                 $table->boolean('is_enabled')->default(false);
                 $table->boolean('is_deleted')->default(false);
             });
