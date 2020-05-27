@@ -88,15 +88,39 @@
             <div class="admin-wrapper shadowed-content wide-box">
                 <div class="admin-sidebar-wrapper">
                     <ul>
-                        <li class="active"><i class="fas fa-tachometer-alt"></i><a href="{{ url('admin') }}">Dashboard</a></li>
-                        <li><a href="{{ url('admin/users') }}">Users</a></li>
-                        <li><a href="{{ url('admin/property') }}">Properties</a></li>
-                        <li><a href="{{ url('admin/location') }}">Location</a></li>
-                        <li><a href="{{ url('admin/media') }}">Media</a></li>
-                        <li><a href="{{ url('admin/property-type') }}">Property Type</a></li>
-                        <li><a href="{{ url('admin/property-status') }}">Property Status</a></li>
-                        <li><a href="{{ url('admin/interior-feature') }}">Interior Feature</a></li>
-                        <li><a href="{{ url('admin/exterior-feature') }}">Exterior Feature</a></li>
+                        <li @if($module=='dashboard')class="active"@endif>
+                            <i class="fas fa-tachometer-alt"></i><a href="{{ url('admin') }}">Dashboard</a>
+                        </li>
+                        <li @if($module=='users')class="active"@endif>
+                            <i class="fas fa-user-tie"></i><a href="{{ url('admin/users') }}">Users</a>
+                        </li>
+                        <li @if($module=='property')class="active"@endif>
+                            <i class="far fa-building"></i><a href="{{ url('admin/property') }}">Properties</a>
+                        </li>
+                        <li @if($module=='location')class="active"@endif>
+                            <i class="far fa-map"></i><a href="{{ url('admin/location') }}">Location</a>
+                        </li>
+                        <li @if($module=='media')class="active"@endif>
+                            <i class="fas fa-photo-video"></i><a href="{{ url('admin/media') }}">Media</a>
+                        </li>
+                        <li @if($module=='property_type')class="active"@endif>
+                            <i class="fas fa-city"></i><a href="{{ url('admin/property-type') }}">Property Type</a>
+                        </li>
+                        <li @if($module=='property_status')class="active"@endif>
+                            <i class="far fa-folder"></i><a href="{{ url('admin/property-status') }}">Property Status</a>
+                            @if($module=='property_status')
+                                <ul>
+                                    <li><a href="{{ url('admin/property-status/new') }}">New</a></li>
+                                    <li><a href="{{ url('admin/property-status?deleted=1') }}">Trash</a></li>
+                                </ul>
+                            @endif
+                        </li>
+                        <li @if($module=='interior_feature')class="active"@endif>
+                            <i class="fas fa-couch"></i><a href="{{ url('admin/interior-feature') }}">Interior Feature</a>
+                        </li>
+                        <li @if($module=='exterior_feature')class="active"@endif>
+                            <i class="fas fa-school"></i><a href="{{ url('admin/exterior-feature') }}">Exterior Feature</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="admin-content-wrapper">

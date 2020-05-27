@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Repositories\PropertyStatusRepository;
+
 class AdminPropertyStatusController extends Controller
 {
     /**
@@ -21,8 +23,15 @@ class AdminPropertyStatusController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request, PropertyStatusRepository $propertyStatusRepository)
     {
-        return view('admin.property_status');
+
+        $offset   = $request->offset ? $request->offset : NULL;
+        $limit    = $request->limit ? $request->limit: NULL;
+        $deleted  = $request->deleted ? $request->deleted : false;
+
+        $propertyStatusList = $propertyStatusRepository->getStatusList($deleted, 0, 10);
+
+        return view('admin.property_status')->with(['adminPropertyStatusList'=>$propertyStatusList, 'module'=>'property_status']);
     }
 }
