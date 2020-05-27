@@ -110,8 +110,8 @@
                             <i class="far fa-folder"></i><a href="{{ url('admin/property-status') }}">Property Status</a>
                             @if($module=='property_status')
                                 <ul>
-                                    <li><a href="{{ url('admin/property-status/new') }}">New</a></li>
-                                    <li><a href="{{ url('admin/property-status?deleted=1') }}">Trash</a></li>
+                                    <li><i class="fas fa-plus"></i><a href="{{ url('admin/property-status/new') }}">New</a></li>
+                                    <li><i class="fas fa-trash"></i><a href="{{ url('admin/property-status?deleted=1') }}">Trash</a></li>
                                 </ul>
                             @endif
                         </li>
