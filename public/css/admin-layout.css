@@ -1,6 +1,7 @@
 /*
     1. Overall Design
     2. Admin Sidebar
+    3. Admin Content
 */
 
 /* Overall Design Begins */
@@ -73,3 +74,11 @@ body{
     }
 
 /* Admin Sidebar Ends */
+
+/* 3. Admin Content Starts */
+
+    .admin-data-table{
+        width: 100% !important;
+    }
+
+/* Admin Content Ends */
