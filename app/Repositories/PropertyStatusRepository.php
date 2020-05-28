@@ -11,6 +11,15 @@
 
         protected $model = 'App\PropertyStatus';
 
+        public function getStatusListCount($deleted = false) {
+
+            $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
+                                    ->where(['is_deleted'=>$deleted]);
+
+            return $propertyStatusObject->count();                                    
+
+        }                            
+
         public function getStatusList($deleted = false, $offset = NULL, $limit = NULL) {
 
             $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')

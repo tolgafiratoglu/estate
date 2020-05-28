@@ -25,14 +25,8 @@ class PropertyStatusController extends Controller
      */
     public function adminList(Request $request, PropertyStatusRepository $propertyStatusRepository)
     {
-
-        $offset   = $request->offset ? $request->offset : NULL;
-        $limit    = $request->limit ? $request->limit: NULL;
-        $deleted  = $request->deleted ? $request->deleted : false;
-
-        $propertyStatusList = $propertyStatusRepository->getStatusList($deleted, 0, 10);
-
-        return view('admin.property_status')->with(['adminPropertyStatusList'=>$propertyStatusList, 'module'=>'property_status']);
+        $deleted  = $request->deleted ? $request->deleted : 0;
+        return view('admin.property_status')->with(['deleted'=>$deleted, 'module'=>'property_status']);
     }
 
     /**
@@ -47,9 +41,10 @@ class PropertyStatusController extends Controller
         $limit    = $request->length ? $request->length: NULL;
         $deleted  = $request->deleted ? $request->deleted : 0;
 
-        $propertyStatusList = $propertyStatusRepository->getStatusList($deleted, $offset, $limit);
+        $propertyStatusList  = $propertyStatusRepository->getStatusList($deleted, $offset, $limit);
+        $propertyStatusCount = $propertyStatusRepository->getStatusListCount($deleted);
 
-        $propertyStatusList = ["data"=>$propertyStatusList];
+        $propertyStatusList = ["data"=>$propertyStatusList, "recordsTotal"=>$propertyStatusCount, "recordsFiltered"=>sizeof($propertyStatusList)];
 
         return response()->json($propertyStatusList);
 

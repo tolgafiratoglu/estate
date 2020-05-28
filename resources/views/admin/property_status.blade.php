@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <table class="admin-data-table display nowrap dataTable dtr-inline collapsed">
+    <table data-deleted="{{ $deleted }}" class="admin-data-table display nowrap dataTable dtr-inline collapsed">
         <thead>
             <tr>
                 <th scope="col">#</th>
