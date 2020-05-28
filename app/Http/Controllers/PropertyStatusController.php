@@ -45,7 +45,7 @@ class PropertyStatusController extends Controller
 
         $offset   = $request->start ? $request->start : NULL;
         $limit    = $request->length ? $request->length: NULL;
-        $deleted  = $request->deleted ? $request->deleted : false;
+        $deleted  = $request->deleted ? $request->deleted : 0;
 
         $propertyStatusList = $propertyStatusRepository->getStatusList($deleted, $offset, $limit);
 
