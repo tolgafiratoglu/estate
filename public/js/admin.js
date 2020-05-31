@@ -1,7 +1,7 @@
 /*
-    Generic function to init data table:
+    Generic function to init data table for any admin panel:
 */
-function initDataTable(url, columns, contextClass, editUrl) {
+function initDataTable(url, columns, context, editUrl, deleteAjaxUrl) {
 
     // Is it a list or trash bin?
     var deleted = $(".admin-data-table").attr("data-deleted");
@@ -10,7 +10,7 @@ function initDataTable(url, columns, contextClass, editUrl) {
     columns.push({ "data": "id",
                     "fnCreatedCell": function (nTd, sData, rowData, iRow, iCol) {
                         if(deleted == 0){
-                            $(nTd).html("<a class='btn btn-info' href='"+editUrl+"/"+rowData.id+"'><i class='far fa-edit'></i></a>");
+                            $(nTd).html("<a class='' href='"+editUrl+"/"+rowData.id+"'><i class='far fa-edit'></i></a>");
                         } else {
                             $(nTd).html("");
                         }
@@ -18,10 +18,11 @@ function initDataTable(url, columns, contextClass, editUrl) {
                 },
                 { "data": "id",
                     "fnCreatedCell": function (nTd, sData, rowData, iRow, iCol) {
+                        console.log('sData', this);
                         if(deleted == 0){
-                            $(nTd).html("<span class='"+contextClass+"-soft-delete btn btn-warning' data-id='"+rowData.id+"'><i class='fas fa-trash'></i></span>");
+                            $(nTd).html("<span data-context='"+context+"' data-id='"+rowData.id+"' class='row-soft-delete'><i class='fas fa-trash'></i></span>");
                         }else{
-                            $(nTd).html("<span class='"+contextClass+"-hard-delete btn btn-warning' data-id='"+rowData.id+"'><i class='fas fa-trash'></i></span>");
+                            $(nTd).html("<span data-context='"+context+"' data-id='"+rowData.id+"' class='row-hard-delete'><i class='fas fa-trash'></i></span>");
                         }
                     }, "orderable": false, "width": "30px"
                 });
@@ -33,7 +34,15 @@ function initDataTable(url, columns, contextClass, editUrl) {
             "columns": columns,
             "autoWidth": true,
             "processing": true,
-            "serverSide": true
+            "serverSide": true,
+            "language": {
+                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
+            },
+            "drawCallback": function( settings ) {
+                
+
+
+            }    
         }
     );
 }
@@ -43,7 +52,7 @@ function initDataTable(url, columns, contextClass, editUrl) {
 */
 function initPropertyStatusList() {
     var columns = [{ "data": "id" }, { "data": "name" }, { "data": "slug" }];
-    initDataTable("/api/admin/property-status", columns, "property-status", "/admin/property-status/edit");
+    initDataTable("/api/admin/property-status", columns, "property-status", "/admin/property-status/edit", "/admin/property-status/delete");
 }
 
 $( document ).ready(function() {

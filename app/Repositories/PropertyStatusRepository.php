@@ -20,6 +20,18 @@
 
         }                            
 
+        public function getPropertyStatus($itemId) {
+
+            $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
+                                    ->where(
+                                        [
+                                            'id'=>$itemId,
+                                            'is_deleted'=>false
+                                        ]
+                                    );
+
+        }
+
         public function getStatusList($deleted = false, $offset = NULL, $limit = NULL) {
 
             $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')

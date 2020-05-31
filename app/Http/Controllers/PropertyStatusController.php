@@ -25,8 +25,47 @@ class PropertyStatusController extends Controller
      */
     public function adminList(Request $request, PropertyStatusRepository $propertyStatusRepository)
     {
+
         $deleted  = $request->deleted ? $request->deleted : 0;
-        return view('admin.property_status')->with(['deleted'=>$deleted, 'module'=>'property_status']);
+        $offset   = $request->offset ? $request->offset : 0;
+        $limit    = $request->limit ? $request->limit : 0;
+
+        $propertyStatusList  = $propertyStatusRepository->getStatusList($deleted, $offset, $limit);
+        $propertyStatusCount = $propertyStatusRepository->getStatusListCount($deleted);
+
+        return view('admin.property_status')->with(['deleted'=>$deleted, 'module'=>'property_status', 'data'=>$propertyStatusList, 'total_data_count'=>$propertyStatusCount]);
+    
+    }
+
+    /**
+     * Edit property status
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function editPropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository)
+    {
+
+        $itemId  = $request->id ? $request->id : NULL;
+
+        $data = NULL;
+        if($itemId > 0) {
+            $data = $propertyStatusRepository->getPropertyStatus($itemId);
+        }
+
+        return view('admin.property_status_save')->with(["data"=>$data, 'module'=>'property_status']);
+        
+    }
+
+    /**
+     * New property status
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function newPropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository)
+    {
+
+        return view('admin.property_status_save')->with(['module'=>'property_status']);
+    
     }
 
     /**

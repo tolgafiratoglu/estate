@@ -3,5 +3,6 @@
     return [
         'name'=>'Name',
         'slug'=>'Slug',
-        'operations'=>'Operations'
+        'edit'=>'Edit',
+        'delete'=>'Delete'
     ];
