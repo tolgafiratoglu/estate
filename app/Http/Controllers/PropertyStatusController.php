@@ -52,7 +52,7 @@ class PropertyStatusController extends Controller
             $data = $propertyStatusRepository->getPropertyStatus($itemId);
         }
 
-        return view('admin.property_status_save')->with(["data"=>$data, 'module'=>'property_status']);
+        return view('admin.property_status_save')->with(["new"=>false,"data"=>$data, 'module'=>'property_status']);
         
     }
 
@@ -64,7 +64,7 @@ class PropertyStatusController extends Controller
     public function newPropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository)
     {
 
-        return view('admin.property_status_save')->with(['module'=>'property_status']);
+        return view('admin.property_status_save')->with(["new"=>false, 'module'=>'property_status']);
     
     }
 
@@ -93,19 +93,25 @@ class PropertyStatusController extends Controller
     * Save property status 
     * @return \Symfony\Component\HttpFoundation\Response 
     */
-    public function savePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository){
+    public function savePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository)
+    {
 
+        $id   = $request->id ? $request->id : NULL;
         $name = $request->name ? $request->name : '';
-        $slug = $request->slug ? $request->slug : '';
+        $slug = $request->slug ? $request->slug : NULL;
 
-        $slugExists = $propertyStatusRepository->slugExists($slug);
-        $nameExists = $propertyStatusRepository->nameExists($slug);
+        $slugExists = $propertyStatusRepository->slugExists($slug, $id);
+        $nameExists = $propertyStatusRepository->nameExists($name, $id);
+
+        if($name == ""){
+            return response(__('admin.property_status_name_not_blank'), 400)->header('Content-Type', 'text/plain');
+        }
 
         if($nameExists > 0){
             return response(__('admin.property_status_name_exists'), 400)->header('Content-Type', 'text/plain');
         }
 
-        if($slugExists > 0){
+        if($slugExists > 0 && $slug != ""){
             return response(__('admin.property_status_slug_exists'), 400)->header('Content-Type', 'text/plain');
         }
 
