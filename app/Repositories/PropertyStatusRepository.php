@@ -55,4 +55,18 @@
 
         }
 
+        public function savePropertyStatus($name, $slug){
+            
+            return PropertyStatus::create(["name"=>$name, "slug"=>$slug]);
+
+        }
+
+        public function slugExists($slug){
+            return PropertyStatus::where(['slug'=>$slug])->count();
+        }
+
+        public function nameExists($name){
+            return PropertyStatus::where(['name'=>$name])->count();
+        }
+
     }    

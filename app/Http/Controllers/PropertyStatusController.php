@@ -89,4 +89,31 @@ class PropertyStatusController extends Controller
 
     }
 
+    /*
+    * Save property status 
+    * @return \Symfony\Component\HttpFoundation\Response 
+    */
+    public function savePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository){
+
+        $name = $request->name ? $request->name : '';
+        $slug = $request->slug ? $request->slug : '';
+
+        $slugExists = $propertyStatusRepository->slugExists($slug);
+        $nameExists = $propertyStatusRepository->nameExists($slug);
+
+        if($nameExists > 0){
+            return response(__('admin.property_status_name_exists'), 400)->header('Content-Type', 'text/plain');
+        }
+
+        if($slugExists > 0){
+            return response(__('admin.property_status_slug_exists'), 400)->header('Content-Type', 'text/plain');
+        }
+
+        $propertyStatus = $propertyStatusRepository->savePropertyStatus($name, $slug);
+
+        return response()->json($propertyStatus);
+    
+    }
+
+
 }
