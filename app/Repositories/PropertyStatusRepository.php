@@ -68,7 +68,7 @@
         public function slugExists($slug, $id){
             $criterias = [['slug', '=', $slug]];
             if($id != NULL){
-                $criterias.push(['id', '!=', $id]);
+                $criterias[] = ['id', '!=', $id];
             }
             return PropertyStatus::where($criterias)->count();
         }
@@ -76,7 +76,7 @@
         public function nameExists($name, $id){
             $criterias = [['name', '=', $name]];
             if($id != NULL){
-                $criterias.push(['id', '!=', $id]);
+                $criterias[] = ['id', '!=', $id];
             }
             return PropertyStatus::where($criterias)->count();
         }

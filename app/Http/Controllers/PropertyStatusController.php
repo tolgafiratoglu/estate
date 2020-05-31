@@ -64,7 +64,7 @@ class PropertyStatusController extends Controller
     public function newPropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository)
     {
 
-        return view('admin.property_status_save')->with(["new"=>false, 'module'=>'property_status']);
+        return view('admin.property_status_save')->with(["new"=>true, "data"=>[], 'module'=>'property_status']);
     
     }
 
@@ -115,7 +115,11 @@ class PropertyStatusController extends Controller
             return response(__('admin.property_status_slug_exists'), 400)->header('Content-Type', 'text/plain');
         }
 
-        $propertyStatus = $propertyStatusRepository->savePropertyStatus($name, $slug);
+        if($id > 0) {
+            $propertyStatus = $propertyStatusRepository->updatePropertyStatus($id, $name, $slug);
+        }else{    
+            $propertyStatus = $propertyStatusRepository->savePropertyStatus($name, $slug);
+        }
 
         return response()->json($propertyStatus);
     

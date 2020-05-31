@@ -84,6 +84,26 @@
             </div>
         </nav>
 
+        <div class="modal" id="delete_confirm" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ __("admin.confirm_action") }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ __("admin.confirm_action_detail") }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">{{ __("admin.confirm_action_yes") }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __("admin.confirm_action_close") }}</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <main>
             <div class="admin-wrapper shadowed-content wide-box">
                 <div class="admin-sidebar-wrapper">

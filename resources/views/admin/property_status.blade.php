@@ -18,10 +18,14 @@
                 <td>{{ $dataItem["name"] }}</td>
                 <td>{{ $dataItem["slug"] }}</td>
                 <td class="admin-control-td">
-                    <i class="far fa-edit"></i><span class="admin-control-label">{{ __('admin.edit') }}</span>
+                    @if(!$deleted)
+                        <a href="/admin/property-status/edit/{{ $dataItem['id'] }}"><i class="far fa-edit"></i><span class="admin-control-label">{{ __('admin.edit') }}</span></a>
+                    @else
+                        <span data-toggle="modal" data-target="#delete_confirm"><i class="far fa-trash-alt"></i><span class="admin-control-label">{{ __('admin.delete') }}</span></span>
+                    @endif
                 </td>
                 <td class="admin-control-td">
-                    <i class="far fa-trash-alt"></i><span class="admin-control-label">{{ __('admin.delete') }}</span>
+                    <span data-toggle="modal" data-target="#delete_confirm"><i class="far fa-trash-alt"></i><span class="admin-control-label">{{ __('admin.delete') }}</span></span>
                 </td>
             </tr>
             @endforeach

@@ -3,7 +3,7 @@ function saveItem(saveUrl, returnUrl, data){
     $.ajax({
         url: saveUrl,
         type: "post",
-        data: {_token: $('meta[name=csrf-token]')[0].content, "name": $("#property_status_name").val(), "slug": $("#property_status_slug").val()},
+        data: data,
         success: function(data){
             document.location = returnUrl;
         },
@@ -21,7 +21,7 @@ function initPropertyStatusList(){
             saveItem("/api/admin/property-status/save", "/admin/property-status" , 
                         {
                             _token: $('meta[name=csrf-token]')[0].content, 
-                            id: $("item_id").val(),
+                            id: $("#item_id").val(),
                             name: $("#property_status_name").val(), 
                             slug: $("#property_status_slug").val()
                         }
@@ -30,8 +30,18 @@ function initPropertyStatusList(){
     );
 }
 
+function init_admin_confirm() {
+
+    $('#delete_confirm').on('show.bs.modal', function (e) {
+        console.log('this', this);
+    });
+    
+}
+
 $( document ).ready(function() {
     
     initPropertyStatusList();
+
+    init_admin_confirm();
 
 });
