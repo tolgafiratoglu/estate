@@ -23,17 +23,18 @@ class PropertyStatusController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function adminList(Request $request, PropertyStatusRepository $propertyStatusRepository)
-    {
+    public function listPropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository) {
 
         $deleted  = $request->deleted ? $request->deleted : 0;
-        $offset   = $request->offset ? $request->offset : 0;
-        $limit    = $request->limit ? $request->limit : 0;
+        $page     = $request->page ? $request->page : 1;
+
+        $limit    = 10;
+        $offset   = ($page - 1)*$limit;
 
         $propertyStatusList  = $propertyStatusRepository->getStatusList($deleted, $offset, $limit);
         $propertyStatusCount = $propertyStatusRepository->getStatusListCount($deleted);
 
-        return view('admin.property_status')->with(['deleted'=>$deleted, 'module'=>'property_status', 'data'=>$propertyStatusList, 'total_data_count'=>$propertyStatusCount]);
+        return view('admin.property_status')->with(['deleted'=>$deleted, 'module'=>'property_status', 'page'=>$page, 'data'=>$propertyStatusList, 'total_data_count'=>$propertyStatusCount]);
     
     }
 
@@ -69,7 +70,7 @@ class PropertyStatusController extends Controller
     }
 
     /**
-     * Public api method to return enabled locations:
+     * Public api method to return property status
      *
      * @return \Symfony\Component\HttpFoundation\Response 
      */

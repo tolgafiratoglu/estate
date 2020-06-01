@@ -1,3 +1,17 @@
+function trigger_admin_page(){
+
+    var adminUrl = location.protocol+'//'+location.host+location.pathname+"?";
+
+    $(".admin-url-field").each(
+        function(){
+            adminUrl += $(this).attr("data-field") + "=" + $(this).val() + "&";
+        }
+    )
+
+    document.location = adminUrl;
+
+}
+
 function saveItem(saveUrl, returnUrl, data){
 
     $.ajax({
@@ -38,10 +52,27 @@ function init_admin_confirm() {
     
 }
 
+function init_admin_field_triggers(){
+    $(".admin-sorting-icon").click(
+        function(){
+
+            var order   = $(this).attr("data-order");
+            var orderBy = $(this).attr("data-orderBy");
+
+            $(".admin-url-field[data-field=order]").val(order)
+            $(".admin-url-field[data-field=order_by]").val(orderBy)
+            
+            trigger_admin_page();     
+        }
+    );
+}
+
 $( document ).ready(function() {
     
     initPropertyStatusList();
 
     init_admin_confirm();
+
+    init_admin_field_triggers();
 
 });

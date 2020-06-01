@@ -1,12 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
+    <input type="hidden" class="admin-url-field" data-field="page" value="{{ $page }}">
+    <input type="hidden" class="admin-url-field" data-field="order_by" value="id">
+    <input type="hidden" class="admin-url-field" data-field="order" value="DESC">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">{{ __('admin.name') }}</th>
-                <th scope="col">{{ __('admin.slug') }}</th>
+                <th scope="col"><span class="admin-sorting-icon" data-orderby="name" data-order="DESC">{{ __('admin.name') }}<i class="fas fa-sort"></i></span></th>
+                <th scope="col"><span class="admin-sorting-icon" data-orderby="slug" data-order="DESC">{{ __('admin.slug') }}<i class="fas fa-sort"></i></span></th>
                 <th scope="col admin-control-th"></th>
                 <th scope="col admin-control-th"></th>
             </tr>

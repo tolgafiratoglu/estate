@@ -31,6 +31,6 @@ Route::get('/api/admin/property-status', 'PropertyStatusController@getPropertySt
 Route::post('api/admin/property-status/save', 'PropertyStatusController@savePropertyStatus')->name('get_property_status')->middleware('admin');
 
 // Admin Routes:
-Route::get('/admin/property-status', 'PropertyStatusController@adminList')->name('list_property_status')->middleware('admin');
+Route::get('/admin/property-status', 'PropertyStatusController@listPropertyStatus')->name('list_property_status')->middleware('admin');
 Route::get('/admin/property-status/new', 'PropertyStatusController@newPropertyStatus')->name('new_property_status')->middleware('admin');
 Route::get('/admin/property-status/edit/{id}', 'PropertyStatusController@editPropertyStatus')->name('edit_property_status')->middleware('admin');
