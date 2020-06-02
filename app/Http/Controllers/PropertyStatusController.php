@@ -82,9 +82,21 @@ class PropertyStatusController extends Controller
         $deleted  = $request->deleted ? $request->deleted : 0;
 
         $propertyStatusList  = $propertyStatusRepository->getStatusList($deleted, $offset, $limit);
+
+        $propertyStatusListResponse = [];
+
+        if(sizeof($propertyStatusList)){
+            foreach($propertyStatusList AS $propertyStatus){
+                $editButton = '<span class="admin-list-control-buttons admin-list-edit" data-id="'.$propertyStatus["id"].'"><i class="far fa-edit"></i><span class="admin-list-control-label">'.__("admin.edit").'</span></span>';
+                $deleteButton = '<span class="admin-list-control-buttons admin-list-delete" data-id="'.$propertyStatus["id"].'"><i class="far fa-trash-alt"></i><span class="admin-list-control-label">'.__("admin.delete").'</span></span>';
+                $propertyStatus["buttons"] = $editButton.$deleteButton;
+                $propertyStatusListResponse[] = $propertyStatus;
+            }
+        }
+
         $propertyStatusCount = $propertyStatusRepository->getStatusListCount($deleted);
 
-        $propertyStatusList = ["data"=>$propertyStatusList, "recordsTotal"=>$propertyStatusCount, "recordsFiltered"=>sizeof($propertyStatusList)];
+        $propertyStatusList = ["data"=>$propertyStatusListResponse, "recordsTotal"=>$propertyStatusCount, "recordsFiltered"=>sizeof($propertyStatusList)];
 
         return response()->json($propertyStatusList);
 

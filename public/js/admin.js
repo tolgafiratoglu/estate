@@ -1,78 +1,55 @@
-function trigger_admin_page(){
+/*
+    Generic function to init data table:
+*/
+function initDataTable(url, columns, contextClass, editUrl) {
 
-    var adminUrl = location.protocol+'//'+location.host+location.pathname+"?";
-
-    $(".admin-url-field").each(
-        function(){
-            adminUrl += $(this).attr("data-field") + "=" + $(this).val() + "&";
-        }
-    )
-
-    document.location = adminUrl;
-
-}
-
-function saveItem(saveUrl, returnUrl, data){
-
-    $.ajax({
-        url: saveUrl,
-        type: "post",
-        data: data,
-        success: function(data){
-            document.location = returnUrl;
-        },
-        error: function(error){
-            $(".alert-warning-wrapper").removeClass("d-none").html(error.responseText);
-        } 
-    });
-
-}
-
-function initPropertyStatusList(){
-    // Save the edit or insert forms:
-    $(".admin-property-status-save").click(
-        function(){
-            saveItem("/api/admin/property-status/save", "/admin/property-status" , 
-                        {
-                            _token: $('meta[name=csrf-token]')[0].content, 
-                            id: $("#item_id").val(),
-                            name: $("#property_status_name").val(), 
-                            slug: $("#property_status_slug").val()
-                        }
-            );
-        }
-    );
-}
-
-function init_admin_confirm() {
-
-    $('#delete_confirm').on('show.bs.modal', function (e) {
-        console.log('this', this);
-    });
+    // Is it a list or trash bin?
+    var deleted = $(".admin-data-table").attr("data-deleted");
     
-}
+    // Push edit and delete buttons depending on the status:
+    /*
+    columns.push({ "data": "id",
+                    "fnCreatedCell": function (nTd, sData, rowData, iRow, iCol) {
+                        if(deleted == 0){
+                            $(nTd).html("<a class='btn btn-info' href='"+editUrl+"/"+rowData.id+"'><i class='far fa-edit'></i></a>");
+                        } else {
+                            $(nTd).html("");
+                        }
+                    }, "orderable": false, "width": "30px"
+                },
+                { "data": "id",
+                    "fnCreatedCell": function (nTd, sData, rowData, iRow, iCol) {
+                        if(deleted == 0){
+                            $(nTd).html("<span class='"+contextClass+"-soft-delete btn btn-warning' data-id='"+rowData.id+"'><i class='fas fa-trash'></i></span>");
+                        }else{
+                            $(nTd).html("<span class='"+contextClass+"-hard-delete btn btn-warning' data-id='"+rowData.id+"'><i class='fas fa-trash'></i></span>");
+                        }
+                    }, "orderable": false, "width": "30px"
+                });
+    */
 
-function init_admin_field_triggers(){
-    $(".admin-sorting-icon").click(
-        function(){
-
-            var order   = $(this).attr("data-order");
-            var orderBy = $(this).attr("data-orderBy");
-
-            $(".admin-url-field[data-field=order]").val(order)
-            $(".admin-url-field[data-field=order_by]").val(orderBy)
-            
-            trigger_admin_page();     
+    // Initialize data table:            
+    $(".admin-data-table").dataTable(
+        {
+            "ajax": url + "?deleted=" + deleted,
+            "columns": columns,
+            "autoWidth": true,
+            "processing": true,
+            "serverSide": true
         }
     );
+}
+
+/*
+    Init property status list:
+*/
+function initPropertyStatusList() {
+    var columns = [{ "data": "id" }, { "data": "name" }, { "data": "slug" }, { "data": "buttons" }];
+    initDataTable("/api/admin/property-status", columns, "property-status", "/admin/property-status/edit");
 }
 
 $( document ).ready(function() {
     
     initPropertyStatusList();
-
-    init_admin_confirm();
-
-    init_admin_field_triggers();
 
 });

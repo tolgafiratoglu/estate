@@ -1,6 +1,19 @@
 @extends('layouts.admin')
 
 @section('content')
+    <table class="admin-data-table display">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{{ __('admin.name') }}</th>
+                <th>{{ __('admin.slug') }}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <!--
     <input type="hidden" class="admin-url-field" data-field="page" value="{{ $page }}">
     <input type="hidden" class="admin-url-field" data-field="order_by" value="id">
     <input type="hidden" class="admin-url-field" data-field="order" value="DESC">
@@ -34,4 +47,5 @@
             @endforeach
         </tbody>
     </table>
+    -->
 @endsection
