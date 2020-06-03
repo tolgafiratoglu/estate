@@ -87,8 +87,8 @@ class PropertyStatusController extends Controller
 
         if(sizeof($propertyStatusList)){
             foreach($propertyStatusList AS $propertyStatus){
-                $editButton = '<span class="admin-list-control-buttons admin-list-edit" data-id="'.$propertyStatus["id"].'"><i class="far fa-edit"></i><span class="admin-list-control-label">'.__("admin.edit").'</span></span>';
-                $deleteButton = '<span class="admin-list-control-buttons admin-list-delete" data-id="'.$propertyStatus["id"].'"><i class="far fa-trash-alt"></i><span class="admin-list-control-label">'.__("admin.delete").'</span></span>';
+                $editButton = '<span class="admin-list-control-buttons admin-list-edit" data-id="'.$propertyStatus["id"].'"><a href="/admin/property-status/edit/'.$propertyStatus["id"].'"><i class="far fa-edit"></i><span class="admin-list-control-label">'.__("admin.edit").'</span></a></span>';
+                $deleteButton = '<span data-toggle="modal" data-target="#delete_confirm" class="admin-list-control-buttons admin-list-delete" data-id="'.$propertyStatus["id"].'"><i class="far fa-trash-alt"></i><span class="admin-list-control-label">'.__("admin.delete").'</span></span>';
                 $propertyStatus["buttons"] = $editButton.$deleteButton;
                 $propertyStatusListResponse[] = $propertyStatus;
             }

@@ -6,28 +6,6 @@ function initDataTable(url, columns, contextClass, editUrl) {
     // Is it a list or trash bin?
     var deleted = $(".admin-data-table").attr("data-deleted");
     
-    // Push edit and delete buttons depending on the status:
-    /*
-    columns.push({ "data": "id",
-                    "fnCreatedCell": function (nTd, sData, rowData, iRow, iCol) {
-                        if(deleted == 0){
-                            $(nTd).html("<a class='btn btn-info' href='"+editUrl+"/"+rowData.id+"'><i class='far fa-edit'></i></a>");
-                        } else {
-                            $(nTd).html("");
-                        }
-                    }, "orderable": false, "width": "30px"
-                },
-                { "data": "id",
-                    "fnCreatedCell": function (nTd, sData, rowData, iRow, iCol) {
-                        if(deleted == 0){
-                            $(nTd).html("<span class='"+contextClass+"-soft-delete btn btn-warning' data-id='"+rowData.id+"'><i class='fas fa-trash'></i></span>");
-                        }else{
-                            $(nTd).html("<span class='"+contextClass+"-hard-delete btn btn-warning' data-id='"+rowData.id+"'><i class='fas fa-trash'></i></span>");
-                        }
-                    }, "orderable": false, "width": "30px"
-                });
-    */
-
     // Initialize data table:            
     $(".admin-data-table").dataTable(
         {
