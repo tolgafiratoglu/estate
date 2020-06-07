@@ -102,6 +102,14 @@ class PropertyStatusController extends Controller
 
     }
 
+    public function deletePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository){
+
+        $validatedData = $request->validate([
+            'item_idc' => 'required'
+        ]);
+
+    }
+
     /*
     * Save property status 
     * @return \Symfony\Component\HttpFoundation\Response 

@@ -101,8 +101,8 @@
                     <p>{{ __("admin.confirm_action_detail") }}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">{{ __("admin.confirm_action_yes") }}</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __("admin.confirm_action_close") }}</button>
+                    <button type="button" class="delete-confirm-yes btn btn-primary">{{ __("admin.confirm_action_yes") }}</button>
+                    <button type="button" class="delete-confirm-close btn btn-secondary" data-dismiss="modal">{{ __("admin.confirm_action_close") }}</button>
                 </div>
                 </div>
             </div>
