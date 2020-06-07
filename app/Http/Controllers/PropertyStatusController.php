@@ -105,7 +105,7 @@ class PropertyStatusController extends Controller
     public function deletePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository){
 
         $validatedData = $request->validate([
-            'item_idc' => 'required'
+            'item_id' => 'required'
         ]);
 
     }
@@ -118,23 +118,23 @@ class PropertyStatusController extends Controller
     {
 
         $id   = $request->id ? $request->id : NULL;
-        $name = $request->name ? $request->name : '';
-        $slug = $request->slug ? $request->slug : NULL;
+        
+        $validationRules = [
+            'name' => 'unique:property_status,name',
+            'slug' => 'required|unique:property_status,slug'
+        ];
 
-        $slugExists = $propertyStatusRepository->slugExists($slug, $id);
-        $nameExists = $propertyStatusRepository->nameExists($name, $id);
-
-        if($name == ""){
-            return response(__('admin.property_status_name_not_blank'), 400)->header('Content-Type', 'text/plain');
+        if($id > 0) {
+            $validationRules = [
+                'name' => 'unique:property_status,name,'.$id,
+                'slug' => 'required|unique:property_status,slug,'.$id
+            ];
         }
 
-        if($nameExists > 0){
-            return response(__('admin.property_status_name_exists'), 400)->header('Content-Type', 'text/plain');
-        }
+        $validatedData = $request->validate($validationRules);
 
-        if($slugExists > 0 && $slug != ""){
-            return response(__('admin.property_status_slug_exists'), 400)->header('Content-Type', 'text/plain');
-        }
+        $name = $validatedData["name"];
+        $slug = $validatedData["slug"];
 
         if($id > 0) {
             $propertyStatus = $propertyStatusRepository->updatePropertyStatus($id, $name, $slug);

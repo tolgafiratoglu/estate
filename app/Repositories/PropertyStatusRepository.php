@@ -65,20 +65,4 @@
             return PropertyStatus::where("id", $id)->update(["name"=>$name, "slug"=>$slug]);
         }
 
-        public function slugExists($slug, $id){
-            $criterias = [['slug', '=', $slug]];
-            if($id != NULL){
-                $criterias[] = ['id', '!=', $id];
-            }
-            return PropertyStatus::where($criterias)->count();
-        }
-
-        public function nameExists($name, $id){
-            $criterias = [['name', '=', $name]];
-            if($id != NULL){
-                $criterias[] = ['id', '!=', $id];
-            }
-            return PropertyStatus::where($criterias)->count();
-        }
-
     }    

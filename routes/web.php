@@ -29,7 +29,7 @@ Route::get('/api/locations', 'LocationController@getLocations')->name('get_locat
 
 Route::get('/api/admin/property-status', 'PropertyStatusController@getPropertyStatus')->name('get_property_status')->middleware('admin');
 Route::delete('/api/admin/property-status', 'PropertyStatusController@deletePropertyStatus')->name('delete_property_status')->middleware('admin');
-Route::post('api/admin/property-status/save', 'PropertyStatusController@savePropertyStatus')->name('save_property_status')->middleware('admin');
+Route::post('api/admin/property-status', 'PropertyStatusController@savePropertyStatus')->name('save_property_status')->middleware('admin');
 
 // Admin Routes:
 Route::get('/admin/property-status', 'PropertyStatusController@listPropertyStatus')->name('list_property_status')->middleware('admin');
