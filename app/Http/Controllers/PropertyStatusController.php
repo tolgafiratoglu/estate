@@ -96,7 +96,7 @@ class PropertyStatusController extends Controller
 
         $propertyStatusCount = $propertyStatusRepository->getStatusListCount($deleted);
 
-        $propertyStatusList = ["data"=>$propertyStatusListResponse, "recordsTotal"=>$propertyStatusCount, "recordsFiltered"=>sizeof($propertyStatusList)];
+        $propertyStatusList = ["data"=>$propertyStatusListResponse, "recordsTotal"=>$propertyStatusCount, "recordsFiltered"=>$propertyStatusCount];
 
         return response()->json($propertyStatusList);
 
