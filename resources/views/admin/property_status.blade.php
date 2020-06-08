@@ -4,7 +4,7 @@
     <div class="admin-content-table-wrapper">
         <div class="alert alert-success d-none" role="alert"></div>
         <div class="alert alert-danger d-none" role="alert"></div>
-        <table class="admin-data-table display">
+        <table class="admin-data-table display" data-deleted="{{ $deleted }}">
             <thead>
                 <tr>
                     <th>#</th>

@@ -40,14 +40,10 @@
 
         }
 
-        public function getStatusList($deleted = false, $offset = NULL, $limit = NULL) {
+        public function getStatusList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL) {
 
             $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
-                                    ->where(
-                                        [
-                                            'is_deleted'=>$deleted
-                                        ]
-                                    );
+                                        ->where(['is_deleted'=>$deleted]);
 
                 // If offset is defined:
                 if($offset != NULL){
@@ -57,6 +53,10 @@
                 // If limit is defined:
                 if($limit != NULL){
                     $propertyStatusObject = $propertyStatusObject->limit($limit);
+                }
+
+                if($order != NULL){
+                    $propertyStatusObject = $propertyStatusObject->orderBy($orderBy, $order);
                 }
 
             return $propertyStatusObject->get()->toArray();
@@ -69,6 +69,25 @@
 
         public function updatePropertyStatus($id, $name, $slug){
             return PropertyStatus::where("id", $id)->update(["name"=>$name, "slug"=>$slug]);
+        }
+
+        public function deletePropertyStatus($id){
+            $isDeleted = PropertyStatus::where('id', $id)->delete();
+                return $isDeleted;
+        }
+
+        public function removePropertyStatus($id){
+            $propertyStatus = PropertyStatus::find($id);
+                $propertyStatus->is_deleted = true;
+                $propertyStatus->save();
+                return $propertyStatus;
+        }
+
+        public function undoDeletePropertyStatus($id){
+            $propertyStatus = PropertyStatus::find($id);
+                $propertyStatus->is_deleted = false;
+                $propertyStatus->save();
+                    return $propertyStatus;
         }
 
     }    

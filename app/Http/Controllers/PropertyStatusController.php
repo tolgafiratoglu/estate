@@ -26,15 +26,8 @@ class PropertyStatusController extends Controller
     public function listPropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository) {
 
         $deleted  = $request->deleted ? $request->deleted : 0;
-        $page     = $request->page ? $request->page : 1;
 
-        $limit    = 10;
-        $offset   = ($page - 1)*$limit;
-
-        $propertyStatusList  = $propertyStatusRepository->getStatusList($deleted, $offset, $limit);
-        $propertyStatusCount = $propertyStatusRepository->getStatusListCount($deleted);
-
-        return view('admin.property_status')->with(['deleted'=>$deleted, 'module'=>'property_status', 'page'=>$page, 'data'=>$propertyStatusList, 'total_data_count'=>$propertyStatusCount]);
+        return view('admin.property_status')->with(['deleted'=>$deleted, 'module'=>'property_status']);
     
     }
 
@@ -68,18 +61,33 @@ class PropertyStatusController extends Controller
     }
 
     /**
-     * Public api method to return property status
+     * Private api method to return property status
      *
      * @return \Symfony\Component\HttpFoundation\Response 
      */
     public function getPropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository)
     {
 
-        $offset   = $request->start ? $request->start : NULL;
-        $limit    = $request->length ? $request->length: NULL;
-        $deleted  = $request->deleted ? $request->deleted : 0;
+        $validatedData = $request->validate([
+            'start' => 'required',
+            'length' => 'required',
+            'deleted' => 'required',
+            'order' => 'required',
+            'search' => 'required',
+            'columns' => 'required'
+        ]);
 
-        $propertyStatusList  = $propertyStatusRepository->getStatusList($deleted, $offset, $limit);
+        $offset   = $validatedData["start"];
+        $limit    = $validatedData["length"];
+        $deleted  = $validatedData["deleted"];
+        $order    = $validatedData["order"];
+        $search   = $validatedData["search"];
+        $columns  = $validatedData["columns"];
+
+        $orderBy = $columns[$order[0]["column"]]["data"];
+        $order   = $order[0]["dir"];
+
+        $propertyStatusList  = $propertyStatusRepository->getStatusList($deleted, $offset, $limit, $orderBy, $order);
 
         $propertyStatusListResponse = [];
 
@@ -108,9 +116,9 @@ class PropertyStatusController extends Controller
 
         $itemId = (int) $validatedData["item_id"];
 
-        $updateRespones = $propertyStatusRepository->update(['is_deleted'=>true], $itemId);
+        $updateResponse = $propertyStatusRepository->deletePropertyStatus($itemId);
 
-        return response()->json($updateRespones);
+        return response()->json($updateResponse);
 
     }
 
@@ -122,9 +130,9 @@ class PropertyStatusController extends Controller
 
         $itemId = (int) $validatedData["item_id"];
         
-        $updateRespones = $propertyStatusRepository->update(['is_deleted'=>false], $itemId);
+        $updateResponse = $propertyStatusRepository->update(['is_deleted'=>false], $itemId);
         
-        return response()->json($updateRespones);
+        return response()->json($updateResponse);
 
     }
 

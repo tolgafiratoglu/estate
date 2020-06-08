@@ -4,7 +4,7 @@ var itemIdToRemove; // Hard delete
 /*
     Generic function to init data table:
 */
-function initDataTable(url, columns, apiDeleteUrl) {
+function initDataTable(url, columns, columnDefs, apiDeleteUrl) {
 
     // Is it a list or trash bin?
     var deleted = $(".admin-data-table").attr("data-deleted");
@@ -14,6 +14,7 @@ function initDataTable(url, columns, apiDeleteUrl) {
         {
             "ajax": url + "?deleted=" + deleted,
             "columns": columns,
+            "columnDefs": columnDefs,
             "autoWidth": true,
             "processing": true,
             "serverSide": true,
@@ -90,7 +91,8 @@ function saveItem(saveUrl, returnUrl, data){
 */
 function initPropertyStatusList() {
     var columns = [{ "data": "id" }, { "data": "name" }, { "data": "slug" }, { "data": "buttons" }];
-    initDataTable("/api/admin/property-status", columns, "/api/admin/property-status");
+    var columnDefs =  [{"targets": 3, "orderable": false, "className": "dt-right"}];
+    initDataTable("/api/admin/property-status", columns, columnDefs, "/api/admin/property-status");
 
     $(".admin-property-status-save").click(
         function(){
