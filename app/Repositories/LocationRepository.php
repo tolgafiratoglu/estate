@@ -3,13 +3,19 @@
     namespace App\Repositories;
 
     use App\Location as Location;
-    use Rinvex\Repository\Repositories\EloquentRepository;
+    use Prettus\Repository\Eloquent\BaseRepository;
 
-    class LocationRepository extends EloquentRepository{
+    class LocationRepository extends BaseRepository{
 
-        protected $repositoryId = 'estate.repository.location';
-
-        protected $model = 'App\Location';
+        /**
+         * Specify Model class name
+         *
+         * @return string
+         */
+        function model()
+        {
+            return "App\\Location";
+        }
 
         public function getLocations($enabled = true, $deleted = false, $parentId = NULL, $offset = NULL, $limit = NULL){
 

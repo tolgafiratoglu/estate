@@ -64,9 +64,7 @@ class PropertyStatusController extends Controller
      */
     public function newPropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository)
     {
-
         return view('admin.property_status_save')->with(["new"=>true, "data"=>[], 'module'=>'property_status']);
-    
     }
 
     /**
@@ -107,6 +105,26 @@ class PropertyStatusController extends Controller
         $validatedData = $request->validate([
             'item_id' => 'required'
         ]);
+
+        $itemId = (int) $validatedData["item_id"];
+
+        $updateRespones = $propertyStatusRepository->update(['is_deleted'=>true], $itemId);
+
+        return response()->json($updateRespones);
+
+    }
+
+    public function restorePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository){
+
+        $validatedData = $request->validate([
+            'item_id' => 'required'
+        ]);
+
+        $itemId = (int) $validatedData["item_id"];
+        
+        $updateRespones = $propertyStatusRepository->update(['is_deleted'=>false], $itemId);
+        
+        return response()->json($updateRespones);
 
     }
 

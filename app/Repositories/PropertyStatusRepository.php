@@ -3,13 +3,19 @@
     namespace App\Repositories;
 
     use App\PropertyStatus as PropertyStatus;
-    use Rinvex\Repository\Repositories\EloquentRepository;
+    use Prettus\Repository\Eloquent\BaseRepository;
 
-    class PropertyStatusRepository extends EloquentRepository{
+    class PropertyStatusRepository extends BaseRepository{
 
-        protected $repositoryId = 'estate.repository.property_status';
-
-        protected $model = 'App\PropertyStatus';
+        /**
+         * Specify Model class name
+         *
+         * @return string
+         */
+        function model()
+        {
+            return "App\\PropertyStatus";
+        }
 
         public function getStatusListCount($deleted = false) {
 
