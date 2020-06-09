@@ -87,7 +87,9 @@ class PropertyStatusController extends Controller
         $orderBy = $columns[$order[0]["column"]]["data"];
         $order   = $order[0]["dir"];
 
-        $propertyStatusList  = $propertyStatusRepository->getStatusList($deleted, $offset, $limit, $orderBy, $order);
+        $keyword = $search["value"];
+
+        $propertyStatusList  = $propertyStatusRepository->getStatusList($deleted, $offset, $limit, $orderBy, $order, $keyword);
 
         $propertyStatusListResponse = [];
 

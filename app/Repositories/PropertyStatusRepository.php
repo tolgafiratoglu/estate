@@ -40,7 +40,7 @@
 
         }
 
-        public function getStatusList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL) {
+        public function getStatusList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) {
 
             $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
                                         ->where(['is_deleted'=>$deleted]);
@@ -57,6 +57,10 @@
 
                 if($order != NULL){
                     $propertyStatusObject = $propertyStatusObject->orderBy($orderBy, $order);
+                }
+
+                if($keyword != NULL){
+                    $propertyStatusObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
                 }
 
             return $propertyStatusObject->get()->toArray();
