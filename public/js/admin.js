@@ -30,6 +30,18 @@ function initDataTable(url, columns, columnDefs, apiDeleteUrl, apiRemoveUrl, api
                     }
                 );
 
+                $(".admin-list-remove").click(
+                    function(){
+                        itemIdToRemove = $(this).attr("data-id");
+                    }
+                );
+
+                $(".admin-list-restore").click(
+                    function(){
+                        itemIdToRestore = $(this).attr("data-id");
+                    }
+                );
+
                 $(".delete-confirm-yes").click(
                     function(){
                         
@@ -39,7 +51,7 @@ function initDataTable(url, columns, columnDefs, apiDeleteUrl, apiRemoveUrl, api
                             data: {_token: $('meta[name=csrf-token]')[0].content, item_id: itemIdToDelete},
                             success: function(data){
                                 $('#delete_confirm').modal('hide');
-                                table.ajax.url(url).load();
+                                document.location.reload();
                             },
                             error: function(error){
                                 $('#restore_confirm').modal('hide');
@@ -58,9 +70,10 @@ function initDataTable(url, columns, columnDefs, apiDeleteUrl, apiRemoveUrl, api
                             data: {_token: $('meta[name=csrf-token]')[0].content, item_id: itemIdToRemove},
                             success: function(data){
                                 $('#remove_confirm').modal('hide');
+                                document.location.reload();
                             },
                             error: function(error){
-                                $('#restore_confirm').modal('hide');
+                                $('#remove_confirm').modal('hide');
                                 $(".alert-danger").removeClass("d-none").html(error.message);
                             } 
                         });
@@ -76,6 +89,7 @@ function initDataTable(url, columns, columnDefs, apiDeleteUrl, apiRemoveUrl, api
                             data: {_token: $('meta[name=csrf-token]')[0].content, item_id: itemIdToRestore},
                             success: function(data){
                                 $('#restore_confirm').modal('hide');
+                                document.location.reload();
                             },
                             error: function(error){
                                 $('#restore_confirm').modal('hide');

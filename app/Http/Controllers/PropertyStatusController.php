@@ -97,8 +97,8 @@ class PropertyStatusController extends Controller
             foreach($propertyStatusList AS $propertyStatus){
                 $editButton = '<span class="admin-list-control-buttons admin-list-edit" data-id="'.$propertyStatus["id"].'"><a href="/admin/property-status/edit/'.$propertyStatus["id"].'"><i class="far fa-edit"></i><span class="admin-list-control-label">'.__("admin.edit").'</span></a></span>';
                 $deleteButton = '<span data-toggle="modal" data-target="#delete_confirm" class="admin-list-control-buttons admin-list-delete" data-id="'.$propertyStatus["id"].'"><i class="far fa-trash-alt"></i><span class="admin-list-control-label">'.__("admin.delete").'</span></span>';
-                $removeButton = '<span data-toggle="modal" data-target="#remove_confirm" class="admin-list-control-buttons admin-list-delete" data-id="'.$propertyStatus["id"].'"><i class="fas fa-trash"></i><span class="admin-list-control-label">'.__("admin.remove").'</span></span>';
-                $restoreButton = '<span data-toggle="modal" data-target="#restore_confirm" class="admin-list-control-buttons admin-list-delete" data-id="'.$propertyStatus["id"].'"><i class="fas fa-arrow-up"></i><span class="admin-list-control-label">'.__("admin.restore").'</span></span>';
+                $removeButton = '<span data-toggle="modal" data-target="#remove_confirm" class="admin-list-control-buttons admin-list-remove" data-id="'.$propertyStatus["id"].'"><i class="fas fa-trash"></i><span class="admin-list-control-label">'.__("admin.remove").'</span></span>';
+                $restoreButton = '<span data-toggle="modal" data-target="#restore_confirm" class="admin-list-control-buttons admin-list-restore" data-id="'.$propertyStatus["id"].'"><i class="fas fa-arrow-up"></i><span class="admin-list-control-label">'.__("admin.restore").'</span></span>';
                 
                 if($deleted == false) 
                 {
