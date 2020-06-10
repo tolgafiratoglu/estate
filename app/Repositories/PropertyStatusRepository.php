@@ -17,7 +17,8 @@
             return "App\\PropertyStatus";
         }
 
-        public function getStatusListCount($deleted = false) {
+        public function getStatusListCount($deleted = false) 
+        {
 
             $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
                                     ->where(['is_deleted'=>$deleted]);
@@ -26,7 +27,8 @@
 
         }                            
 
-        public function getPropertyStatus($itemId) {
+        public function getPropertyStatus($itemId) 
+        {
 
             $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
                                     ->where(
@@ -40,7 +42,8 @@
 
         }
 
-        public function getStatusList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) {
+        public function getStatusList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
+        {
 
             $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
                                         ->where(['is_deleted'=>$deleted]);
@@ -67,27 +70,32 @@
 
         }
 
-        public function savePropertyStatus($name, $slug){
+        public function savePropertyStatus($name, $slug)
+        {
             return PropertyStatus::create(["name"=>$name, "slug"=>$slug]);
         }
 
-        public function updatePropertyStatus($id, $name, $slug){
+        public function updatePropertyStatus($id, $name, $slug)
+        {
             return PropertyStatus::where("id", $id)->update(["name"=>$name, "slug"=>$slug]);
         }
 
-        public function deletePropertyStatus($id){
+        public function removePropertyStatus($id)
+        {
             $isDeleted = PropertyStatus::where('id', $id)->delete();
                 return $isDeleted;
         }
 
-        public function removePropertyStatus($id){
+        public function deletePropertyStatus($id)
+        {
             $propertyStatus = PropertyStatus::find($id);
                 $propertyStatus->is_deleted = true;
                 $propertyStatus->save();
                 return $propertyStatus;
         }
 
-        public function undoDeletePropertyStatus($id){
+        public function undoDeletePropertyStatus($id)
+        {
             $propertyStatus = PropertyStatus::find($id);
                 $propertyStatus->is_deleted = false;
                 $propertyStatus->save();
