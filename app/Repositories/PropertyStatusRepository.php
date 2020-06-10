@@ -94,7 +94,7 @@
                 return $propertyStatus;
         }
 
-        public function undoDeletePropertyStatus($id)
+        public function restorePropertyStatus($id)
         {
             $propertyStatus = PropertyStatus::find($id);
                 $propertyStatus->is_deleted = false;

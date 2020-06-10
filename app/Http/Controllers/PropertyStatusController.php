@@ -97,8 +97,17 @@ class PropertyStatusController extends Controller
             foreach($propertyStatusList AS $propertyStatus){
                 $editButton = '<span class="admin-list-control-buttons admin-list-edit" data-id="'.$propertyStatus["id"].'"><a href="/admin/property-status/edit/'.$propertyStatus["id"].'"><i class="far fa-edit"></i><span class="admin-list-control-label">'.__("admin.edit").'</span></a></span>';
                 $deleteButton = '<span data-toggle="modal" data-target="#delete_confirm" class="admin-list-control-buttons admin-list-delete" data-id="'.$propertyStatus["id"].'"><i class="far fa-trash-alt"></i><span class="admin-list-control-label">'.__("admin.delete").'</span></span>';
-                $propertyStatus["buttons"] = $editButton.$deleteButton;
-                $propertyStatusListResponse[] = $propertyStatus;
+                $removeButton = '<span data-toggle="modal" data-target="#remove_confirm" class="admin-list-control-buttons admin-list-delete" data-id="'.$propertyStatus["id"].'"><i class="fas fa-trash"></i><span class="admin-list-control-label">'.__("admin.remove").'</span></span>';
+                $restoreButton = '<span data-toggle="modal" data-target="#restore_confirm" class="admin-list-control-buttons admin-list-delete" data-id="'.$propertyStatus["id"].'"><i class="fas fa-arrow-up"></i><span class="admin-list-control-label">'.__("admin.restore").'</span></span>';
+                
+                if($deleted == false) 
+                {
+                    $propertyStatus["buttons"] = $editButton.$deleteButton;
+                    $propertyStatusListResponse[] = $propertyStatus;
+                } else {
+                    $propertyStatus["buttons"] = $restoreButton.$removeButton;
+                    $propertyStatusListResponse[] = $propertyStatus;
+                }
             }
         }
 
@@ -117,11 +126,21 @@ class PropertyStatusController extends Controller
         ]);
 
         $itemId = (int) $validatedData["item_id"];
-
         $updateResponse = $propertyStatusRepository->deletePropertyStatus($itemId);
 
         return response()->json($updateResponse);
+    }
 
+    public function removePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository){
+
+        $validatedData = $request->validate([
+            'item_id' => 'required'
+        ]);
+
+        $itemId = (int) $validatedData["item_id"];
+        $updateResponse = $propertyStatusRepository->removePropertyStatus($itemId);
+
+        return response()->json($updateResponse);
     }
 
     public function restorePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository){
@@ -132,7 +151,7 @@ class PropertyStatusController extends Controller
 
         $itemId = (int) $validatedData["item_id"];
         
-        $updateResponse = $propertyStatusRepository->update(['is_deleted'=>false], $itemId);
+        $updateResponse = $propertyStatusRepository->restorePropertyStatus($itemId);
         
         return response()->json($updateResponse);
 

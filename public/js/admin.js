@@ -1,19 +1,22 @@
 var itemIdToDelete; // Soft delete
 var itemIdToRemove; // Hard delete
+var itemIdToRestore; // Restore deleted item
 
 /*
     Generic function to init data table:
 */
-function initDataTable(url, columns, columnDefs, apiDeleteUrl) 
+function initDataTable(url, columns, columnDefs, apiDeleteUrl, apiRemoveUrl, apiRestoreUrl) 
 {
 
     // Is it a list or trash bin?
     var deleted = $(".admin-data-table").attr("data-deleted");
     
+    url += "?deleted=" + deleted;
+
     // Initialize data table:            
-    $(".admin-data-table").dataTable(
+    var table = $(".admin-data-table").dataTable(
         {
-            "ajax": url + "?deleted=" + deleted,
+            "ajax": url,
             "columns": columns,
             "columnDefs": columnDefs,
             "autoWidth": true,
@@ -35,10 +38,48 @@ function initDataTable(url, columns, columnDefs, apiDeleteUrl)
                             type: "delete",
                             data: {_token: $('meta[name=csrf-token]')[0].content, item_id: itemIdToDelete},
                             success: function(data){
-                                document.location = returnUrl;
+                                $('#delete_confirm').modal('hide');
+                                table.ajax.url(url).load();
                             },
                             error: function(error){
-                                $(".alert-warning-wrapper").removeClass("d-none").html(error.responseText);
+                                $('#restore_confirm').modal('hide');
+                                $(".alert-danger").removeClass("d-none").html(error.message);
+                            } 
+                        });
+                    }
+                );
+
+                $(".remove-confirm-yes").click(
+                    function(){
+                        
+                        $.ajax({
+                            url: apiRemoveUrl,
+                            type: "delete",
+                            data: {_token: $('meta[name=csrf-token]')[0].content, item_id: itemIdToRemove},
+                            success: function(data){
+                                $('#remove_confirm').modal('hide');
+                            },
+                            error: function(error){
+                                $('#restore_confirm').modal('hide');
+                                $(".alert-danger").removeClass("d-none").html(error.message);
+                            } 
+                        });
+                    }
+                );
+
+                $(".restore-confirm-yes").click(
+                    function(){
+                        
+                        $.ajax({
+                            url: apiRestoreUrl,
+                            type: "put",
+                            data: {_token: $('meta[name=csrf-token]')[0].content, item_id: itemIdToRestore},
+                            success: function(data){
+                                $('#restore_confirm').modal('hide');
+                            },
+                            error: function(error){
+                                $('#restore_confirm').modal('hide');
+                                $(".alert-danger").removeClass("d-none").html(error.message);
                             } 
                         });
                     }
@@ -95,7 +136,7 @@ function initPropertyStatusList()
 {
     var columns = [{ "data": "id" }, { "data": "name" }, { "data": "slug" }, { "data": "buttons" }];
     var columnDefs =  [{"targets": 3, "orderable": false, "className": "dt-right"}];
-    initDataTable("/api/admin/property-status", columns, columnDefs, "/api/admin/property-status");
+    initDataTable("/api/admin/property-status", columns, columnDefs, "/api/admin/property-status", "/api/admin/property-status/remove", "/api/admin/property-status/restore");
 
     $(".admin-property-status-save").click(
         function(){
