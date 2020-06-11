@@ -22,6 +22,7 @@ function initDataTable(url, columns, columnDefs, apiDeleteUrl, apiRemoveUrl, api
             "autoWidth": true,
             "processing": true,
             "serverSide": true,
+            "order": [[ 0, "desc" ]],
             "drawCallback": function( settings ) {
 
                 $(".admin-list-delete").click(

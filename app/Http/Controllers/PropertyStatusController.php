@@ -19,7 +19,9 @@ class PropertyStatusController extends Controller
     }
 
     /**
-     * Lists admin propert status:
+     * Outputs list view
+     * 
+     * @param integer $deleted Switches list into a trash bin when it's 1, otherwise it's a normal list of active items.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -32,7 +34,10 @@ class PropertyStatusController extends Controller
     }
 
     /**
-     * Edit property status
+     * Outputs edit form to update the item with a given id
+     * 
+     * @param $id Id of the item to be edited
+     * 
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -51,7 +56,7 @@ class PropertyStatusController extends Controller
     }
 
     /**
-     * New property status
+     * Outputs new item form
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -62,6 +67,13 @@ class PropertyStatusController extends Controller
 
     /**
      * Private api method to return property status
+     * 
+     * @param $start   Offset of the retrieved items
+     * @param $length  Limit of the retrieved items
+     * @param $deleted Filter items by if they are deleted or not
+     * @param $order   Order of the retrieved items
+     * @param $search  Keyword to search in the data
+     * @param $columns Table column metadata
      *
      * @return \Symfony\Component\HttpFoundation\Response 
      */
@@ -77,6 +89,7 @@ class PropertyStatusController extends Controller
             'columns' => 'required'
         ]);
 
+        // Get values from validated input data:
         $offset   = $validatedData["start"];
         $limit    = $validatedData["length"];
         $deleted  = $validatedData["deleted"];
@@ -84,15 +97,20 @@ class PropertyStatusController extends Controller
         $search   = $validatedData["search"];
         $columns  = $validatedData["columns"];
 
+        // Define how to order items:
         $orderBy = $columns[$order[0]["column"]]["data"];
         $order   = $order[0]["dir"];
 
+        // Keyword to filter items:
         $keyword = $search["value"];
 
+        // Repository method to retrieve data from database:
         $propertyStatusList  = $propertyStatusRepository->getStatusList($deleted, $offset, $limit, $orderBy, $order, $keyword);
 
+        // DTO to return as an AJAX response:
         $propertyStatusListResponse = [];
 
+        // Add buttons to the rows, to edit, delete, remove or restore:
         if(sizeof($propertyStatusList)){
             foreach($propertyStatusList AS $propertyStatus){
                 $editButton = '<span class="admin-list-control-buttons admin-list-edit" data-id="'.$propertyStatus["id"].'"><a href="/admin/property-status/edit/'.$propertyStatus["id"].'"><i class="far fa-edit"></i><span class="admin-list-control-label">'.__("admin.edit").'</span></a></span>';
@@ -111,14 +129,23 @@ class PropertyStatusController extends Controller
             }
         }
 
+        // Get count of filtered & all results:
+        $propertyStatusFilteredCount = $propertyStatusRepository->getStatusListFilteredCount($deleted, $keyword);
         $propertyStatusCount = $propertyStatusRepository->getStatusListCount($deleted);
 
-        $propertyStatusList = ["data"=>$propertyStatusListResponse, "recordsTotal"=>$propertyStatusCount, "recordsFiltered"=>$propertyStatusCount];
+        $propertyStatusList = ["data"=>$propertyStatusListResponse, "recordsTotal"=>$propertyStatusCount, "recordsFiltered"=>$propertyStatusFilteredCount];
 
         return response()->json($propertyStatusList);
 
     }
 
+    /*
+     *  Api method to delete by item id
+     *    
+     *  @param $itemId id of the item to be deleted
+     *
+     *  @return \Symfony\Component\HttpFoundation\Response 
+     */
     public function deletePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository){
 
         $validatedData = $request->validate([
@@ -131,6 +158,13 @@ class PropertyStatusController extends Controller
         return response()->json($updateResponse);
     }
 
+    /*
+     *  Api method to remove by item id
+     *    
+     *  @param $itemId id of the item to be removed
+     *
+     *  @return \Symfony\Component\HttpFoundation\Response 
+     */
     public function removePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository){
 
         $validatedData = $request->validate([
@@ -143,6 +177,13 @@ class PropertyStatusController extends Controller
         return response()->json($updateResponse);
     }
 
+    /*
+     *  Api method to restore by item id
+     *    
+     *  @param $itemId id of the item to be removed
+     *
+     *  @return \Symfony\Component\HttpFoundation\Response 
+     */
     public function restorePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository){
 
         $validatedData = $request->validate([
@@ -158,7 +199,12 @@ class PropertyStatusController extends Controller
     }
 
     /*
-    * Save property status 
+    * Api method to save (create, update) item 
+    *
+    * @param @id   If id is defined, action shall be an update
+    * @param @name Name of the item
+    * @param @slug Slug of the item  
+    *
     * @return \Symfony\Component\HttpFoundation\Response 
     */
     public function savePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository)

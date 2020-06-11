@@ -24,8 +24,20 @@
                                     ->where(['is_deleted'=>$deleted]);
 
             return $propertyStatusObject->count();                                    
-
         }                            
+
+        public function getStatusListFilteredCount($deleted = false, $keyword = NULL) 
+        {
+
+            $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
+                                    ->where(['is_deleted'=>$deleted]);
+
+            if($keyword != NULL){
+                $propertyStatusObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
+            }
+
+            return $propertyStatusObject->count();                                    
+        }
 
         public function getPropertyStatus($itemId) 
         {
