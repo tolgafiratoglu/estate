@@ -19,7 +19,7 @@
 
         public function getLocations($enabled = true, $deleted = false, $parentId = NULL, $offset = NULL, $limit = NULL){
 
-            $locationsObject = Location::select('name', 'slug')
+            $locationsObject = Location::select('id', 'name', 'slug')
                                     ->where(
                                         [
                                             'is_enabled'=>$enabled,
