@@ -50,7 +50,10 @@
                                     <div class="filter-content-wrapper">
                                         <ul>
                                             <li class="qual-filter-switcher active" data-target="qual_property_type" data-id="0">All Property Types</li>
-                                            <li data-id="25" data-target="qual_property_type" class="qual-filter-switcher">Apartment</li><li data-id="21" data-target="qual_property_type" class="qual-filter-switcher">Office</li><li data-id="26" data-target="qual_property_type" class="qual-filter-switcher">Office Building</li><li data-id="13" data-target="qual_property_type" class="qual-filter-switcher">Residance</li><li data-id="14" data-target="qual_property_type" class="qual-filter-switcher">Villa</li>                </ul>
+                                            @foreach ($propertyTypes as $propertyType)
+                                                <li data-id="{{ $propertyType['id'] }}" data-target="qual_property_type" class="qual-filter-switcher">{{ $propertyType["name"] }}</li>
+                                            @endforeach
+                                        </ul>    
                                     </div>
                                 </div>
                             </div>

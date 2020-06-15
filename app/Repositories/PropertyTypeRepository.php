@@ -17,6 +17,22 @@
             return "App\\PropertyType";
         }
 
+        /*
+        * Returns list count
+        *
+        * @param $deleted Is deleted?
+        *
+        * @return integer
+        */
+        public function getTypesListCount($deleted = false) 
+        {
+
+            $propertyTypesObject = PropertyType::select('id', 'name', 'slug')
+                                    ->where(['is_deleted'=>$deleted]);
+
+            return $propertyTypesObject->count();                                    
+        }
+
         function getPropertyTypes($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL)
         {
 

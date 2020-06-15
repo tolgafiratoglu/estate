@@ -27,7 +27,7 @@ class SearchController extends Controller
         // Get property types:
         $propertyTypes = $propertyTypeRepository->getPropertyTypes(false);
 
-        return view('search')->with(["locations"=>$locations, "property_types"=> $propertyTypes]);
+        return view('search')->with(["locations"=>$locations, "propertyTypes"=> $propertyTypes]);
     }
 
 }
