@@ -2,10 +2,10 @@
 
     namespace App\Repositories;
 
-    use App\PropertyStatus as PropertyStatus;
+    use App\ExteriorFeature as ExteriorFeature;
     use Prettus\Repository\Eloquent\BaseRepository;
 
-    class PropertyStatusRepository extends BaseRepository{
+    class ExteriorFeatureRepository extends BaseRepository{
 
         /**
          * Specify Model class name
@@ -14,7 +14,7 @@
          */
         function model()
         {
-            return "App\\PropertyStatus";
+            return "App\\ExteriorFeature";
         }
 
         /*
@@ -24,12 +24,12 @@
         *
         * @return integer
         */
-        public function getStatusListCount($deleted = false) 
+        public function getExteriorFeatureListCount($deleted = false) 
         {
 
-            $propertyStatusObject = PropertyStatus::where(['is_deleted'=>$deleted]);
+            $exteriorFeatureObject = ExteriorFeature::where(['is_deleted'=>$deleted]);
 
-            return $propertyStatusObject->count();                                    
+            return $exteriorFeatureObject->count();                                    
         }                            
 
         /*
@@ -40,16 +40,16 @@
         *
         * @return integer
         */
-        public function getStatusListFilteredCount($deleted = false, $keyword = NULL) 
+        public function getExteriorFeatureListFilteredCount($deleted = false, $keyword = NULL) 
         {
 
-            $propertyStatusObject = PropertyStatus::where(['is_deleted'=>$deleted]);
+            $exteriorFeatureObject = ExteriorFeature::where(['is_deleted'=>$deleted]);
 
             if($keyword != NULL){
-                $propertyStatusObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
+                $exteriorFeatureObject = $exteriorFeatureObject->where('name', 'like', '%'.$keyword.'%');
             }
 
-            return $propertyStatusObject->count();                                    
+            return $exteriorFeatureObject->count();                                    
         }
 
         /*
@@ -59,10 +59,10 @@
         *
         * @return array
         */
-        public function getPropertyStatus($itemId) 
+        public function getExteriorFeature($itemId) 
         {
 
-            $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
+            $exteriorFeatureObject = ExteriorFeature::select('id', 'name', 'slug')
                                     ->where(
                                         [
                                             'id'=>$itemId,
@@ -70,7 +70,7 @@
                                         ]
                                     );
 
-            return $propertyStatusObject->first()->toArray();
+            return $exteriorFeatureObject->first()->toArray();
 
         }
 
@@ -86,31 +86,31 @@
         *
         * @return array
         */
-        public function getStatusList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
+        public function getExteriorFeatureList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
-            $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
+            $exteriorFeatureObject = ExteriorFeature::select('id', 'name', 'slug')
                                         ->where(['is_deleted'=>$deleted]);
 
                 // If offset is defined:
                 if($offset != NULL){
-                    $propertyStatusObject = $propertyStatusObject->offset($offset);
+                    $exteriorFeatureObject = $propertyStatusObject->offset($offset);
                 }
 
                 // If limit is defined:
                 if($limit != NULL){
-                    $propertyStatusObject = $propertyStatusObject->limit($limit);
+                    $exteriorFeatureObject = $propertyStatusObject->limit($limit);
                 }
 
                 if($order != NULL){
-                    $propertyStatusObject = $propertyStatusObject->orderBy($orderBy, $order);
+                    $exteriorFeatureObject = $propertyStatusObject->orderBy($orderBy, $order);
                 }
 
                 if($keyword != NULL){
-                    $propertyStatusObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
+                    $exteriorFeatureObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
                 }
 
-            return $propertyStatusObject->get()->toArray();
+            return $exteriorFeatureObject->get()->toArray();
 
         }
 
@@ -122,9 +122,9 @@
         *
         * @return App\\PropertyStatus
         */
-        public function savePropertyStatus($name, $slug)
+        public function saveExteriorFeature($name, $slug)
         {
-            return PropertyStatus::create(["name"=>$name, "slug"=>$slug]);
+            return ExteriorFeature::create(["name"=>$name, "slug"=>$slug]);
         }
 
         /*
@@ -136,9 +136,9 @@
         *
         * @return App\\PropertyStatus
         */
-        public function updatePropertyStatus($id, $name, $slug)
+        public function updateExteriorFeature($id, $name, $slug)
         {
-            return PropertyStatus::where("id", $id)->update(["name"=>$name, "slug"=>$slug]);
+            return ExteriorFeature::where("id", $id)->update(["name"=>$name, "slug"=>$slug]);
         }
 
         /*
@@ -148,9 +148,9 @@
         *
         * @return boolean
         */
-        public function removePropertyStatus($id)
+        public function removeExteriorFeature($id)
         {
-            $isDeleted = PropertyStatus::where('id', $id)->delete();
+            $isDeleted = ExteriorFeature::where('id', $id)->delete();
                 return $isDeleted;
         }
 
@@ -159,14 +159,14 @@
         *
         * @param $id Id of the item to be soft deleted
         *
-        * @return App\\PropertyStatus
+        * @return App\\ExteriorFeature
         */
-        public function deletePropertyStatus($id)
+        public function deleteExteriorFeature($id)
         {
-            $propertyStatus = PropertyStatus::find($id);
-                $propertyStatus->is_deleted = true;
-                $propertyStatus->save();
-                return $propertyStatus;
+            $exteriorFeature = ExteriorFeature::find($id);
+                $exteriorFeature->is_deleted = true;
+                $exteriorFeature->save();
+                return $exteriorFeature;
         }
 
         /*
@@ -174,14 +174,14 @@
         *
         * @param $id Id of the item to be restored
         *
-        * @return App\\PropertyStatus
+        * @return App\\ExteriorFeature
         */
-        public function restorePropertyStatus($id)
+        public function restoreExteriorFeature($id)
         {
-            $propertyStatus = PropertyStatus::find($id);
-                $propertyStatus->is_deleted = false;
-                $propertyStatus->save();
-                    return $propertyStatus;
+            $exteriorFeature = ExteriorFeature::find($id);
+                $exteriorFeature->is_deleted = false;
+                $exteriorFeature->save();
+                    return $exteriorFeature;
         }
 
     }    

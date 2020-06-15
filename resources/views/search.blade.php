@@ -74,7 +74,10 @@
                                     <div class="filter-content-wrapper">
                                         <ul>
                                             <li class="qual-filter-switcher active" data-target="qual_property_status" data-id="0">Any Status</li>
-                                            <li data-id="4" data-target="qual_property_status" class="qual-filter-switcher">For Rent</li><li data-id="3" data-target="qual_property_status" class="qual-filter-switcher">For Sale</li>                </ul>
+                                            @foreach ($propertyStatus as $propertyStatusItem)
+                                                <li data-id="{{ $propertyStatusItem['id'] }}" data-target="qual_property_status" class="qual-filter-switcher">{{ $propertyStatusItem["name"] }}</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

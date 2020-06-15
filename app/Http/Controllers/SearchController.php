@@ -18,7 +18,7 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(LocationRepository $locationRepository, PropertyTypeRepository $propertyTypeRepository)
+    public function index(LocationRepository $locationRepository, PropertyTypeRepository $propertyTypeRepository, PropertyStatusRepository $propertyStatusRepository, InteriorFeatureRepository $interiorFeatureRepository, ExteriorFeatureRepository $exteriorFeatureRepository)
     {
 
         // Get locations:
@@ -27,7 +27,16 @@ class SearchController extends Controller
         // Get property types:
         $propertyTypes = $propertyTypeRepository->getPropertyTypes(false);
 
-        return view('search')->with(["locations"=>$locations, "propertyTypes"=> $propertyTypes]);
+        // Get property status:
+        $propertyStatus = $propertyStatusRepository->getStatusList(false);
+
+        // Get interior features:
+        $interiorFeatures = $interiorFeatureRepository->getInteriorFeatureList(false);
+
+        // Get exterior features:
+        $exteriorFeatures = $exteriorFeatureRepository->getExteriorFeatureList(false);
+
+        return view('search')->with(["locations"=>$locations, "propertyTypes"=> $propertyTypes, "propertyStatus"=>$propertyStatus]);
     }
 
 }

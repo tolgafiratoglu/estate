@@ -2,10 +2,10 @@
 
     namespace App\Repositories;
 
-    use App\PropertyStatus as PropertyStatus;
+    use App\InteriorFeature as InteriorFeature;
     use Prettus\Repository\Eloquent\BaseRepository;
 
-    class PropertyStatusRepository extends BaseRepository{
+    class InteriorFeatureRepository extends BaseRepository{
 
         /**
          * Specify Model class name
@@ -14,7 +14,7 @@
          */
         function model()
         {
-            return "App\\PropertyStatus";
+            return "App\\InteriorFeature";
         }
 
         /*
@@ -24,12 +24,12 @@
         *
         * @return integer
         */
-        public function getStatusListCount($deleted = false) 
+        public function getInteriorFeatureListCount($deleted = false) 
         {
 
-            $propertyStatusObject = PropertyStatus::where(['is_deleted'=>$deleted]);
+            $interiorFeatureObject = InteriorFeature::where(['is_deleted'=>$deleted]);
 
-            return $propertyStatusObject->count();                                    
+            return $interiorFeatureObject->count();                                    
         }                            
 
         /*
@@ -40,16 +40,16 @@
         *
         * @return integer
         */
-        public function getStatusListFilteredCount($deleted = false, $keyword = NULL) 
+        public function getInteriorFeatureListFilteredCount($deleted = false, $keyword = NULL) 
         {
 
-            $propertyStatusObject = PropertyStatus::where(['is_deleted'=>$deleted]);
+            $interiorFeatureObject = InteriorFeature::where(['is_deleted'=>$deleted]);
 
             if($keyword != NULL){
-                $propertyStatusObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
+                $interiorFeatureObject = $interiorFeatureObject->where('name', 'like', '%'.$keyword.'%');
             }
 
-            return $propertyStatusObject->count();                                    
+            return $interiorFeatureObject->count();                                    
         }
 
         /*
@@ -59,10 +59,10 @@
         *
         * @return array
         */
-        public function getPropertyStatus($itemId) 
+        public function getInteriorFeature($itemId) 
         {
 
-            $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
+            $interiorFeatureObject = InteriorFeature::select('id', 'name', 'slug')
                                     ->where(
                                         [
                                             'id'=>$itemId,
@@ -70,7 +70,7 @@
                                         ]
                                     );
 
-            return $propertyStatusObject->first()->toArray();
+            return $interiorFeatureObject->first()->toArray();
 
         }
 
@@ -86,31 +86,31 @@
         *
         * @return array
         */
-        public function getStatusList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
+        public function getInteriorFeatureList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
-            $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
+            $interiorFeatureObject = InteriorFeature::select('id', 'name', 'slug')
                                         ->where(['is_deleted'=>$deleted]);
 
                 // If offset is defined:
                 if($offset != NULL){
-                    $propertyStatusObject = $propertyStatusObject->offset($offset);
+                    $interiorFeatureObject = $propertyStatusObject->offset($offset);
                 }
 
                 // If limit is defined:
                 if($limit != NULL){
-                    $propertyStatusObject = $propertyStatusObject->limit($limit);
+                    $interiorFeatureObject = $propertyStatusObject->limit($limit);
                 }
 
                 if($order != NULL){
-                    $propertyStatusObject = $propertyStatusObject->orderBy($orderBy, $order);
+                    $interiorFeatureObject = $propertyStatusObject->orderBy($orderBy, $order);
                 }
 
                 if($keyword != NULL){
-                    $propertyStatusObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
+                    $interiorFeatureObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
                 }
 
-            return $propertyStatusObject->get()->toArray();
+            return $interiorFeatureObject->get()->toArray();
 
         }
 
@@ -122,9 +122,9 @@
         *
         * @return App\\PropertyStatus
         */
-        public function savePropertyStatus($name, $slug)
+        public function saveInteriorFeature($name, $slug)
         {
-            return PropertyStatus::create(["name"=>$name, "slug"=>$slug]);
+            return InteriorFeature::create(["name"=>$name, "slug"=>$slug]);
         }
 
         /*
@@ -136,9 +136,9 @@
         *
         * @return App\\PropertyStatus
         */
-        public function updatePropertyStatus($id, $name, $slug)
+        public function updateInteriorFeature($id, $name, $slug)
         {
-            return PropertyStatus::where("id", $id)->update(["name"=>$name, "slug"=>$slug]);
+            return InteriorFeature::where("id", $id)->update(["name"=>$name, "slug"=>$slug]);
         }
 
         /*
@@ -148,9 +148,9 @@
         *
         * @return boolean
         */
-        public function removePropertyStatus($id)
+        public function removeInteriorFeature($id)
         {
-            $isDeleted = PropertyStatus::where('id', $id)->delete();
+            $isDeleted = InteriorFeature::where('id', $id)->delete();
                 return $isDeleted;
         }
 
@@ -159,14 +159,14 @@
         *
         * @param $id Id of the item to be soft deleted
         *
-        * @return App\\PropertyStatus
+        * @return App\\InteriorFeature
         */
-        public function deletePropertyStatus($id)
+        public function deleteInteriorFeature($id)
         {
-            $propertyStatus = PropertyStatus::find($id);
-                $propertyStatus->is_deleted = true;
-                $propertyStatus->save();
-                return $propertyStatus;
+            $interiorFeature = InteriorFeature::find($id);
+                $interiorFeature->is_deleted = true;
+                $interiorFeature->save();
+                return $interiorFeature;
         }
 
         /*
@@ -174,14 +174,14 @@
         *
         * @param $id Id of the item to be restored
         *
-        * @return App\\PropertyStatus
+        * @return App\\InteriorFeature
         */
-        public function restorePropertyStatus($id)
+        public function restoreInteriorFeature($id)
         {
-            $propertyStatus = PropertyStatus::find($id);
-                $propertyStatus->is_deleted = false;
-                $propertyStatus->save();
-                    return $propertyStatus;
+            $interiorFeature = InteriorFeature::find($id);
+                $interiorFeature->is_deleted = false;
+                $interiorFeature->save();
+                    return $interiorFeature;
         }
 
     }    
