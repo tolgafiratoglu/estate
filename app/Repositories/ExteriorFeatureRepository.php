@@ -46,7 +46,7 @@
             $exteriorFeatureObject = ExteriorFeature::where(['is_deleted'=>$deleted]);
 
             if($keyword != NULL){
-                $exteriorFeatureObject = $exteriorFeatureObject->where('name', 'like', '%'.$keyword.'%');
+                $exteriorFeatureObject = $exteriorFeatureObject->where('title', 'like', '%'.$keyword.'%');
             }
 
             return $exteriorFeatureObject->count();                                    
@@ -62,7 +62,7 @@
         public function getExteriorFeature($itemId) 
         {
 
-            $exteriorFeatureObject = ExteriorFeature::select('id', 'name', 'slug')
+            $exteriorFeatureObject = ExteriorFeature::select('id', 'title', 'slug')
                                     ->where(
                                         [
                                             'id'=>$itemId,
@@ -89,7 +89,7 @@
         public function getExteriorFeatureList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
-            $exteriorFeatureObject = ExteriorFeature::select('id', 'name', 'slug')
+            $exteriorFeatureObject = ExteriorFeature::select('id', 'title', 'slug')
                                         ->where(['is_deleted'=>$deleted]);
 
                 // If offset is defined:
@@ -107,7 +107,7 @@
                 }
 
                 if($keyword != NULL){
-                    $exteriorFeatureObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
+                    $exteriorFeatureObject = $propertyStatusObject->where('title', 'like', '%'.$keyword.'%');
                 }
 
             return $exteriorFeatureObject->get()->toArray();
@@ -117,28 +117,28 @@
         /*
         * Saves with given arguments
         *
-        * @param $name Name of the item
+        * @param $title title of the item
         * @param $slug Slug of the item
         *
         * @return App\\PropertyStatus
         */
-        public function saveExteriorFeature($name, $slug)
+        public function saveExteriorFeature($title, $slug)
         {
-            return ExteriorFeature::create(["name"=>$name, "slug"=>$slug]);
+            return ExteriorFeature::create(["title"=>$title, "slug"=>$slug]);
         }
 
         /*
         * Saves with given arguments
         *
         * @param $id Id of the item
-        * @param $name Name of the item
+        * @param $title title of the item
         * @param $slug Slug of the item
         *
         * @return App\\PropertyStatus
         */
-        public function updateExteriorFeature($id, $name, $slug)
+        public function updateExteriorFeature($id, $title, $slug)
         {
-            return ExteriorFeature::where("id", $id)->update(["name"=>$name, "slug"=>$slug]);
+            return ExteriorFeature::where("id", $id)->update(["title"=>$title, "slug"=>$slug]);
         }
 
         /*

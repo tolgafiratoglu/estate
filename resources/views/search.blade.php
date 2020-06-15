@@ -151,7 +151,10 @@
                             <div class="filter-content-wrapper filter-content-wrapper-multiple qual-filter-wrapper-unit-scrollable">
                                 <ul>
                                     <li class="qual-filter-switcher-multiple qual_interior_features active default-switch" data-target="qual_interior_features" data-id="0">All Features</li>
-                                        <li class="qual-filter-switcher-multiple qual_interior_features" data-target="qual_interior_features" data-id="22">ADSL</li><li class="qual-filter-switcher-multiple qual_interior_features" data-target="qual_interior_features" data-id="9">Furniture</li><li class="qual-filter-switcher-multiple qual_interior_features" data-target="qual_interior_features" data-id="17">Heating</li><li class="qual-filter-switcher-multiple qual_interior_features" data-target="qual_interior_features" data-id="15">Kitchen</li><li class="qual-filter-switcher-multiple qual_interior_features" data-target="qual_interior_features" data-id="23">Library</li><li class="qual-filter-switcher-multiple qual_interior_features" data-target="qual_interior_features" data-id="16">TV</li>                </ul>
+                                    @foreach ($interiorFeatures as $interiorFeature)
+                                        <li class="qual-filter-switcher-multiple qual_interior_features" data-target="qual_interior_features" data-id="{{ $interiorFeature['id'] }}">{{ $interiorFeature["name"] }}</li>                
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                 
