@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 class PropertyController extends Controller
 {
-    
+
     /**
      * New property
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function new()
     {
         return view('property.new');
     }

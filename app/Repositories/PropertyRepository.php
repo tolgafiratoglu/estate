@@ -35,6 +35,46 @@
             return Property::max($field);
         }
 
+        /*
+        * Returns list of items defined by parameters
+        *
+        * @param $deleted if items are deleted or not
+        * @param $offset offset of the collection
+        * @param $limit limit of the collection
+        * @param $orderBy order by a field
+        * @param $order sort criteria
+        * @param $keyword 
+        *
+        * @return array
+        */
+        public function getPropertyList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
+        {
+
+            $propertyListObject = Property::select('id', 'created_at', 'updated_at', 'location', 'created_by', 'property_status',	'type',	'featured_image', 'price', 'address', 'area', 'age_of_building', 'number_of_living_rooms', 'number_of_rooms', 'number_of_bathrooms', 'floor', 'lat', 'lon', 'is_approved', 'is_drafted', 'is_deleted')
+                                        ->where(['is_deleted'=>$deleted]);
+
+                // If offset is defined:
+                if($offset != NULL){
+                    $propertyListObject = $propertyListObject->offset($offset);
+                }
+
+                // If limit is defined:
+                if($limit != NULL){
+                    $propertyListObject = $propertyListObject->limit($limit);
+                }
+
+                if($order != NULL){
+                    $propertyListObject = $propertyListObject->orderBy($orderBy, $order);
+                }
+
+                if($keyword != NULL){
+                    $propertyListObject = $propertyListObject->where('title', 'like', '%'.$keyword.'%');
+                }
+
+            return $propertyListObject->get()->toArray();
+
+        }
+
     }
     
 ?>    

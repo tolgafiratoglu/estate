@@ -5,7 +5,24 @@
 
 /* 1. Overall design starts */
 
+body{
+    background-color: #f9f9f9 !important;
+}
 
+    .boxed-content{
+        width: 600px;
+        margin: 0px auto;
+        padding: 1rem;
+        background-color: #ffffff;
+    }
+
+    .rounded-border{
+        border-radius: 0.5rem;
+    }
+
+    .shadowed-content{
+        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)!important;
+    }
 
 /* 2. Search filter starts */
 

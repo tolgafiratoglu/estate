@@ -25,6 +25,8 @@ Route::get('/search', 'SearchController@index')->name('search');
 
 // Property related routes:
 Route::get('/property/new', 'PropertyController@new')->name('new_property');
+Route::get('/property/edit/{id}', 'PropertyController@edit')->name('edit_property');
+Route::get('/property/{id}', 'PropertyController@property')->name('edit_property');
 
 // Admin Routes:
 Route::get('/admin/property-status', 'PropertyStatusController@listPropertyStatus')->name('list_property_status')->middleware('admin');

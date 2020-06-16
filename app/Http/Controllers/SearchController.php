@@ -40,18 +40,19 @@ class SearchController extends Controller
         $propertyStats = [];
 
         // Min-max values:
-        $propertyStats["max_area"]  = $propertyRepository->getMax('area');
-        $propertyStats["min_price"] = $propertyRepository->getMin('price');
-        $propertyStats["max_price"] = $propertyRepository->getMax('price');
-        $propertyStats["max_number_of_rooms"] = $propertyRepository->getMax('number_of_rooms');
-        $propertyStats["min_floor"] = $propertyRepository->getMin('floor');
-        $propertyStats["max_floor"] = $propertyRepository->getMax('floor');
-        $propertyStats["min_age_of_building"] = $propertyRepository->getMin('age_of_building');
-        $propertyStats["max_age_of_building"] = $propertyRepository->getMax('age_of_building');
+        $propertyStats["max_area"]  = $propertyRepository->getMaxValue('area');
+        $propertyStats["min_price"] = $propertyRepository->getMinValue('price');
+        $propertyStats["max_price"] = $propertyRepository->getMaxValue('price');
+        $propertyStats["max_number_of_rooms"] = $propertyRepository->getMaxValue('number_of_rooms');
+        $propertyStats["min_floor"] = $propertyRepository->getMinValue('floor');
+        $propertyStats["max_floor"] = $propertyRepository->getMaxValue('floor');
+        $propertyStats["min_age_of_building"] = $propertyRepository->getMinValue('age_of_building');
+        $propertyStats["max_age_of_building"] = $propertyRepository->getMaxValue('age_of_building');
 
-        var_dump($propertyStats);
+        // Get properties for the initial property list view:
+        $initialProperties = $propertyRepository->getPropertyList(false, 0, 12, 'id', 'DESC');
 
-        return view('search')->with(["locations"=>$locations, "propertyTypes"=> $propertyTypes, "propertyStatus"=>$propertyStatus, "interiorFeatures"=>$interiorFeatures, "exteriorFeatures"=>$exteriorFeatures, "propertyStats"=>$propertyStats]);
+        return view('search')->with(["locations"=>$locations, "propertyTypes"=> $propertyTypes, "propertyStatus"=>$propertyStatus, "interiorFeatures"=>$interiorFeatures, "exteriorFeatures"=>$exteriorFeatures, "propertyStats"=>$propertyStats, "initialProperties"=>$initialProperties]);
     }
 
 }
