@@ -49,6 +49,8 @@ class SearchController extends Controller
         $propertyStats["min_age_of_building"] = $propertyRepository->getMin('age_of_building');
         $propertyStats["max_age_of_building"] = $propertyRepository->getMax('age_of_building');
 
+        var_dump($propertyStats);
+
         return view('search')->with(["locations"=>$locations, "propertyTypes"=> $propertyTypes, "propertyStatus"=>$propertyStatus, "interiorFeatures"=>$interiorFeatures, "exteriorFeatures"=>$exteriorFeatures, "propertyStats"=>$propertyStats]);
     }
 
