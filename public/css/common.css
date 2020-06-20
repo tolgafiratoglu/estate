@@ -1,0 +1,32 @@
+/*
+* Common CSS styles for webview and admin view
+*
+* 1. Headers
+*/
+
+/* 1. Header Styles Start Here */
+
+.estate-info-title-wrapper{
+    width: 100%;
+    margin-bottom: 1rem;
+    
+}    
+
+    .estate-info-title-wrapper .estate-header{
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        line-height: 36px;
+        font-weight: bold;
+        color: #2a2a2a;
+    }
+
+    .estate-info-title-wrapper .estate-info-icon-wrapper{
+        display: inline-block;
+        margin-right: 4.5px;
+        height: 36px;
+        width: 36px;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 18px;
+        background-color: #3299BB;
+    }

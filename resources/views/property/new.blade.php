@@ -5,11 +5,26 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="boxed-content shadowed-content rounded-border">
+                <div class="estate-info-title-wrapper">
+                    <div class="estate-header">
+                        <span class="estate-info-icon-wrapper">
+                            <i class="far fa-building"></i>
+                        </span>
+                        <span>{{ __("Building Basic Information") }}</span>
+                    </div>
+                </div>
                 <form>
                     <div class="form-group">
                         <label for="title_input">{{ __("Title") }}</label>
-                        <input type="text" class="form-control" id="title_input" aria-describedby="titleHelp" placeholder='{{ __("Title of the property") }}'>
+                        <input type="text" class="form-control slug-trigger" id="title_input" data-context="property" aria-describedby="titleHelp" placeholder='{{ __("Title of the property") }}'>
                         <small id="titleHelp" class="form-text text-muted">{{ __('Title will appear in search results, keep it explanatory.') }}</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="slug_input">{{ __("Slug") }}</label>
+                        <input type="text" class="form-control slug" id="title_input" aria-describedby="slugHelp" placeholder='{{ __("slug-of-the-property") }}'>
+                        <small id="slugHelp" class="form-text text-muted">{{ __('Slug is the permalink of the property') }}</small>
+                        <small id="slug_preview" class="slug-preview form-text"></small>
+                        <small id="slug_link" class="slug-link form-text"></small>
                     </div>
                     <div class="form-group">
                         <label for="title_input">{{ __("Description") }}</label>
