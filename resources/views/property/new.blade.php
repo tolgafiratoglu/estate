@@ -10,10 +10,10 @@
                         <span class="estate-info-icon-wrapper">
                             <i class="far fa-building"></i>
                         </span>
-                        <span>{{ __("Building Basic Information") }}</span>
+                        <span>{{ __("Property Information") }}</span>
                     </div>
                 </div>
-                <form>
+                <form class="estate-admin-form-wrapper">
                     <div class="form-group">
                         <label for="title_input">{{ __("Title") }}</label>
                         <input type="text" class="form-control slug-trigger" id="title_input" data-context="property" aria-describedby="titleHelp" placeholder='{{ __("Title of the property") }}'>
@@ -75,12 +75,38 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+                <div class="estate-info-title-wrapper">
+                    <div class="estate-header">
+                        <span class="estate-info-icon-wrapper">
+                            <i class="fas fa-table"></i>
+                        </span>
+                        <span>{{ __("Custom Feature") }}</span>
+                    </div>
+                </div>
+                <div class="estate-custom-variables">
+                    <table class="table">
+                        <tbody>
+                            <tr class="clonable d-none">
+                                <td>
+                                    <input type="text" class="form-control" placeholder='{{ __("Custom Label") }}'>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder='{{ __("Custom Feature Value") }}'>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" placeholder='{{ __("Custom Label") }}'>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder='{{ __("Custom Feature Value") }}'>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="custom-variable-add-row btn btn-info"><i class="fas fa-plus"></i>{{ __("Add Custom Feature") }}</button>
+                </div>
             </div>
         </div>
     </div>    

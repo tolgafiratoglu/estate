@@ -45,8 +45,21 @@ function initSlugTrigger()
     
 }    
 
+function initCustomVariables(){
+    $(".custom-variable-add-row").click(
+        function(){
+            var clonableRow = $(".estate-custom-variables .clonable").clone();
+                clonableRow.removeClass("d-none");
+                clonableRow.removeClass("clonable");
+                    $(".estate-custom-variables table").append(clonableRow);
+        }
+    );
+}
+
 $( document ).ready(function() {
 
     initSlugTrigger();
+
+    initCustomVariables();
 
 });
