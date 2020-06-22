@@ -20,9 +20,9 @@ class SystemSettingsSeeder extends Seeder
         {
             foreach($defaultSystemSettings AS $metaKey=>$metaValue)
             {
-                $metaValue = $systemSettingsRepository->getSetting($metaKey);
+                $metaValueCheck = $systemSettingsRepository->getSetting($metaKey);
 
-                if($metaValue == NULL)
+                if($metaValueCheck == NULL)
                 {
                     $systemSettingsRepository->create(['meta_key'=>$metaKey, 'meta_value'=>$metaValue]);
                 }

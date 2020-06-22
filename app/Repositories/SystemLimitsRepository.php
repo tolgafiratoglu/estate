@@ -2,10 +2,10 @@
 
     namespace App\Repositories;
 
-    use App\SystemSettings as SystemSettings;
+    use App\SystemLimits as SystemLimits;
     use Prettus\Repository\Eloquent\BaseRepository;
 
-    class SystemSettingsRepository extends BaseRepository{
+    class SystemLimitsRepository extends BaseRepository{
 
         /**
          * Specify Model class name
@@ -14,7 +14,7 @@
          */
         function model()
         {
-            return "App\\SystemSettings";
+            return "App\\SystemLimits";
         }
 
         /*
@@ -27,18 +27,18 @@
         public function getSetting($metaKey) 
         {
 
-            $settingsObject = SystemSettings::select('meta_key', 'meta_value')
+            $settingsObject = SystemLimits::select('meta_key', 'meta_value')
                                     ->where(
                                         [
                                             'meta_key'=>$metaKey
                                         ]
                                     );
 
-                if($settingsObject->first() != NULL){                        
-                    return $settingsObject->first()->toArray();
-                } else {
-                    return NULL;
-                }
+            if($settingsObject->first() != NULL){                        
+                return $settingsObject->first()->toArray();
+            } else {
+                return NULL;
+            }
 
         }
 

@@ -7,11 +7,13 @@
         ], 
 
         'system_limits' => [
-            '' => 10
+            'user_max_daily_new_property' => 10,
+            'agent_max_daily_new_property' => 10
         ], 
 
         'system_defaults' => [
-            '' => ''
+            'home_page_title' => 'Home Page',
+            'search_page_title' => 'Search Page',
         ], 
 
     ];

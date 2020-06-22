@@ -2,10 +2,10 @@
 
     namespace App\Repositories;
 
-    use App\SystemSettings as SystemSettings;
+    use App\SystemDefaults as SystemDefaults;
     use Prettus\Repository\Eloquent\BaseRepository;
 
-    class SystemSettingsRepository extends BaseRepository{
+    class SystemDefaultsRepository extends BaseRepository{
 
         /**
          * Specify Model class name
@@ -14,7 +14,7 @@
          */
         function model()
         {
-            return "App\\SystemSettings";
+            return "App\\SystemDefaults";
         }
 
         /*
@@ -27,18 +27,18 @@
         public function getSetting($metaKey) 
         {
 
-            $settingsObject = SystemSettings::select('meta_key', 'meta_value')
+            $settingsObject = SystemDefaults::select('meta_key', 'meta_value')
                                     ->where(
                                         [
                                             'meta_key'=>$metaKey
                                         ]
                                     );
 
-                if($settingsObject->first() != NULL){                        
-                    return $settingsObject->first()->toArray();
-                } else {
-                    return NULL;
-                }
+            if($settingsObject->first() != NULL){                        
+                return $settingsObject->first()->toArray();
+            } else {
+                return NULL;
+            }
 
         }
 
