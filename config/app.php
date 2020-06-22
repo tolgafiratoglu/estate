@@ -174,10 +174,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        /*
-         * Repository pattern:
-         */
+        // Repository pattern:
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        // Linux Installer:
+        RachidLaasri\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class,
     ],
 
     /*
