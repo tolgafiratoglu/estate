@@ -13,7 +13,7 @@
                         <span>{{ __("Property Information") }}</span>
                     </div>
                 </div>
-                <form class="estate-admin-form-wrapper">
+                <form class="estate-new-feature">
                     <div class="form-group">
                         <label for="title_input">{{ __("Title") }}</label>
                         <input type="text" class="form-control slug-trigger" id="title_input" data-context="property" aria-describedby="titleHelp" placeholder='{{ __("Title of the property") }}'>
@@ -84,7 +84,7 @@
                         <span>{{ __("Custom Feature") }}</span>
                     </div>
                 </div>
-                <div class="estate-custom-variables">
+                <div class="estate-new-feature estate-custom-variables">
                     <table class="table">
                         <tbody>
                             <tr class="clonable d-none">
@@ -106,6 +106,32 @@
                         </tbody>
                     </table>
                     <button type="button" class="custom-variable-add-row btn btn-info"><i class="fas fa-plus"></i>{{ __("Add Custom Feature") }}</button>
+                </div>
+                <div class="estate-info-title-wrapper">
+                    <div class="estate-header">
+                        <span class="estate-info-icon-wrapper">
+                            <i class="fas fa-map"></i>
+                        </span>
+                        <span>{{ __("Property on Map") }}</span>
+                    </div>
+                </div>
+                <div class="estate-new-feature">
+                    <input type="hidden" id="lat_value" name="lat_value" value="">
+                    <input type="hidden" id="lng_value" name="lng_value" value="">
+                    <input type="hidden" id="zoom_value" name="zoom_value" value="">
+                    <input type="text" id="map_search_keyword">
+                    <div class="estate-mappable clickable-map" data-show="1" data-lat="0" data-lng="0" data-zoom="11"></div>
+                </div>
+                <div class="estate-info-title-wrapper">
+                    <div class="estate-header">
+                        <span class="estate-info-icon-wrapper">
+                            <i class="far fa-images"></i>
+                        </span>
+                        <span>{{ __("Property Images") }}</span>
+                    </div>
+                </div>
+                <div class="estate-new-feature">
+
                 </div>
             </div>
         </div>

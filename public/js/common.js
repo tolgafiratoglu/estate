@@ -56,10 +56,179 @@ function initCustomVariables(){
     );
 }
 
+function initGoogleMaps(){
+
+    var map;
+    function initialize(map_handler_object) {
+
+        var markers = [];
+
+        if($(".estate-mappable").length > 0) {
+            $('html').bind('keypress', function (e) {
+                if (e.keyCode == 13) {
+                    return false;
+                }
+            });
+        }
+
+        $(".estate-mappable").each(
+            function(){
+                var lat = $(this).attr("data-lat");
+                var lng = $(this).attr("data-lng");
+                var zoom = parseInt($(this).attr("data-zoom"));
+
+                var mapOptions = {
+                    zoom: zoom,
+                    center: new google.maps.LatLng(lat, lng)
+                };
+
+                // Create a map object:
+                map = new google.maps.Map(this,
+                    mapOptions);
+
+                var map_lat_lng = new google.maps.LatLng(lat, lng);
+
+                var marker = new google.maps.Marker({
+                    position: map_lat_lng,
+                    map: map
+                });
+
+                markers.push(marker);
+
+                // Search for keyword:
+
+                var input = document.getElementById('map_search_keyword');
+                var searchBox = new google.maps.places.SearchBox(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                // Bias the SearchBox results towards current map's viewport.
+                map.addListener('bounds_changed', function() {
+                    searchBox.setBounds(map.getBounds());
+                });
+
+                // var markers = [];
+                // Listen for the event fired when the user selects a prediction and retrieve
+                // more details for that place.
+                searchBox.addListener('places_changed', function() {
+                    var places = searchBox.getPlaces();
+
+                    if (places.length == 0) {
+                        return;
+                    }
+
+                    // Clear out the old markers.
+                    markers.forEach(function(marker) {
+                        marker.setMap(null);
+                    });
+                    // markers = [];
+
+                    // For each place, get the icon, name and location.
+                    var bounds = new google.maps.LatLngBounds();
+                    places.forEach(function(place) {
+                        if (!place.geometry) {
+                            console.log("Returned place contains no geometry");
+                            return;
+                        }
+                        var icon = {
+                            url: place.icon,
+                            size: new google.maps.Size(71, 71),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(17, 34),
+                            scaledSize: new google.maps.Size(25, 25)
+                        };
+
+                        // Create a marker for each place.
+                        markers.push(new google.maps.Marker({
+                            map: map,
+                            icon: icon,
+                            title: place.name,
+                            position: place.geometry.location
+                        }));
+
+                        // Set lat,long to settings:
+                        var latitude = place.geometry.location.lat();
+                        var longitude = place.geometry.location.lng();
+
+                        $("#lat_value").val(latitude);
+                        $("#lat_label").html(latitude);
+
+                        $("#lng_value").val(longitude);
+                        $("#lng_label").html(longitude);
+
+                        setTimeout(
+                            function(){
+                                var zoom = map.getZoom();
+
+                                $("#zoom_value").val(zoom);
+                                $("#zoom_label").html(zoom);
+                            }, 1000
+                        );
+
+                        if (place.geometry.viewport) {
+                            // Only geocodes have viewport.
+                            bounds.union(place.geometry.viewport);
+                        } else {
+                            bounds.extend(place.geometry.location);
+                        }
+                    });
+                    map.fitBounds(bounds);
+                });
+
+            }
+        );
+
+        if($(".clickable-map").length > 0){
+
+            google.maps.event.addListener(map, "click", function(event) {
+                var lat = event.latLng.lat();
+                var lng = event.latLng.lng();
+
+                var map_lat_lng = new google.maps.LatLng(lat, lng);
+
+                console.log("Markers",markers);
+
+                for(var i in markers){
+                    console.log("Marker id:", i);
+                    markers[i].setMap(null);
+                }
+
+                var marker = new google.maps.Marker({
+                    position: map_lat_lng,
+                    map: map
+                });
+
+                markers.push(marker);
+
+                var zoom = map.getZoom();
+
+                $("#lat_value").val(lat);
+                $("#lat_label").html(lat);
+
+                $("#lng_value").val(lng);
+                $("#lng_label").html(lng);
+
+                $("#zoom_value").val(zoom);
+                $("#zoom_label").html(zoom);
+
+            });
+
+        }
+
+    }
+
+    // If there is a mappable div, init map:
+    if($(".estate-mappable").length > 0){
+        google.maps.event.addDomListener(window, 'load', initialize($(this)));
+    }
+
+}
+
 $( document ).ready(function() {
 
     initSlugTrigger();
 
     initCustomVariables();
+
+    initGoogleMaps();
 
 });

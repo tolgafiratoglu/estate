@@ -31,10 +31,14 @@
         background-color: #3299BB;
     }
 
-    .estate-admin-form-wrapper{
+    .estate-new-feature{
         margin-bottom: 2rem;
     }    
 
     .btn svg{
         margin-right: 0.5rem;
+    }
+
+    .estate-mappable{
+        height: 400px;
     }

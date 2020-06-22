@@ -23,7 +23,8 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/fontawesome/all.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    
+    <script src='//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false&key=AIzaSyDhLnCaYqsOFz3DelD1Sjls5ozSuHvK5lA&ver=1.0.0'></script>
+
     <!-- Scripts -->
     <script src="{{ asset('js/common.js') }}" defer></script>
 
