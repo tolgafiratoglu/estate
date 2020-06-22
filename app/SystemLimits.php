@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SystemLimits extends Model
 {
+
+    public $timestamps = false;
+
     /**
      * @var array
      */

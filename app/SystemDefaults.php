@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SystemDefaults extends Model
 {
+
+    public $timestamps = false;
+
     /**
      * @var array
      */
