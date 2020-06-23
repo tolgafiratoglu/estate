@@ -15,7 +15,10 @@ class CreatePropertyMediaTable extends Migration
     {
         Schema::create('property_media', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->unsignedBigInteger('media');
+                    $table->foreign('media')->references('id')->on('media');
+            $table->unsignedBigInteger('property');
+                    $table->foreign('property')->references('id')->on('property');
         });
     }
 
