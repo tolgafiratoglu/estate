@@ -13,9 +13,22 @@ class CreateBlogTable extends Migration
      */
     public function up()
     {
-        Schema::create('blog', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
-        });
+
+        if(Schema::hasTable('blog') == false) {
+            Schema::create('blog', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->timestamps();
+                $table->string('title');
+                $table->string('slug');
+                $table->text('content');
+                $table->unsignedBigInteger('created_by');
+                    $table->foreign('created_by')->references('id')->on('users');
+
+                $table->boolean('is_approved')->default(false);
+                $table->boolean('is_drafted')->default(false);
+                $table->boolean('is_deleted')->default(false);
+
+            });
+        }    
     }
 }

@@ -17,6 +17,8 @@ class CreateProjectTable extends Migration
             Schema::create('project', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->timestamps();
+                $table->string('title');
+                $table->string('slug');
                 $table->unsignedBigInteger('location');
                     $table->foreign('location')->references('id')->on('location');
                 $table->unsignedBigInteger('created_by');

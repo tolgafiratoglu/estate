@@ -13,22 +13,16 @@ class CreatePropertyMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('property_media', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('media');
-                    $table->foreign('media')->references('id')->on('media');
-            $table->unsignedBigInteger('property');
-                    $table->foreign('property')->references('id')->on('property');
-        });
-    }
+        
+        if(Schema::hasTable('property_media') == false) {
+            Schema::create('property_media', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->unsignedBigInteger('media');
+                        $table->foreign('media')->references('id')->on('media');
+                $table->unsignedBigInteger('property');
+                        $table->foreign('property')->references('id')->on('property');
+            });
+        }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('property_media');
     }
 }

@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(AuthSeeder::class);
         $this->call(SystemDefaultsSeeder::class);
         $this->call(SystemLimitsSeeder::class);
         $this->call(SystemSettingsSeeder::class);

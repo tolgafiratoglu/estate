@@ -23,6 +23,8 @@ class CreatePropertyTable extends Migration
             Schema::create('property', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->timestamps();
+                $table->string('title');
+                $table->string('slug');
                 $table->unsignedBigInteger('location');
                     $table->foreign('location')->references('id')->on('location');
                 $table->unsignedBigInteger('created_by');
