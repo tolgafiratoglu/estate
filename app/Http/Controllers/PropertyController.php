@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\PropertyStatusRepository;
+use App\Repositories\PropertyTypeRepository;
+
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
@@ -12,9 +15,13 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function new()
+    public function new(PropertyStatusRepository $propertyStatusRepository, PropertyTypeRepository $propertyTypeRepository)
     {
-        return view('property.new');
+
+        $propertyTypes   = $propertyTypeRepository->findWhere(['is_deleted'=>false], ['id', 'name']);
+        $propertyStatus = $propertyStatusRepository->findWhere(['is_deleted'=>false], ['id', 'name']);
+
+        return view('property.new', ['propertyTypes'=>$propertyTypes, 'propertyStatus'=>$propertyStatus]);
     }
 
 }

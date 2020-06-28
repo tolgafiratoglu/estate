@@ -26,6 +26,24 @@
                         <small id="slug_preview" class="slug-preview form-text"></small>
                         <small id="slug_link" class="slug-link form-text"></small>
                     </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="number_of_rooms_input">{{ __("Property Types") }}</label>
+                            <select class="custom-select">
+                                @foreach($propertyTypes AS $propertyType)
+                                    <option value='{{ $propertyType["id"] }}'>{{ $propertyType["name"] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm">
+                            <label for="number_of_rooms_input">{{ __("Age of Building") }}</label>
+                            <select class="custom-select">
+                                @foreach($propertyStatus AS $propertyStatusItem)
+                                    <option value='{{ $propertyStatusItem["id"] }}'>{{ $propertyStatusItem["name"] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="title_input">{{ __("Description") }}</label>
                         <textarea rows="5" type="text" class="form-control" id="title_input" aria-describedby="titleHelp" placeholder='{{ __("Title of the property") }}'></textarea>
