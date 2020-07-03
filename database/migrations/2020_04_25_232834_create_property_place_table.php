@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePropertyExteriorFeatureTable extends Migration
+class CreatePropertyPlaceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePropertyExteriorFeatureTable extends Migration
      */
     public function up()
     {
-        Schema::create('property_exterior_feature', function (Blueprint $table) {
+        Schema::create('property_place_table', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('property');
                 $table->foreign('property')->references('id')->on('property');
-            $table->unsignedBigInteger('exterior_feature');
-                $table->foreign('exterior_feature')->references('id')->on('exterior_feature');
+            $table->unsignedBigInteger('place');
+                $table->foreign('place')->references('id')->on('place');
         });
     }
 }

@@ -18,7 +18,7 @@ class PropertyExteriorFeature extends Model
      * 
      * @var string
      */
-    protected $table = 'property_exterior_feature';
+    protected $table = 'property_place';
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -30,14 +30,14 @@ class PropertyExteriorFeature extends Model
     /**
      * @var array
      */
-    protected $fillable = ['property', 'exterior_feature'];
+    protected $fillable = ['property', 'place'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function exteriorFeature()
+    public function place()
     {
-        return $this->belongsTo('App\ExteriorFeature', 'exterior_feature');
+        return $this->belongsTo('App\Place', 'place');
     }
 
     /**

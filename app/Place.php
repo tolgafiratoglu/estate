@@ -9,18 +9,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  * @property string $title
- * @property string $slug
- * @property boolean $is_enabled
- * @property PropertyExteriorFeature[] $propertyExteriorFeatures
+ * @property propertyPlaces[] $propertyPlaces
  */
-class ExteriorFeature extends Model
+class Place extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'exterior_feature';
+    protected $table = 'place';
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -32,13 +30,13 @@ class ExteriorFeature extends Model
     /**
      * @var array
      */
-    protected $fillable = ['created_at', 'updated_at', 'title', 'slug', 'is_enabled'];
+    protected $fillable = ['created_at', 'updated_at', 'title'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function propertyExteriorFeatures()
+    public function propertyPlaces()
     {
-        return $this->hasMany('App\PropertyExteriorFeature', 'exterior_feature');
+        return $this->hasMany('App\PropertyPlace', 'place');
     }
 }
