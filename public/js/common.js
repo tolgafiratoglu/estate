@@ -223,6 +223,58 @@ function initGoogleMaps(){
 
 }
 
+function initChosen()
+{
+    $(".chosen-selector").chosen({});
+}
+
+
+
+function initFileUploader()
+{
+    
+    $("#image-upload-select-button").click(
+        function(){
+            $("#image_upload_file_handler").click();
+        }
+    )
+
+    $("#image_upload_file_handler").change(
+        function(){
+            if($(this).get(0).files.length > 0){
+                // Upload images one by one:
+                for(var i = 0; i < $(this).get(0).files.length; i++){
+                    var fileToUpload   = $(this).get(0).files[i];
+                    var fileUploadSize = $(this).get(0).files[i].size;
+
+                    var imageUploadData = new FormData();
+                        imageUploadData.append('upload_image', fileToUpload);
+                        imageUploadData.append('_token', $('meta[name=csrf-token]')[0].content);
+
+                        $.ajax({
+                            url: '/media/save',
+                            type: 'POST',
+                            data: imageUploadData,
+                            dataType: 'json',
+                            mimeType: 'multipart/form-data',
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            success: function(response, status, jqXHR){
+                                console.log(response, status);
+                            },
+                            error: function(jqXHR,status,error){
+                                
+                            }
+                        });
+
+                }
+            }
+        }
+    );    
+
+}
+
 $( document ).ready(function() {
 
     initSlugTrigger();
@@ -230,5 +282,9 @@ $( document ).ready(function() {
     initCustomVariables();
 
     initGoogleMaps();
+
+    initChosen();
+
+    initFileUploader();
 
 });

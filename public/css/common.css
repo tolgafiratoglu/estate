@@ -42,3 +42,31 @@
     .estate-mappable{
         height: 400px;
     }
+
+/* Image Upload */
+
+.image-upload-button-wrapper{
+    float: left;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+    .image-upload-button{
+        cursor: pointer;
+        max-width: 200px;
+        background-color: #3299BB;
+        color: #ffffff;
+        border-radius: 1rem;
+        text-align: center;
+        line-height: 3rem;
+        letter-spacing: 1px;
+        clear: both;
+    }    
+
+.image-upload-preview-wrapper{
+    width: 100%;
+}
+
+    .image-upload-file-handler{
+        display: none;
+    }          

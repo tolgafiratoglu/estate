@@ -13,6 +13,28 @@
                         <span>{{ __("Property Information") }}</span>
                     </div>
                 </div>
+                <div class="estate-new-feature">
+                    <div class="image-upload-button-wrapper">
+                        <div id="image-upload-select-button" class="image-upload-button image-upload-button-select">
+                            {{ __("Select and Upload") }}
+                        </div>
+                        <input id="image_upload_file_handler" class="image-upload-file-handler" type="file" name="file_handler" multiple />
+                    </div>
+                    <div class="estate-images">
+                        <div>
+                            <div class="estate-image-left">
+                                <img src="http://codes.qualstudio.com/uptown/wp-content/uploads/2016/06/Hualien_Press_007-400x266.jpg">
+                            </div>
+                            <div class="estate-image-right">
+                                <h1>ImageTitle.jpg</h1>
+                                <ul>
+                                    <li>{{ __("Remove") }}</li>
+                                    <li>{{ __("Set as featured") }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <form class="estate-new-feature">
                     <div class="form-group">
                         <label for="title_input">{{ __("Title") }}</label>
@@ -34,14 +56,16 @@
                                     <option value='{{ $propertyType["id"] }}'>{{ $propertyType["name"] }}</option>
                                 @endforeach
                             </select>
+                            <small class="form-text text-muted">{{ __('Shape of Property') }}</small>
                         </div>
                         <div class="col-sm">
-                            <label for="number_of_rooms_input">{{ __("Age of Building") }}</label>
+                            <label for="number_of_rooms_input">{{ __("Property Status") }}</label>
                             <select class="custom-select">
                                 @foreach($propertyStatus AS $propertyStatusItem)
                                     <option value='{{ $propertyStatusItem["id"] }}'>{{ $propertyStatusItem["name"] }}</option>
                                 @endforeach
                             </select>
+                            <small class="form-text text-muted">{{ __('Why it is listed') }}</small>
                         </div>
                     </div>
                     <div class="form-group">
@@ -128,6 +152,42 @@
                 <div class="estate-info-title-wrapper">
                     <div class="estate-header">
                         <span class="estate-info-icon-wrapper">
+                            <i class="fas fa-table"></i>
+                        </span>
+                        <span>{{ __("Interior Features") }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <select class="custom-select chosen-selector" multiple>
+                            @foreach($propertyTypes AS $propertyType)
+                                <option value='{{ $propertyType["id"] }}'>{{ $propertyType["name"] }}</option>
+                            @endforeach
+                        </select>
+                        <small class="form-text text-muted">{{ __('Interior features of the property') }}</small>
+                    </div>
+                </div>
+                <div class="estate-info-title-wrapper">
+                    <div class="estate-header">
+                        <span class="estate-info-icon-wrapper">
+                            <i class="fas fa-table"></i>
+                        </span>
+                        <span>{{ __("Exterior Features") }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <select class="custom-select chosen-selector" multiple>
+                            @foreach($propertyTypes AS $propertyType)
+                                <option value='{{ $propertyType["id"] }}'>{{ $propertyType["name"] }}</option>
+                            @endforeach
+                        </select>
+                        <small class="form-text text-muted">{{ __('Exterior features of the property') }}</small>
+                    </div>
+                </div>
+                <div class="estate-info-title-wrapper">
+                    <div class="estate-header">
+                        <span class="estate-info-icon-wrapper">
                             <i class="fas fa-map"></i>
                         </span>
                         <span>{{ __("Property on Map") }}</span>
@@ -148,9 +208,7 @@
                         <span>{{ __("Property Images") }}</span>
                     </div>
                 </div>
-                <div class="estate-new-feature">
-
-                </div>
+                
             </div>
         </div>
     </div>    
