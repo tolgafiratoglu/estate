@@ -21,15 +21,16 @@
                         <input id="image_upload_file_handler" class="image-upload-file-handler" type="file" name="file_handler" multiple />
                     </div>
                     <div class="estate-images">
-                        <div>
+                        <div class="estate-image-wrapper estate-image-clonable">
+                            <input type="hidden" id="media_id" value="">
                             <div class="estate-image-left">
-                                <img src="http://codes.qualstudio.com/uptown/wp-content/uploads/2016/06/Hualien_Press_007-400x266.jpg">
+                                <img src="">
                             </div>
                             <div class="estate-image-right">
-                                <h1>ImageTitle.jpg</h1>
+                                <h1></h1>
                                 <ul>
-                                    <li>{{ __("Remove") }}</li>
-                                    <li>{{ __("Set as featured") }}</li>
+                                    <li><i class="far fa-trash-alt"></i>{{ __("Remove") }}</li>
+                                    <li><i class="far fa-images"></i>{{ __("Set as featured") }}</li>
                                 </ul>
                             </div>
                         </div>
