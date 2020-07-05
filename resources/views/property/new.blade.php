@@ -21,7 +21,7 @@
                         <input id="image_upload_file_handler" class="image-upload-file-handler" type="file" name="file_handler" multiple />
                     </div>
                     <div class="estate-images">
-                        <div class="estate-image-wrapper estate-image-clonable">
+                        <div class="estate-image-wrapper estate-image-clonable d-none">
                             <input type="hidden" id="media_id" value="">
                             <div class="estate-image-left">
                                 <img src="">

@@ -32,7 +32,8 @@
     }
 
     .estate-new-feature{
-        margin-bottom: 2rem;
+        margin: 1rem 0rem;
+        overflow: auto;
     }    
 
     .btn svg{
