@@ -19,9 +19,7 @@ class CreateMediaTable extends Migration
                 $table->timestamps();
                 $table->string('name');
                 $table->string('folder', 255);
-                $table->integer('width');
-                $table->integer('height');
-                $table->string('file_type', 20);
+                $table->string('file_type', 20)->nullable()->default(null);
                 $table->unsignedBigInteger('user_id');
                     $table->foreign('user_id')->references('id')->on('users');
                 $table->boolean('is_deleted')->default(false);

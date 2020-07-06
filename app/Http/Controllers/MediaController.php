@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
+
+use App\Repositories\MediaRepository;
+
+use Intervention\Image\ImageManagerStatic as Image;
+
 class MediaController extends Controller
 {
 
@@ -17,12 +25,36 @@ class MediaController extends Controller
         
     }
     
+    public function resizeAndCrop($width, $height, $publicPathForFile)
+    {
+        
+        // $publicStoragePath = $storagePath.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'public'.$imageFolder.DIRECTORY_SEPARATOR;
+        // $filePathOnStorage = $publicStoragePath.$fileName;
+        
+        $imageSourceToCrop = Image::make($publicPathForFile);
+        $imageWidth = $imageSourceToCrop->width();
+        $imageHeight = $imageSourceToCrop->height(); 
+
+        if($imageWidth/$imageHeight >=$width/$height){
+            $imageSourceToCrop->resize(null, $height);
+            $offsetX = intval(($imageSourceToCrop->width() - $width)/2);
+            $offsetY = 0;
+        }else{
+            $imageSourceToCrop->resize($width, null);
+            $offsetY = intval(($imageSourceToCrop->height() - $height)/2);
+            $offsetX = 0;
+        }
+            $imageSourceToCrop->crop($width, $height, $offsetX, $offsetY);
+                $imageSourceToCrop->save($publicPathForFile);
+        
+    }
+
     /**
      * Save new media. This method is under auth middleware.
      *
      * @return \Symfony\Component\HttpFoundation\Response 
      */
-    public function save(Request $request)
+    public function save(Request $request, MediaRepository $mediaRepository)
     {
         
         $response = [];
@@ -36,17 +68,42 @@ class MediaController extends Controller
             $currentMonth = date('n');
             $currentYear  = date('Y');
 
+            // Storage path:
             $storagePath = storage_path();
+            
 
             // Subfolder to save in /year/month/file format:
             $imageFolder = DIRECTORY_SEPARATOR.$currentYear.DIRECTORY_SEPARATOR.$currentMonth;
 
             // Get file related meta data:
-            $fileName = $file->getClientOriginalName();
-            $fileMimeType = $file->getClientMimeType();
-            $fileSize = $file->getSize();
+            $fileName = str_replace(" ", "", $fileToUpload->getClientOriginalName());
+            $fileMimeType = $fileToUpload->getClientMimeType();
 
             $userId = Auth::user()->id;
+
+            $fileName = $userId."_".uniqid()."_".$fileName;
+
+            // Original image:
+            Storage::disk('public')->put($imageFolder.DIRECTORY_SEPARATOR.$fileName, file_get_contents($fileToUpload));
+            // Large image:
+            Storage::disk('public')->put($imageFolder.DIRECTORY_SEPARATOR."large".DIRECTORY_SEPARATOR.$fileName, file_get_contents($fileToUpload));
+            // Thumb:
+            Storage::disk('public')->put($imageFolder.DIRECTORY_SEPARATOR."thumb".DIRECTORY_SEPARATOR.$fileName, file_get_contents($fileToUpload));
+
+            // Resize and crop large:
+            $this->resizeAndCrop(400, 266, $storagePath.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'public'.$imageFolder.DIRECTORY_SEPARATOR.'large'.DIRECTORY_SEPARATOR.$fileName);
+
+            // Resize and crop thumb:
+            $this->resizeAndCrop(1200, 742, $storagePath.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'public'.$imageFolder.DIRECTORY_SEPARATOR.'thumb'.DIRECTORY_SEPARATOR.$fileName);
+
+
+            $fileFolder = 'storage/'.$currentYear.'/'.$currentMonth.'/';
+
+            $media = $mediaRepository->create(["name"=>$fileName, "folder"=>$fileFolder, "user_id"=>$userId, "media_type"=>$fileMimeType]);
+
+            $imagePath = asset($fileFolder.$media['name']);
+
+            $response = ["id"=>$media->id, "image_path"=>$imagePath];
 
         }    
 
