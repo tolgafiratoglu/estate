@@ -91,10 +91,10 @@ class MediaController extends Controller
             Storage::disk('public')->put($imageFolder.DIRECTORY_SEPARATOR."thumb".DIRECTORY_SEPARATOR.$fileName, file_get_contents($fileToUpload));
 
             // Resize and crop large:
-            $this->resizeAndCrop(400, 266, $storagePath.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'public'.$imageFolder.DIRECTORY_SEPARATOR.'large'.DIRECTORY_SEPARATOR.$fileName);
+            $this->resizeAndCrop(400, 266, $storagePath.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'public'.$imageFolder.DIRECTORY_SEPARATOR.'thumb'.DIRECTORY_SEPARATOR.$fileName);
 
             // Resize and crop thumb:
-            $this->resizeAndCrop(1200, 742, $storagePath.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'public'.$imageFolder.DIRECTORY_SEPARATOR.'thumb'.DIRECTORY_SEPARATOR.$fileName);
+            $this->resizeAndCrop(1200, 742, $storagePath.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'public'.$imageFolder.DIRECTORY_SEPARATOR.'large'.DIRECTORY_SEPARATOR.$fileName);
 
 
             $fileFolder = 'storage/'.$currentYear.'/'.$currentMonth.'/';
