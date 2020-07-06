@@ -28,9 +28,6 @@ class MediaController extends Controller
     public function resizeAndCrop($width, $height, $publicPathForFile)
     {
         
-        // $publicStoragePath = $storagePath.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'public'.$imageFolder.DIRECTORY_SEPARATOR;
-        // $filePathOnStorage = $publicStoragePath.$fileName;
-        
         $imageSourceToCrop = Image::make($publicPathForFile);
         $imageWidth = $imageSourceToCrop->width();
         $imageHeight = $imageSourceToCrop->height(); 
