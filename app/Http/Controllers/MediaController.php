@@ -26,14 +26,29 @@ class MediaController extends Controller
     {
         
         $response = [];
-
-        $file = $request->file("image_to_upload");
-
-        var_dump($file);
         
-        $validatedData = $this->validate($request, ['image_to_upload' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000000',]);
+        $validatedData = $this->validate($request, ['image_to_upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000000',]);
 
-        var_dump($validatedData);
+        $fileToUpload = $validatedData["image_to_upload"];
+
+        if($fileToUpload->isValid()) {
+
+            $currentMonth = date('n');
+            $currentYear  = date('Y');
+
+            $storagePath = storage_path();
+
+            // Subfolder to save in /year/month/file format:
+            $imageFolder = DIRECTORY_SEPARATOR.$currentYear.DIRECTORY_SEPARATOR.$currentMonth;
+
+            // Get file related meta data:
+            $fileName = $file->getClientOriginalName();
+            $fileMimeType = $file->getClientMimeType();
+            $fileSize = $file->getSize();
+
+            $userId = Auth::user()->id;
+
+        }    
 
         return response()->json($response);
 

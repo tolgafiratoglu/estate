@@ -242,6 +242,63 @@ $(function () {
             }
         );
         
+        /*
+        $("#image_upload_file_handler").change(
+            function(){
+
+                var fileList = $('#image_upload_file_handler').prop("files");
+
+                console.log(fileList);
+
+                var form_data = new FormData();
+                    form_data.append("image_to_upload", fileList[0]);
+
+                    // Add CSRF information to Ajax setup:
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    var request = $.ajax({
+                        url: "/media/save",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        async: true,
+                        data: form_data,
+                        type: 'POST', 
+                        xhr: function() {  
+                            var xhr = $.ajaxSettings.xhr();
+                            if(xhr.upload){ 
+                            xhr.upload.addEventListener('progress', function(event){
+                                var percent = 0;
+                                if (event.lengthComputable) {
+                                    percent = Math.ceil(event.loaded / event.total * 100);
+                                }
+                                $('#prog').text(percent+'%') 
+                            }, false);
+                            }
+                            return xhr;
+                        },
+                        success: function (res, status) {
+                            if (status == 'success') {
+                                percent = 0;
+                                $('#prog0').text('');
+                                $('#prog0').text('--Success: ');
+                                
+                            }
+                        },
+                        fail: function (res) {
+                            alert('Failed');
+                        }    
+                    });
+
+            }
+        );      
+        */  
+
+        
         $("#image_upload_file_handler").change(
             function(){
                 if($(this).get(0).files.length > 0){
@@ -262,7 +319,7 @@ $(function () {
 
                             $.ajax({
                                 url: '/media/save',
-                                type: 'PUT',
+                                type: 'POST',
                                 data: imageUploadData,
                                 dataType: 'json',
                                 enctype: 'multipart/form-data',
@@ -280,7 +337,7 @@ $(function () {
                     }
                 }
             }
-        );    
+        );   
 
     }
 
