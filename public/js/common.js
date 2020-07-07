@@ -252,6 +252,8 @@ $(function () {
             function(){
                 var image_id = $(this).closest(".estate-image-wrapper").attr("data-id");
                 $("#featured_image_id").val(image_id);
+                $(".estate-featured").removeClass("d-none");
+                $(this).addClass("d-none");
             }
         );
     }
@@ -309,6 +311,11 @@ $(function () {
                                         cloneObj.find("h1").html(fileNameTitle);
                                         cloneObj.removeClass("d-none");
                                         cloneObj.removeClass("estate-image-clonable");
+                                        if($(".estate-image-wrapper").not(".estate-image-clonable").length == 0){
+                                            console.log(response.id);
+                                            $("#featured_image_id").val(response.id);
+                                            cloneObj.find(".estate-featured").addClass("d-none");
+                                        }
                                         $(".estate-images").append(cloneObj);
                                         
                                         removeImage();
