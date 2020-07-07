@@ -241,71 +241,26 @@ $(function () {
                 $("#image_upload_file_handler").click();
             }
         );
+
+        var fileUploadTotalSize = 0;
+        var fileUploadedSizes = {};
         
-        /*
-        $("#image_upload_file_handler").change(
-            function(){
+        function updateProgressBar(i, loaded){
+            console.log(i, loaded);
+        }
 
-                var fileList = $('#image_upload_file_handler').prop("files");
-
-                console.log(fileList);
-
-                var form_data = new FormData();
-                    form_data.append("image_to_upload", fileList[0]);
-
-                    // Add CSRF information to Ajax setup:
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-
-                    var request = $.ajax({
-                        url: "/media/save",
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        async: true,
-                        data: form_data,
-                        type: 'POST', 
-                        xhr: function() {  
-                            var xhr = $.ajaxSettings.xhr();
-                            if(xhr.upload){ 
-                            xhr.upload.addEventListener('progress', function(event){
-                                var percent = 0;
-                                if (event.lengthComputable) {
-                                    percent = Math.ceil(event.loaded / event.total * 100);
-                                }
-                                $('#prog').text(percent+'%') 
-                            }, false);
-                            }
-                            return xhr;
-                        },
-                        success: function (res, status) {
-                            if (status == 'success') {
-                                percent = 0;
-                                $('#prog0').text('');
-                                $('#prog0').text('--Success: ');
-                                
-                            }
-                        },
-                        fail: function (res) {
-                            alert('Failed');
-                        }    
-                    });
-
-            }
-        );      
-        */  
-
-        
         $("#image_upload_file_handler").change(
             function(){
                 if($(this).get(0).files.length > 0){
                     // Upload images one by one:
                     for(var i = 0; i < $(this).get(0).files.length; i++){
+                        
                         var fileToUpload   = $(this).get(0).files[i];
                         var fileUploadSize = $(this).get(0).files[i].size;
+                        var fileName = $(this).get(0).files[i].name;
+
+                        fileUploadTotalSize += parseInt(fileUploadSize);
+                        fileUploadedSizes[fileName] = fileUploadSize;
 
                         var imageUploadData = new FormData();
                             imageUploadData.append('image_to_upload', fileToUpload);
@@ -328,6 +283,25 @@ $(function () {
                                 processData: false,
                                 success: function(response, status, jqXHR){
                                     console.log(response, status);
+                                },
+                                xhr: function () {
+                                    var xhr = new window.XMLHttpRequest();
+                                    xhr.upload.addEventListener("progress", function (event) {
+                                        console.log(i, event, event.loaded, event.total);
+                                        fileUploadedSizes[fileName] = event.loaded;
+
+                                        updateProgressBar(fileName, event.loaded);
+
+                                        if (event.lengthComputable) {
+                                            self.progress = event.loaded / event.total;
+                                        } else if (this.explicitTotal) {
+                                            self.progress = Math.min(1, event.loaded / self.explicitTotal);
+                                        } else {
+                                            self.progress = 0;
+                                        }
+
+                                    }, false);
+                                    return xhr;
                                 },
                                 error: function(jqXHR,status,error){
                                     

@@ -100,7 +100,7 @@ class MediaController extends Controller
 
             $media = $mediaRepository->create(["name"=>$fileName, "folder"=>$fileFolder, "user_id"=>$userId, "media_type"=>$fileMimeType]);
 
-            $imagePath = asset($fileFolder.$media['name']);
+            $imagePath = asset($fileFolder.'/thumb/'.$media['name']);
 
             $response = ["id"=>$media->id, "image_path"=>$imagePath];
 
