@@ -20,6 +20,9 @@
                         </div>
                         <input id="image_upload_file_handler" class="image-upload-file-handler" type="file" name="file_handler" multiple />
                     </div>
+                    <div class="estate-image-label">
+                        <i class="fas fa-arrows-alt"></i>{{ __("You can order images by drag and drop") }}
+                    </div>
                     <div class="estate-images">
                         <input type="hidden" id="featured_image_id" value="">
                         <div class="estate-image-wrapper estate-image-clonable d-none">

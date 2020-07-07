@@ -27,6 +27,8 @@
     <script src="https://harvesthq.github.io/chosen/chosen.jquery.js"></script>
     <script src='//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false&key=AIzaSyDhLnCaYqsOFz3DelD1Sjls5ozSuHvK5lA&ver=1.0.0'></script>
 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <!-- Scripts -->
     <script src="{{ asset('js/common.js') }}" defer></script>
 

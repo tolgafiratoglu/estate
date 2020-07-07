@@ -321,6 +321,8 @@ $(function () {
                                         removeImage();
                                         setFeatured();
 
+                                        $(".estate-images").sortable();
+
                                 },
                                 error: function(jqXHR,status,error){
                                     
