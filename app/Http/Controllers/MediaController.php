@@ -77,6 +77,7 @@ class MediaController extends Controller
             // Get file related meta data:
             $fileName = str_replace(" ", "", $fileToUpload->getClientOriginalName());
             $fileMimeType = $fileToUpload->getClientMimeType();
+            $fileSize     = $fileToUpload->getSize();
 
             $userId = Auth::user()->id;
 
@@ -95,14 +96,13 @@ class MediaController extends Controller
             // Resize and crop thumb:
             $this->resizeAndCrop(1200, 742, $storagePath.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'public'.$imageFolder.DIRECTORY_SEPARATOR.'large'.DIRECTORY_SEPARATOR.$fileName);
 
-
             $fileFolder = 'storage/'.$currentYear.'/'.$currentMonth.'/';
 
             $media = $mediaRepository->create(["name"=>$fileName, "folder"=>$fileFolder, "user_id"=>$userId, "media_type"=>$fileMimeType]);
 
-            $imagePath = asset($fileFolder.'/thumb/'.$media['name']);
+            $imagePath = asset($fileFolder.'thumb/'.$media['name']);
 
-            $response = ["id"=>$media->id, "image_path"=>$imagePath];
+            $response = ["id"=>$media->id, "file_name"=>$fileName, "image_path"=>$imagePath, "size"=>$fileSize];
 
         }    
 

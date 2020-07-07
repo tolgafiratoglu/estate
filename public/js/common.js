@@ -231,7 +231,30 @@ $(function () {
         $(".chosen-selector").chosen({});
     }
 
+    function initAjaxCsrfToken(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    }
 
+    function removeImage(){
+        $(".estate-remove").click(
+            function(){
+                $(this).closest(".estate-image-wrapper").remove();
+            }
+        );
+    }
+
+    function setFeatured(){
+        $(".estate-featured").click(
+            function(){
+                var image_id = $(this).closest(".estate-image-wrapper").attr("data-id");
+                $("#featured_image_id").val(image_id);
+            }
+        );
+    }
 
     function initFileUploader()
     {
@@ -243,11 +266,9 @@ $(function () {
         );
 
         var fileUploadTotalSize = 0;
-        var fileUploadedSizes = {};
-        
-        function updateProgressBar(i, loaded){
-            console.log(i, loaded);
-        }
+
+        removeImage();
+        setFeatured();
 
         $("#image_upload_file_handler").change(
             function(){
@@ -260,17 +281,12 @@ $(function () {
                         var fileName = $(this).get(0).files[i].name;
 
                         fileUploadTotalSize += parseInt(fileUploadSize);
-                        fileUploadedSizes[fileName] = fileUploadSize;
 
                         var imageUploadData = new FormData();
                             imageUploadData.append('image_to_upload', fileToUpload);
                             
                             // Add CSRF information to Ajax setup:
-                            $.ajaxSetup({
-                                headers: {
-                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                }
-                            });
+                            initAjaxCsrfToken();
 
                             $.ajax({
                                 url: '/media/save',
@@ -282,26 +298,22 @@ $(function () {
                                 cache: false,
                                 processData: false,
                                 success: function(response, status, jqXHR){
-                                    console.log(response, status);
-                                },
-                                xhr: function () {
-                                    var xhr = new window.XMLHttpRequest();
-                                    xhr.upload.addEventListener("progress", function (event) {
-                                        console.log(i, event, event.loaded, event.total);
-                                        fileUploadedSizes[fileName] = event.loaded;
-
-                                        updateProgressBar(fileName, event.loaded);
-
-                                        if (event.lengthComputable) {
-                                            self.progress = event.loaded / event.total;
-                                        } else if (this.explicitTotal) {
-                                            self.progress = Math.min(1, event.loaded / self.explicitTotal);
-                                        } else {
-                                            self.progress = 0;
+                                    var cloneObj = $(".estate-image-clonable").clone();
+                                        cloneObj.attr("data-id", response.id);
+                                        cloneObj.find("#media_id").val(response.id);
+                                        cloneObj.find("img").attr("src", response.image_path);
+                                        var fileNameTitle = response.file_name;
+                                        if(fileNameTitle.length > 20){
+                                            fileNameTitle = fileNameTitle.substr(0, 10)+'...'+fileNameTitle.substr(-10, 10);
                                         }
+                                        cloneObj.find("h1").html(fileNameTitle);
+                                        cloneObj.removeClass("d-none");
+                                        cloneObj.removeClass("estate-image-clonable");
+                                        $(".estate-images").append(cloneObj);
+                                        
+                                        removeImage();
+                                        setFeatured();
 
-                                    }, false);
-                                    return xhr;
                                 },
                                 error: function(jqXHR,status,error){
                                     

@@ -21,16 +21,17 @@
                         <input id="image_upload_file_handler" class="image-upload-file-handler" type="file" name="file_handler" multiple />
                     </div>
                     <div class="estate-images">
+                        <input type="hidden" id="featured_image_id" value="">
                         <div class="estate-image-wrapper estate-image-clonable d-none">
-                            <input type="hidden" id="media_id" value="">
+                            <input type="hidden" id="media_id" name="estate_images[]" value="">
                             <div class="estate-image-left">
                                 <img src="">
                             </div>
                             <div class="estate-image-right">
                                 <h1></h1>
                                 <ul>
-                                    <li><i class="far fa-trash-alt"></i>{{ __("Remove") }}</li>
-                                    <li><i class="far fa-images"></i>{{ __("Set as featured") }}</li>
+                                    <li class="estate-remove"><i class="far fa-trash-alt"></i>{{ __("Remove") }}</li>
+                                    <li class="estate-featured"><i class="far fa-images"></i>{{ __("Set as featured") }}</li>
                                 </ul>
                             </div>
                         </div>
