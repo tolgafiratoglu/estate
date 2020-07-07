@@ -33,11 +33,13 @@ class MediaController extends Controller
         $imageHeight = $imageSourceToCrop->height(); 
 
         if($imageWidth/$imageHeight >=$width/$height){
-            $imageSourceToCrop->resize(null, $height);
+            $imageNewWidth = $imageWidth*($height/$imageHeight);
+            $imageSourceToCrop->resize($imageNewWidth, $height);
             $offsetX = intval(($imageSourceToCrop->width() - $width)/2);
             $offsetY = 0;
         }else{
-            $imageSourceToCrop->resize($width, null);
+            $imageNewHeight = $imageHeight*($width/$imageWidth);
+            $imageSourceToCrop->resize($width, $imageNewHeight);
             $offsetY = intval(($imageSourceToCrop->height() - $height)/2);
             $offsetX = 0;
         }
