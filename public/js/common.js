@@ -336,6 +336,31 @@ $(function () {
 
     }
 
+    function initSaveButton(){
+
+        $(".save-button").click(
+            function(){
+
+                var title = $("#title").val();
+                var slug  = $("#slug").val();
+                var property_type  = $("#property_type").val();
+                var property_status  = $("#property_status").val();
+                
+                var newPropertyForm = new FormData();
+                    newPropertyForm.append('title', title);
+                    newPropertyForm.append('slug', slug);
+                    newPropertyForm.append('property_type', property_type);
+                    newPropertyForm.append('property_status', property_status);
+
+                    for (var p of newPropertyForm) {
+                        console.log(p);
+                    }
+
+            }
+        );
+
+    }
+
     $( document ).ready(function() {
 
         initSlugTrigger();
@@ -347,6 +372,8 @@ $(function () {
         initChosen();
 
         initFileUploader();
+
+        initSaveButton();
 
     });
 

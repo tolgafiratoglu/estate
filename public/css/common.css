@@ -2,6 +2,8 @@
 * Common CSS styles for webview and admin view
 *
 * 1. Headers
+* 2. New Property Form
+* 3. Image Upload
 */
 
 /* 1. Header Styles Start Here */
@@ -31,10 +33,21 @@
         background-color: #3299BB;
     }
 
-    .estate-new-feature{
-        margin: 1rem 0rem;
-        overflow: auto;
-    }    
+/* 2. New Property Form */
+
+.estate-new-form .form-group{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.estate-new-form .row{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.estate-new-feature{
+    margin: 1rem 0rem;
+}    
 
     .btn svg{
         margin-right: 0.5rem;
@@ -44,7 +57,24 @@
         height: 400px;
     }
 
-/* Image Upload */
+    .save-button-wrapper{
+        width: 100%;
+        padding: 1rem 0px;
+    }
+
+    .save-button-wrapper .save-button{
+        cursor: pointer;
+        max-width: 200px;
+        background-color: #d4edda;
+        color: #155724;
+        border-radius: 1rem;
+        text-align: center;
+        line-height: 3rem;
+        letter-spacing: 1px;
+        clear: both;
+    }
+
+/* 3. Image Upload */
 
 .image-upload-button-wrapper{
     float: left;

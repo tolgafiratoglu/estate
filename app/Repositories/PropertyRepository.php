@@ -50,7 +50,7 @@
         public function getPropertyList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
-            $propertyListObject = Property::select('id', 'created_at', 'updated_at', 'location', 'created_by', 'property_status',	'type',	'featured_image', 'price', 'address', 'area', 'age_of_building', 'number_of_living_rooms', 'number_of_rooms', 'number_of_bathrooms', 'floor', 'lat', 'lon', 'is_approved', 'is_drafted', 'is_deleted')
+            $propertyListObject = Property::select('id', 'created_at', 'updated_at', 'location', 'created_by', 'property_status',	'property_type',	'featured_image', 'price', 'address', 'area', 'year_built', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors',  'lat', 'lon', 'is_approved', 'is_drafted', 'is_deleted', 'has_garden', 'area_of_garden', 'has_park_area', 'number_of_park_areas')
                                         ->where(['is_deleted'=>$deleted]);
 
                 // If offset is defined:

@@ -51,7 +51,7 @@ class CreatePropertyTable extends Migration
                 $table->integer('area');
                 $table->year('year_built')->default(0);
             
-                $table->integer('number_of_living_rooms')->default(1);
+                // $table->integer('number_of_living_rooms')->default(1);
                 $table->integer('number_of_rooms')->default(0);
                 $table->integer('number_of_bathrooms')->default(1);
                 
