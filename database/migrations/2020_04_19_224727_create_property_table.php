@@ -34,11 +34,17 @@ class CreatePropertyTable extends Migration
 
                 $table->unsignedBigInteger('property_status');
                     $table->foreign('property_status')->references('id')->on('property_status');
-                $table->unsignedBigInteger('type');
-                    $table->foreign('type')->references('id')->on('property_type');    
+                $table->unsignedBigInteger('property_type');
+                    $table->foreign('property_type')->references('id')->on('property_type');    
                 $table->unsignedBigInteger('featured_image')->nullable();
                     $table->foreign('featured_image')->references('id')->on('media');    
                 
+                $table->unsignedBigInteger('heating');
+                    $table->foreign('heating')->references('id')->on('heating');
+                
+                $table->unsignedBigInteger('cooling');
+                    $table->foreign('cooling')->references('id')->on('cooling');
+
                 $table->decimal('price', 10, 2)->nullable();
                 $table->text('address', 1000)->nullable();
                 

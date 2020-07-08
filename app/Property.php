@@ -46,6 +46,33 @@ class Property extends Model
     /**
      * @var array
      */
-    protected $fillable = ['created_at', 'updated_at', 'location', 'created_by', 'property_status',	'type',	'featured_image', 'price', 'address', 'area', 'age_of_building', 'number_of_living_rooms', 'number_of_rooms', 'number_of_bathrooms', 'floor', 'lat', 'lon', 'is_approved', 'is_drafted', 'is_deleted'];
+    protected $fillable = ['created_at', 
+                            'updated_at', 
+                            'location', 
+                            'created_by', 
+                            'property_status',	
+                            'property_type',	
+                            'featured_image',
+                            'heating',
+                            'cooling',
+                            'price', 
+                            'address', 
+                            'area', 
+                            'year_built', 
+                            // 'number_of_living_rooms', 
+                            'number_of_rooms', 
+                            'number_of_bathrooms', 
+                            'number_of_floors',
+                            'which_floor',
+                            'has_garden',
+                            'area_of_garden',
+                            'has_park_area',
+                            'number_of_park_areas',
+                            'lat', 
+                            'lon', 
+                            'is_approved', 
+                            'is_drafted', 
+                            'is_deleted'
+                        ];
 
 }
