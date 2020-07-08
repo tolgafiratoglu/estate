@@ -43,16 +43,23 @@ class CreatePropertyTable extends Migration
                 $table->text('address', 1000)->nullable();
                 
                 $table->integer('area');
-                $table->integer('age_of_building')->default(0);
+                $table->year('year_built')->default(0);
             
                 $table->integer('number_of_living_rooms')->default(1);
                 $table->integer('number_of_rooms')->default(0);
                 $table->integer('number_of_bathrooms')->default(1);
                 
-                $table->integer('floor');
+                $table->integer('number_of_floors')->default(1);
+                $table->integer('which_floor')->default(0);
                 $table->decimal('lat', 18, 15)->nullable()->default(null);
                 $table->decimal('lon', 18, 15)->nullable()->default(null);
                 
+                $table->boolean('has_garden')->default(false);
+                $table->integer('area_of_garden')->nullable();
+
+                $table->boolean('has_park_area')->default(false);
+                $table->integer('number_of_park_areas')->nullable();
+
                 $table->boolean('is_approved')->default(false);
                 $table->boolean('is_drafted')->default(false);
                 $table->boolean('is_deleted')->default(false);
