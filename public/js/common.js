@@ -302,7 +302,7 @@ $(function () {
                                 success: function(response, status, jqXHR){
                                     var cloneObj = $(".estate-image-clonable").clone();
                                         cloneObj.attr("data-id", response.id);
-                                        cloneObj.find("#media_id").val(response.id);
+                                        cloneObj.find("#media_id").val(response.id).addClass("estate-image-input");
                                         cloneObj.find("img").attr("src", response.image_path);
                                         var fileNameTitle = response.file_name;
                                         if(fileNameTitle.length > 20){
@@ -345,12 +345,32 @@ $(function () {
                 var slug  = $("#slug").val();
                 var property_type  = $("#property_type").val();
                 var property_status  = $("#property_status").val();
-                
+                var description = $("#description").val();
+                var price  = $("#price").val();
+                var area  = $("#area").val();
+                var year_built  = $("#year_built").val();
+                var number_of_rooms  = $("#number_of_rooms").val();
+                var number_of_bathrooms  = $("#area").val();
+                var number_of_floors  = $("#number_of_floors").val();
+                var interior_features  = $("#interior_features").val();
+                var exterior_features  = $("#exterior_features").val();
+                var images      = $('input[name="estate_images[]"]').val();
+
                 var newPropertyForm = new FormData();
                     newPropertyForm.append('title', title);
                     newPropertyForm.append('slug', slug);
                     newPropertyForm.append('property_type', property_type);
                     newPropertyForm.append('property_status', property_status);
+                    newPropertyForm.append('description', description);
+                    newPropertyForm.append('price', price);
+                    newPropertyForm.append('area', area);
+                    newPropertyForm.append('year_built', year_built);
+                    newPropertyForm.append('number_of_rooms', number_of_rooms);
+                    newPropertyForm.append('number_of_bathrooms', number_of_bathrooms);
+                    newPropertyForm.append('number_of_floors', number_of_floors);
+                    newPropertyForm.append('interior_features', interior_features);
+                    newPropertyForm.append('exterior_features', exterior_features);
+                    newPropertyForm.append('images', images);
 
                     for (var p of newPropertyForm) {
                         console.log(p);

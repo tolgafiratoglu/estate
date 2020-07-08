@@ -147,7 +147,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <select class="custom-select chosen-selector" multiple>
+                        <select id="interior_features" name="interior_features" class="custom-select chosen-selector" multiple>
                             @foreach($propertyTypes AS $propertyType)
                                 <option value='{{ $propertyType["id"] }}'>{{ $propertyType["name"] }}</option>
                             @endforeach
@@ -165,7 +165,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <select class="custom-select chosen-selector" multiple>
+                        <select id="exterior_features" name="exterior_features"  class="custom-select chosen-selector" multiple>
                             @foreach($propertyTypes AS $propertyType)
                                 <option value='{{ $propertyType["id"] }}'>{{ $propertyType["name"] }}</option>
                             @endforeach
