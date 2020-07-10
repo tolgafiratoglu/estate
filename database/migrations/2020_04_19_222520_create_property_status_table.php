@@ -17,9 +17,8 @@ class CreatePropertyStatusTable extends Migration
             Schema::create('property_status', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->timestamps();
-                $table->string('name');
+                $table->string('title');
                 $table->string('slug')->unique()->nullable();
-                $table->boolean('is_deleted')->default(false);
             });
         }
     }

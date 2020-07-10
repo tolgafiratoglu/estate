@@ -31,13 +31,13 @@ class PropertyType extends Model
     /**
      * @var array
      */
-    protected $fillable = ['created_at', 'updated_at', 'name', 'slug'];
+    protected $fillable = ['created_at', 'updated_at', 'title', 'slug'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function properties()
     {
-        return $this->hasMany('App\Property', 'type');
+        return $this->hasMany('App\Property', 'property_type');
     }
 }

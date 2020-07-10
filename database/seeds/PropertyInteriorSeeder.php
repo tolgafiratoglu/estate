@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Repositories\InteriorFeatureRepository;
+
 class PropertyInteriorSeeder extends Seeder
 {
     /**
@@ -14,13 +16,14 @@ class PropertyInteriorSeeder extends Seeder
         
         $initialValues = config('initial.interior_feature');
 
+
         if(sizeof($initialValues) > 0)
         {
-            foreach($initialValues AS $initialValue)
+            foreach($initialValues AS $key=>$initialValue)
             {
-                $initialValueCheck = $InteriorFeatureRepository->findWhere(['title'=>$initialValue]);
+                $initialValueCheck = $InteriorFeatureRepository->findWhere(['title'=>$initialValue])->toArray();
 
-                if($initialValueCheck == NULL)
+                if(sizeof($initialValueCheck) == 0)
                 {
                     $InteriorFeatureRepository->create(['title'=>$initialValue]);
                 }

@@ -17,9 +17,8 @@ class CreatePropertyTypeTable extends Migration
             Schema::create('property_type', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->timestamps();
-                $table->string('name');
+                $table->string('title');
                 $table->string('slug')->unique()->nullable();
-                $table->boolean('is_deleted')->default(false);
             });
         }
     }

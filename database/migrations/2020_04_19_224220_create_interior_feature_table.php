@@ -17,9 +17,7 @@ class CreateInteriorFeatureTable extends Migration
             Schema::create('interior_feature', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->timestamps();
-                $table->string('name');
-                $table->string('slug')->unique()->nullable();
-                $table->boolean('is_deleted')->default(false);
+                $table->string('title');
             });
         }
     }

@@ -46,7 +46,7 @@
             $propertyTypeObject = PropertyType::where(['is_deleted'=>$deleted]);
 
             if($keyword != NULL){
-                $propertyTypeObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
+                $propertyTypeObject = $propertyStatusObject->where('title', 'like', '%'.$keyword.'%');
             }
 
             return $propertyTypeObject->count();                                    
@@ -62,7 +62,7 @@
         public function getPropertyType($itemId) 
         {
 
-            $propertyStatusObject = PropertyType::select('id', 'name', 'slug')
+            $propertyStatusObject = PropertyType::select('id', 'title', 'slug')
                                     ->where(
                                         [
                                             'id'=>$itemId,
@@ -77,7 +77,7 @@
         function getPropertyTypes($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL)
         {
 
-            $propertyTypesObject = PropertyType::select('id', 'name', 'slug')
+            $propertyTypesObject = PropertyType::select('id', 'title', 'slug')
                                         ->where(['is_deleted'=>$deleted]);
 
                 // If offset is defined:
@@ -95,7 +95,7 @@
                 }
 
                 if($keyword != NULL){
-                    $propertyTypesObject = $propertyTypesObject->where('name', 'like', '%'.$keyword.'%');
+                    $propertyTypesObject = $propertyTypesObject->where('title', 'like', '%'.$keyword.'%');
                 }
 
             return $propertyTypesObject->get()->toArray();
@@ -105,14 +105,14 @@
         /*
         * Saves with given arguments
         *
-        * @param $name Name of the item
+        * @param $title Title of the item
         * @param $slug Slug of the item
         *
         * @return App\\PropertyStatus
         */
-        public function savePropertyType($name, $slug)
+        public function savePropertyType($title, $slug)
         {
-            return PropertyType::create(["name"=>$name, "slug"=>$slug]);
+            return PropertyType::create(["title"=>$title, "slug"=>$slug]);
         }
 
         /*
@@ -124,9 +124,9 @@
         *
         * @return App\\PropertyStatus
         */
-        public function updatePropertyType($id, $name, $slug)
+        public function updatePropertyType($id, $title, $slug)
         {
-            return PropertyType::where("id", $id)->update(["name"=>$name, "slug"=>$slug]);
+            return PropertyType::where("id", $id)->update(["title"=>$title, "slug"=>$slug]);
         }
 
         /*

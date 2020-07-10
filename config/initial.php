@@ -2,6 +2,16 @@
 
     return [
 
+        'property_status' => [
+            'for-rent' => 'For Rent',
+            'for-sale' => 'For Sale'
+        ],
+
+        'property_type' => [
+            'apartment' => 'Apartment',
+            'villa' => 'Villa',
+        ],
+
         'interior_feature' => [
             'Furniture',
             'TV',
