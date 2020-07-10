@@ -27,9 +27,7 @@
         public function getTypesListCount($deleted = false) 
         {
 
-            $propertyTypesObject = PropertyType::where(['is_deleted'=>$deleted]);
-
-            return $propertyTypesObject->count();                                    
+            $propertyTypesObject = PropertyType::count();                                    
         }
 
         /*
@@ -65,8 +63,7 @@
             $propertyStatusObject = PropertyType::select('id', 'title', 'slug')
                                     ->where(
                                         [
-                                            'id'=>$itemId,
-                                            'is_deleted'=>false
+                                            'id'=>$itemId
                                         ]
                                     );
 

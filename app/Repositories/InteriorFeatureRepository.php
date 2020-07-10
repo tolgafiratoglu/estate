@@ -107,7 +107,7 @@
                 }
 
                 if($keyword != NULL){
-                    $interiorFeatureObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
+                    $interiorFeatureObject = $propertyStatusObject->where('title', 'like', '%'.$keyword.'%');
                 }
 
             return $interiorFeatureObject->get()->toArray();
@@ -117,14 +117,14 @@
         /*
         * Saves with given arguments
         *
-        * @param $name Name of the item
+        * @param $title Title of the item
         * @param $slug Slug of the item
         *
         * @return App\\PropertyStatus
         */
-        public function saveInteriorFeature($name, $slug)
+        public function saveInteriorFeature($title, $slug)
         {
-            return InteriorFeature::create(["name"=>$name, "slug"=>$slug]);
+            return InteriorFeature::create(["title"=>$title]);
         }
 
         /*
@@ -136,7 +136,7 @@
         *
         * @return App\\PropertyStatus
         */
-        public function updateInteriorFeature($id, $name, $slug)
+        public function updateInteriorFeature($id, $title, $slug)
         {
             return InteriorFeature::where("id", $id)->update(["name"=>$name, "slug"=>$slug]);
         }

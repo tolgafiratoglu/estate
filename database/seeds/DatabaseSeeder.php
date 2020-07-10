@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SystemLimitsSeeder::class);
         $this->call(SystemSettingsSeeder::class);
         $this->call(PropertyInteriorSeeder::class);
+        $this->call(PropertyExteriorSeeder::class);
+        $this->call(PropertyStatusSeeder::class);
+        $this->call(PropertyTypeSeeder::class);
     }
 }

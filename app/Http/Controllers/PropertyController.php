@@ -18,8 +18,8 @@ class PropertyController extends Controller
     public function new(PropertyStatusRepository $propertyStatusRepository, PropertyTypeRepository $propertyTypeRepository)
     {
 
-        $propertyTypes   = $propertyTypeRepository->findWhere(['is_deleted'=>false], ['id', 'name']);
-        $propertyStatus = $propertyStatusRepository->findWhere(['is_deleted'=>false], ['id', 'name']);
+        $propertyTypes   = $propertyTypeRepository->all();
+        $propertyStatus = $propertyStatusRepository->all();
 
         return view('property.new', ['propertyTypes'=>$propertyTypes, 'propertyStatus'=>$propertyStatus]);
     }

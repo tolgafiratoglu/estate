@@ -31,7 +31,7 @@
                             <label for="property_type">{{ __("Property Types") }}</label>
                             <select class="custom-select" id="property_type" name="property_type">
                                 @foreach($propertyTypes AS $propertyType)
-                                    <option value='{{ $propertyType["id"] }}'>{{ $propertyType["name"] }}</option>
+                                    <option value='{{ $propertyType["id"] }}'>{{ $propertyType["title"] }}</option>
                                 @endforeach
                             </select>
                             <small class="form-text text-muted">{{ __('Shape of Property') }}</small>
@@ -40,7 +40,7 @@
                             <label for="property_status">{{ __("Property Status") }}</label>
                             <select class="custom-select" id="property_status" name="property_status">
                                 @foreach($propertyStatus AS $propertyStatusItem)
-                                    <option value='{{ $propertyStatusItem["id"] }}'>{{ $propertyStatusItem["name"] }}</option>
+                                    <option value='{{ $propertyStatusItem["id"] }}'>{{ $propertyStatusItem["title"] }}</option>
                                 @endforeach
                             </select>
                             <small class="form-text text-muted">{{ __('Why it is listed') }}</small>
@@ -149,7 +149,7 @@
                     <div class="col-sm">
                         <select id="interior_features" name="interior_features" class="custom-select chosen-selector" multiple>
                             @foreach($propertyTypes AS $propertyType)
-                                <option value='{{ $propertyType["id"] }}'>{{ $propertyType["name"] }}</option>
+                                <option value='{{ $propertyType["id"] }}'>{{ $propertyType["title"] }}</option>
                             @endforeach
                         </select>
                         <small class="form-text text-muted">{{ __('Interior features of the property') }}</small>
@@ -167,7 +167,7 @@
                     <div class="col-sm">
                         <select id="exterior_features" name="exterior_features"  class="custom-select chosen-selector" multiple>
                             @foreach($propertyTypes AS $propertyType)
-                                <option value='{{ $propertyType["id"] }}'>{{ $propertyType["name"] }}</option>
+                                <option value='{{ $propertyType["id"] }}'>{{ $propertyType["title"] }}</option>
                             @endforeach
                         </select>
                         <small class="form-text text-muted">{{ __('Exterior features of the property') }}</small>
