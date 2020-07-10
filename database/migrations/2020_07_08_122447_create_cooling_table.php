@@ -14,11 +14,19 @@ class CreateCoolingTable extends Migration
     public function up()
     {
         if(Schema::hasTable('cooling') == false){     
+            
             Schema::create('cooling', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('title');
                 $table->timestamps();
             });
+
+            Schema::table('property', function($table)
+            {
+                $table->unsignedBigInteger('cooling')->nullable();
+                    $table->foreign('cooling')->references('id')->on('cooling');  
+            });
+
         }
     }
 }

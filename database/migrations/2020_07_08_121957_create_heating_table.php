@@ -19,6 +19,13 @@ class CreateHeatingTable extends Migration
                 $table->string('title');
                 $table->timestamps();
             });
+
+            Schema::table('property', function($table)
+            {
+                $table->unsignedBigInteger('heating')->nullable();
+                    $table->foreign('heating')->references('id')->on('heating');  
+            });
+
         }    
     }
 }

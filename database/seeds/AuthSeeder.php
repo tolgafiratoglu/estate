@@ -13,8 +13,12 @@ class AuthSeeder extends Seeder
     public function run(UserRepository $userRepository)
     {
         
-        $password = bcrypt('admin');
-        $userRepository->create(['username'=>'admin', 'password'=>$password, 'email'=>'admin@yourdomain.com', 'email_verified_at'=>date('Y-m-d H:i:s'), 'is_admin'=> true, 'is_super_admin' => true]);
+        $checkUser = $userRepository->findWhere(['username'=>'admin', 'email'=>'admin@yourdomain.com']);
 
+        if($checkUser == NULL){
+            $password = bcrypt('admin');
+            $userRepository->create(['username'=>'admin', 'password'=>$password, 'email'=>'admin@yourdomain.com', 'email_verified_at'=>date('Y-m-d H:i:s'), 'is_admin'=> true, 'is_super_admin' => true]);
+        }
+        
     }
 }

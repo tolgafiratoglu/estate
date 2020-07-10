@@ -39,11 +39,6 @@ class CreatePropertyTable extends Migration
                 $table->unsignedBigInteger('featured_image')->nullable();
                     $table->foreign('featured_image')->references('id')->on('media');    
                 
-                $table->unsignedBigInteger('heating');
-                    $table->foreign('heating')->references('id')->on('heating');
-                
-                $table->unsignedBigInteger('cooling');
-                    $table->foreign('cooling')->references('id')->on('cooling');
 
                 $table->decimal('price', 10, 2)->nullable();
                 $table->text('address', 1000)->nullable();
