@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCoolingTable extends Migration
+class CreateViewTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateCoolingTable extends Migration
      */
     public function up()
     {
-        if(Schema::hasTable('cooling') == false){     
-            Schema::create('cooling', function (Blueprint $table) {
+        if(Schema::hasTable('view') == false) {
+            Schema::create('view', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('title');
                 $table->timestamps();

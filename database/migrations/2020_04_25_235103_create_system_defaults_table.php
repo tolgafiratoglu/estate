@@ -13,9 +13,11 @@ class CreateSystemDefaultsTable extends Migration
      */
     public function up()
     {
-        Schema::create('system_defaults', function (Blueprint $table) {
-            $table->string('meta_key');
-            $table->string('meta_value');
-        });
+        if(Schema::hasTable('system_defaults') == false){ 
+            Schema::create('system_defaults', function (Blueprint $table) {
+                $table->string('meta_key');
+                $table->string('meta_value');
+            });
+        }
     }
 }

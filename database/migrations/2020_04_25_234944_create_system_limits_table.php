@@ -13,9 +13,12 @@ class CreateSystemLimitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('system_limits', function (Blueprint $table) {
-            $table->string('meta_key');
-            $table->integer('meta_value');
-        });
+        if(Schema::hasTable('system_limits') == false)
+        { 
+            Schema::create('system_limits', function (Blueprint $table) {
+                $table->string('meta_key');
+                $table->integer('meta_value');
+            });
+        }    
     }
 }

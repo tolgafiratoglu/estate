@@ -11,14 +11,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $title
  * @property propertyPlaces[] $propertyPlaces
  */
-class Place extends Model
+class Heating extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'place';
+    protected $table = 'heating';
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -32,11 +32,4 @@ class Place extends Model
      */
     protected $fillable = ['created_at', 'updated_at', 'title'];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function propertyPlaces()
-    {
-        return $this->hasMany('App\PropertyPlace', 'place');
-    }
 }

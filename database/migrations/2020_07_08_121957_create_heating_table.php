@@ -13,10 +13,12 @@ class CreateHeatingTable extends Migration
      */
     public function up()
     {
-        Schema::create('heating', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title');
-            $table->timestamps();
-        });
+        if(Schema::hasTable('heating') == false){ 
+            Schema::create('heating', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('title');
+                $table->timestamps();
+            });
+        }    
     }
 }

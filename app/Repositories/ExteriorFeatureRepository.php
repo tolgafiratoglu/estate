@@ -2,10 +2,10 @@
 
     namespace App\Repositories;
 
-    use App\PlaceCategory as PlaceCategory;
+    use App\ExteriorFeature as ExteriorFeature;
     use Prettus\Repository\Eloquent\BaseRepository;
 
-    class PlaceCategoryRepository extends BaseRepository
+    class ExteriorFeatureRepository extends BaseRepository
     {
 
         /**
@@ -15,7 +15,7 @@
          */
         function model()
         {
-            return "App\\PlaceCategory";
+            return "App\\ExteriorFeature";
         }
 
         /*
@@ -24,9 +24,9 @@
         *
         * @return integer
         */
-        public function getPlaceCategoryListCount($deleted = false) 
+        public function getExteriorFeatureListCount($deleted = false) 
         {
-            return PlaceCategory::count();                                   
+            return ExteriorFeature::count();                                   
         }                            
 
         /*
@@ -36,16 +36,16 @@
         *
         * @return integer
         */
-        public function getPlaceCategoryCount($keyword = NULL) 
+        public function getExteriorFeatureCount($keyword = NULL) 
         {
 
-            $placeObject = PlaceCategory::findAll();
+            $ExteriorFeatureObject = ExteriorFeature::findAll();
 
             if($keyword != NULL){
-                $placeObject = PlaceCategory::where('title', 'like', '%'.$keyword.'%');
+                $ExteriorFeatureObject = ExteriorFeature::where('title', 'like', '%'.$keyword.'%');
             }
 
-            return $placeObject->count();       
+            return $ExteriorFeatureObject->count();       
 
         }
 
@@ -56,17 +56,17 @@
         *
         * @return array
         */
-        public function getPlaceCategory($itemId) 
+        public function getExteriorFeature($itemId) 
         {
 
-            $placeObject = PlaceCategory::select('id', 'title')
+            $ExteriorFeatureObject = ExteriorFeature::select('id', 'title')
                                     ->where(
                                         [
                                             'id'=>$itemId
                                         ]
                                     );
 
-            return $placeObject->first()->toArray();
+            return $ExteriorFeatureObject->first()->toArray();
 
         }
 
@@ -81,31 +81,31 @@
         *
         * @return array
         */
-        public function getPlaceCategoryList($offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
+        public function getExteriorFeatureList($offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
-            $placeObject = PlaceCategory::select('id', 'title');
+            $ExteriorFeatureObject = ExteriorFeature::select('id', 'title');
 
                 if($keyword != NULL){
-                    $placeObject = $placeObject->where('title', 'like', '%'.$keyword.'%');
+                    $ExteriorFeatureObject = $ExteriorFeatureObject->where('title', 'like', '%'.$keyword.'%');
                 }
 
                 // If offset is defined:
                 if($offset != NULL){
-                    $placeObject = $placeObject->offset($offset);
+                    $ExteriorFeatureObject = $ExteriorFeatureObject->offset($offset);
                 }
 
                 // If limit is defined:
                 if($limit != NULL){
-                    $placeObject = $placeObject->limit($limit);
+                    $ExteriorFeatureObject = $ExteriorFeatureObject->limit($limit);
                 }
 
                 if($order != NULL){
-                    $placeObject = $placeObject->orderBy($orderBy, $order);
+                    $ExteriorFeatureObject = $ExteriorFeatureObject->orderBy($orderBy, $order);
                 }
 
 
-            return $placeObject->get()->toArray();
+            return $ExteriorFeatureObject->get()->toArray();
 
         }
 
@@ -114,11 +114,11 @@
         *
         * @param $title title of the item
         *
-        * @return App\\Place
+        * @return App\\ExteriorFeature
         */
-        public function savePlaceCategory($title, $lat, $lon)
+        public function saveExteriorFeature($title, $lat, $lon)
         {
-            return Place::create(["title"=>$title]);
+            return ExteriorFeature::create(["title"=>$title]);
         }
 
         /*
@@ -127,11 +127,11 @@
         * @param $id Id of the item
         * @param $title title of the item
         *
-        * @return App\\Place
+        * @return App\\ExteriorFeature
         */
-        public function updatePlaceCategory($id, $title)
+        public function updateExteriorFeature($id, $title)
         {
-            return Place::where("id", $id)->update(["title"=>$title]);
+            return ExteriorFeature::where("id", $id)->update(["title"=>$title]);
         }
 
         /*
@@ -141,9 +141,9 @@
         *
         * @return boolean
         */
-        public function deletePlace($id)
+        public function deleteExteriorFeature($id)
         {
-            $isDeleted = Place::where('id', $id)->delete();
+            $isDeleted = ExteriorFeature::where('id', $id)->delete();
                 return $isDeleted;
         }
 

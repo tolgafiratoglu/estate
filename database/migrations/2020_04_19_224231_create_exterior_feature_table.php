@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlaceCategoryTable extends Migration
+class CreateExteriorFeatureTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreatePlaceCategoryTable extends Migration
      */
     public function up()
     {
-        if(Schema::hasTable('place_category') == false) {
-            Schema::create('place_category', function (Blueprint $table) {
+        if(Schema::hasTable('exterior_feature') == false) {
+            Schema::create('exterior_feature', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->timestamps();
                 $table->string('title');

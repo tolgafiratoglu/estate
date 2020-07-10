@@ -13,9 +13,11 @@ class CreateSystemSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('system_settings', function (Blueprint $table) {
-            $table->string('meta_key');
-            $table->boolean('meta_value');
-        });
+        if(Schema::hasTable('system_settings') == false) {
+            Schema::create('system_settings', function (Blueprint $table) {
+                $table->string('meta_key');
+                $table->boolean('meta_value');
+            });
+        }
     }
 }
