@@ -19,5 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PropertyExteriorSeeder::class);
         $this->call(PropertyStatusSeeder::class);
         $this->call(PropertyTypeSeeder::class);
+        $this->call(HeatingSeeder::class);
+        $this->call(CoolingSeeder::class);
+        $this->call(ViewSeeder::class);
     }
 }

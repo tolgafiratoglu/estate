@@ -354,7 +354,20 @@ $(function () {
                 var number_of_floors  = $("#number_of_floors").val();
                 var interior_features  = $("#interior_features").val();
                 var exterior_features  = $("#exterior_features").val();
-                var images      = $('input[name="estate_images[]"]').val();
+
+                var has_garden  = $("#has_garden").val();
+                var has_park_space  = $("#has_park_space").val();
+
+                var garden_area  = $("#garden_area").val();
+                var number_of_park_spaces  = $("#number_of_park_spaces").val();
+
+                var images      = $('input[name="estate_images[]"]').map(
+                    function(){
+                        if($(this).val() > 0){
+                            return $(this).val();
+                        }
+                    }
+                ).get();
 
                 var newPropertyForm = new FormData();
                     newPropertyForm.append('title', title);
@@ -370,12 +383,32 @@ $(function () {
                     newPropertyForm.append('number_of_floors', number_of_floors);
                     newPropertyForm.append('interior_features', interior_features);
                     newPropertyForm.append('exterior_features', exterior_features);
+                    
+                    newPropertyForm.append('has_garden', has_garden);
+                    newPropertyForm.append('has_park_space', has_park_space);
+
                     newPropertyForm.append('images', images);
 
                     for (var p of newPropertyForm) {
                         console.log(p);
                     }
 
+            }
+        );
+
+    }
+
+    function init_checkboxes(){
+
+        $("#has_garden").click(
+            function(){
+                $(".estate-garden-area").toggleClass("d-none");
+            }
+        );
+
+        $("#has_park_space").click(
+            function(){
+                $(".estate-park-spaces").toggleClass("d-none");
             }
         );
 
@@ -394,6 +427,8 @@ $(function () {
         initFileUploader();
 
         initSaveButton();
+
+        init_checkboxes();
 
     });
 

@@ -31,7 +31,7 @@
                             <label for="property_type">{{ __("Property Types") }}</label>
                             <select class="custom-select" id="property_type" name="property_type">
                                 @foreach($propertyTypes AS $propertyType)
-                                    <option value='{{ $propertyType["id"] }}'>{{ $propertyType["title"] }}</option>
+                                    <option value='{{ $propertyType["id"] }}'>{{  __($propertyType["title"]) }}</option>
                                 @endforeach
                             </select>
                             <small class="form-text text-muted">{{ __('Shape of Property') }}</small>
@@ -40,7 +40,7 @@
                             <label for="property_status">{{ __("Property Status") }}</label>
                             <select class="custom-select" id="property_status" name="property_status">
                                 @foreach($propertyStatus AS $propertyStatusItem)
-                                    <option value='{{ $propertyStatusItem["id"] }}'>{{ $propertyStatusItem["title"] }}</option>
+                                    <option value='{{ $propertyStatusItem["id"] }}'>{{  __($propertyStatusItem["title"]) }}</option>
                                 @endforeach
                             </select>
                             <small class="form-text text-muted">{{ __('Why it is listed') }}</small>
@@ -97,15 +97,82 @@
                             </select>
                         </div>
                         <div class="col-sm">
-                            <label for="number_of_rooms_input">{{ __("Number of Floors") }}</label>
-                            <select class="custom-select">
+                            <label for="number_of_rooms_input">{{ __("Which Floor?") }}</label>
+                            <select class="custom-select" name="which_floor" id="which_floor">
+                                @for ($i = -10; $i < 50; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="number_of_rooms">{{ __("Number of Floors") }}</label>
+                            <select class="custom-select" id="number_of_rooms" name="number_of_rooms">
                                 @for ($i = 1; $i < 50; $i++)
                                     <option value="{{ $i }}">{{ $i }} @if($i == 1){{ __('Floor') }}@else{{ __('Floors') }}@endif</option>
                                 @endfor
                             </select>
                         </div>
+                        <div class="col-sm">
+                            <label for="number_of_bathrooms">{{ __("Heating") }}</label>
+                            <select class="custom-select" id="heating" name="heating">
+                                @foreach($heatingOptions AS $heatingOption)
+                                    <option value='{{ $heatingOption["id"] }}'>{{ __($heatingOption["title"]) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm">
+                            <label for="number_of_rooms_input">{{ __("Cooling") }}</label>
+                            <select class="custom-select">
+                                @foreach($coolingOptions AS $coolingOption)
+                                    <option value='{{ $coolingOption["id"] }}'>{{ __($coolingOption["title"]) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </form>
+                <div class="estate-info-title-wrapper">
+                    <div class="estate-header">
+                        <span class="estate-info-icon-wrapper">
+                            <i class="fas fa-table"></i>
+                        </span>
+                        <span>{{ __("Parking & Garden") }}</span>
+                    </div>
+                </div>
+                <div class="estate-new-feature">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="has_garden">
+                        <label class="form-check-label" for="has_garden">{{ __("Has Garden") }}</label>
+                    </div>
+                </div>
+                <div class="estate-new-feature estate-garden-area d-none">
+                    <div class="form-group">
+                            <label for="area">{{ __("Garden Area") }}</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="garden_area" name="garden_area" placeholder='{{ __("Garden Area") }}'>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="area_unit">m<sup>2</sup></span>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="estate-new-feature">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="has_park_space">
+                        <label class="form-check-label" for="has_park_space">{{ __("Has Parking Areas") }}</label>
+                    </div>
+                </div>
+                <div class="estate-new-feature estate-park-spaces d-none">
+                    <div class="form-group">
+                            <label for="area">{{ __("Number of Park Spaces") }}</label>
+                            <select class="custom-select" id="number_of_park_spaces" name="number_of_park_spaces">
+                                @for ($i = 1; $i < 10; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            </select>
+                    </div>
+                </div>
                 <div class="estate-info-title-wrapper">
                     <div class="estate-header">
                         <span class="estate-info-icon-wrapper">
@@ -148,8 +215,8 @@
                 <div class="row">
                     <div class="col-sm">
                         <select id="interior_features" name="interior_features" class="custom-select chosen-selector" multiple>
-                            @foreach($propertyTypes AS $propertyType)
-                                <option value='{{ $propertyType["id"] }}'>{{ $propertyType["title"] }}</option>
+                            @foreach($interiorFeatureOptions AS $interiorFeatureOption)
+                                <option value='{{ $interiorFeatureOption["id"] }}'>{{  __($interiorFeatureOption["title"]) }}</option>
                             @endforeach
                         </select>
                         <small class="form-text text-muted">{{ __('Interior features of the property') }}</small>
@@ -166,8 +233,8 @@
                 <div class="row">
                     <div class="col-sm">
                         <select id="exterior_features" name="exterior_features"  class="custom-select chosen-selector" multiple>
-                            @foreach($propertyTypes AS $propertyType)
-                                <option value='{{ $propertyType["id"] }}'>{{ $propertyType["title"] }}</option>
+                            @foreach($exteriorFeatureOptions AS $exteriorFeatureOption)
+                                <option value='{{ $exteriorFeatureOption["id"] }}'>{{ __($exteriorFeatureOption["title"]) }}</option>
                             @endforeach
                         </select>
                         <small class="form-text text-muted">{{ __('Exterior features of the property') }}</small>
@@ -223,10 +290,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="form_validation_check">
-                    <label class="form-check-label" for="form_validation_check">{{ __("I accept terms about publishing a new property.") }}</label>
-                </div>
+                <div class="estate-new-feature">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="form_validation_check">
+                        <label class="form-check-label" for="form_validation_check">{{ __("I accept terms about publishing a new property.") }}</label>
+                    </div>
+                </div>    
                 <div class="save-button-wrapper">
                     <div class="save-button">{{ __("Save") }}</div>
                 </div>

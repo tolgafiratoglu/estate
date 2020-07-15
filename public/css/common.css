@@ -49,6 +49,10 @@
     margin: 1rem 0rem;
 }    
 
+.estate-new-feature .form-check{
+    display: inline-block !important;
+}    
+
     .btn svg{
         margin-right: 0.5rem;
     }
