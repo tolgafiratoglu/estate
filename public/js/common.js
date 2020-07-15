@@ -343,23 +343,23 @@ $(function () {
 
                 var title = $("#title").val();
                 var slug  = $("#slug").val();
-                var property_type  = $("#property_type").val();
-                var property_status  = $("#property_status").val();
+                var propertyType  = $("#property_type").val();
+                var propertyStatus  = $("#property_status").val();
                 var description = $("#description").val();
                 var price  = $("#price").val();
                 var area  = $("#area").val();
-                var year_built  = $("#year_built").val();
-                var number_of_rooms  = $("#number_of_rooms").val();
-                var number_of_bathrooms  = $("#area").val();
-                var number_of_floors  = $("#number_of_floors").val();
-                var interior_features  = $("#interior_features").val();
-                var exterior_features  = $("#exterior_features").val();
+                var yearBuilt  = $("#year_built").val();
+                var numberOfRooms  = $("#number_of_rooms").val();
+                var numberOfBathrooms  = $("#area").val();
+                var numberOfFloors  = $("#number_of_floors").val();
+                var interiorFeatures  = $("#interior_features").val();
+                var exteriorFeatures  = $("#exterior_features").val();
 
-                var has_garden  = $("#has_garden").val();
-                var has_park_space  = $("#has_park_space").val();
+                var hasGarden  = $("#has_garden").is(':checked');
+                var hasParkSpace  = $("#has_park_space").is(':checked');
 
-                var garden_area  = $("#garden_area").val();
-                var number_of_park_spaces  = $("#number_of_park_spaces").val();
+                var gardenArea  = $("#garden_area").val();
+                var numberOfParkSpaces  = $("#number_of_park_spaces").val();
 
                 var images      = $('input[name="estate_images[]"]').map(
                     function(){
@@ -370,28 +370,56 @@ $(function () {
                 ).get();
 
                 var newPropertyForm = new FormData();
+                    newPropertyForm.append('_token', $('meta[name=csrf-token]')[0].content);
                     newPropertyForm.append('title', title);
                     newPropertyForm.append('slug', slug);
-                    newPropertyForm.append('property_type', property_type);
-                    newPropertyForm.append('property_status', property_status);
+                    newPropertyForm.append('property_type', propertyType);
+                    newPropertyForm.append('property_status', propertyStatus);
                     newPropertyForm.append('description', description);
                     newPropertyForm.append('price', price);
                     newPropertyForm.append('area', area);
-                    newPropertyForm.append('year_built', year_built);
-                    newPropertyForm.append('number_of_rooms', number_of_rooms);
-                    newPropertyForm.append('number_of_bathrooms', number_of_bathrooms);
-                    newPropertyForm.append('number_of_floors', number_of_floors);
-                    newPropertyForm.append('interior_features', interior_features);
-                    newPropertyForm.append('exterior_features', exterior_features);
+                    newPropertyForm.append('year_built', yearBuilt);
+                    newPropertyForm.append('number_of_rooms', numberOfRooms);
+                    newPropertyForm.append('number_of_bathrooms', numberOfBathrooms);
+                    newPropertyForm.append('number_of_floors', numberOfFloors);
+                    newPropertyForm.append('interior_features', interiorFeatures);
+                    newPropertyForm.append('exterior_features', exteriorFeatures);
                     
-                    newPropertyForm.append('has_garden', has_garden);
-                    newPropertyForm.append('has_park_space', has_park_space);
+                    newPropertyForm.append('has_garden', hasGarden);
+                    newPropertyForm.append('has_park_space', hasParkSpace);
+
+                    if(hasGarden == true){
+                        newPropertyForm.append('garden_area', gardenArea);
+                    }
+
+                    if(hasParkSpace == true){
+                        newPropertyForm.append('number_of_park_spaces', numberOfParkSpaces);
+                    }
+
+                    newPropertyForm.append('number_of_park_spaces', numberOfParkSpaces);
 
                     newPropertyForm.append('images', images);
 
                     for (var p of newPropertyForm) {
-                        console.log(p);
+                        // console.log(p);
                     }
+
+                    $.ajax({
+                        url: '/property/save',
+                        type: 'POST',
+                        data: newPropertyForm,
+                        dataType: 'json',
+                        enctype: 'multipart/form-data',
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function(response, status, jqXHR){
+                            console.log(response);
+                        },
+                        error: function(jqXHR,status,error){
+                            
+                        }
+                    });
 
             }
         );

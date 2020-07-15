@@ -25,6 +25,7 @@ Route::get('/search', 'SearchController@index')->name('search');
 
 // Property related routes:
 Route::get('/property/new', 'PropertyController@new')->name('new_property')->middleware('auth');
+Route::post('/property/save', 'PropertyController@save')->name('save_property')->middleware('auth');
 Route::get('/property/edit/{id}', 'PropertyController@edit')->name('edit_property')->middleware('auth');
 Route::get('/property/{id}', 'PropertyController@property')->name('edit_property')->middleware('auth');
 
