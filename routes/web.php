@@ -36,6 +36,7 @@ Route::get('/admin/property-status/edit/{id}', 'PropertyStatusController@editPro
 
 // API methods:
 Route::get('/api/locations', 'LocationController@getLocations')->name('get_locations');
+Route::get('/api/location/children', 'LocationController@getChildLocations')->name('get_child_locations');
 
 Route::get('/api/admin/property-status', 'PropertyStatusController@getPropertyStatus')->name('get_property_status')->middleware('admin');
 Route::post('api/admin/property-status', 'PropertyStatusController@savePropertyStatus')->name('save_property_status')->middleware('admin');

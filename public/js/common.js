@@ -449,21 +449,35 @@ $(function () {
         $(".estate-location").change(
             function(){
                 var locationId = $(this).find("option:selected").attr('value');
-                $.ajax({
-                    url: '/location?token=' + token + '&location_id=' + locationId,
-                    type: 'GET',
-                    dataType: 'json',
-                    enctype: 'multipart/form-data',
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(response, status, jqXHR){
-                        console.log(response);
-                    },
-                    error: function(jqXHR,status,error){
-                        
-                    }
-                });
+
+                if(locationId > 0){
+                    $.ajax({
+                        url: '/api/location/children?token=' + token + '&parent_id=' + locationId,
+                        type: 'GET',
+                        dataType: 'json',
+                        enctype: 'multipart/form-data',
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function(response, status, jqXHR){
+
+                            if(response.length > 0){
+                                var clonable = $(".estate-location-clonable").clone();
+                                    clonable.removeClass("d-none");
+                                    
+                                    $.each(response,
+                                            function(index, element){
+                                                clonable.append('<option value="'+element.id+'">'+element.name+'</option>');
+                                            }
+                                        );
+                                $(".estate-location-wrapper").append(clonable);
+                            }
+                        },
+                        error: function(jqXHR,status,error){
+                            
+                        }
+                    });
+                }    
             }
         );    
     }

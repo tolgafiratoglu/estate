@@ -16,7 +16,7 @@ class LocationController extends Controller
      */
     public function __construct()
     {
-        new LocationRepository();
+        
     }
     
     /**
@@ -34,6 +34,23 @@ class LocationController extends Controller
         $locations = $locationRepository->getLocations(true, false, $parentId, $offset, $limit);
 
         return response()->json($locations);
+
+    }
+
+    /**
+     * Public api method to return child locations
+     *
+     * @return \Symfony\Component\HttpFoundation\Response 
+     */
+    public function getChildLocations(Request $request, LocationRepository $locationRepository)
+    {
+
+        $validatedData = $this->validate($request, ['parent_id' => 'required',]);
+        $parentId = $validatedData["parent_id"];
+
+        $childLocations = $locationRepository->findWhere(["parent"=>$parentId], ["id", "name", "slug"]);
+
+        return response()->json($childLocations);
 
     }
 

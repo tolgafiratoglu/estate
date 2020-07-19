@@ -10,6 +10,7 @@ use App\Repositories\CoolingRepository;
 use App\Repositories\ViewRepository;
 use App\Repositories\ExteriorFeatureRepository;
 use App\Repositories\InteriorFeatureRepository;
+use App\Repositories\LocationRepository;
 
 use Illuminate\Http\Request;
 
@@ -84,7 +85,8 @@ class PropertyController extends Controller
                         CoolingRepository $coolingRepository,
                         ViewRepository $viewRepository,
                         ExteriorFeatureRepository $exteriorFeatureRepository,
-                        InteriorFeatureRepository $interiorFeatureRepository)
+                        InteriorFeatureRepository $interiorFeatureRepository,
+                        LocationRepository $locationRepository)
     {
 
         $propertyTypes   = $propertyTypeRepository->all();
@@ -97,6 +99,8 @@ class PropertyController extends Controller
         $exteriorFeatureOptions = $exteriorFeatureRepository->all();
         $interiorFeatureOptions = $interiorFeatureRepository->all();
 
+        $locations = $locationRepository->findWhere(["parent"=>NULL]);
+
         $newPropertyOptions = [
             'propertyTypes'   => $propertyTypes, 
             'propertyStatus'  => $propertyStatus,
@@ -104,7 +108,8 @@ class PropertyController extends Controller
             'coolingOptions'  => $coolingOptions,
             'viewOptions'     => $viewOptions,
             'exteriorFeatureOptions' => $exteriorFeatureOptions,
-            'interiorFeatureOptions' => $interiorFeatureOptions 
+            'interiorFeatureOptions' => $interiorFeatureOptions,
+            'locations'  => $locations
         ];
 
         return view('property.new', $newPropertyOptions);

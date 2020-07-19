@@ -140,10 +140,15 @@
                         <span>{{ __("Location") }}</span>
                     </div>
                 </div>
-                <div class="estate-new-feature">
+                <div class="estate-new-feature estate-location-wrapper">
+                    <select class="d-none estate-location-clonable w-25 custom-select">
+                        <option value="0">{{ __("Select Location") }}</option>
+                    </select>
                     <select class="estate-location w-25 custom-select">
-                        <option value="0">Select Location</option>
-                        
+                        <option value="0">{{ __("Select Location") }}</option>
+                        @foreach($locations AS $location)
+                            <option value='{{ $location["id"] }}'>{{ __($location["name"]) }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="estate-info-title-wrapper">
