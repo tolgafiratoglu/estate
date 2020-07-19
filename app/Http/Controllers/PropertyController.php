@@ -46,10 +46,11 @@ class PropertyController extends Controller
         $whichFloor = $request->which_floor;
         $interiorFeatures = $request->interior_features;
         $exteriorFeatures = $request->exterior_features;
-        $hasGarden = $request->has_garden;
+        $hasGarden = (boolean) $request->has_garden;
         $gardenArea = $request->garden_area;
-        $hasParkSpace = $request->has_park_space;
+        $hasParkSpace = (boolean) $request->has_park_space;
         $numberOfParkSpaces = $request->number_of_park_spaces;
+        $images = $request->images;
 
         $propertyObject = [
             'title'=>$title,
@@ -60,7 +61,12 @@ class PropertyController extends Controller
             'price'=>$price,
             'area'=>$area,
             'year_built'=>$yearBuilt,
-            
+            'number_of_rooms'=>$numberOfRooms,
+            'number_of_bathrooms'=>$numberOfBathrooms,
+            'number_of_floors'=>$numberOfFloors,
+            'which_floor'=>$whichFloor,
+            'has_garden'=>$hasGarden,
+            'has_park_space'=>$hasParkSpace
         ];
 
         $propertyRepository->create($propertyObject);

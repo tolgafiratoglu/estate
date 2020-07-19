@@ -442,6 +442,32 @@ $(function () {
 
     }
 
+    function initLocationSelector(){
+
+        var token = $('meta[name=csrf-token]')[0].content;
+
+        $(".estate-location").change(
+            function(){
+                var locationId = $(this).find("option:selected").attr('value');
+                $.ajax({
+                    url: '/location?token=' + token + '&location_id=' + locationId,
+                    type: 'GET',
+                    dataType: 'json',
+                    enctype: 'multipart/form-data',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(response, status, jqXHR){
+                        console.log(response);
+                    },
+                    error: function(jqXHR,status,error){
+                        
+                    }
+                });
+            }
+        );    
+    }
+
     $( document ).ready(function() {
 
         initSlugTrigger();
@@ -451,6 +477,7 @@ $(function () {
         initGoogleMaps();
 
         initChosen();
+        initLocationSelector();
 
         initFileUploader();
 

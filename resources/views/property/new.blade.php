@@ -137,6 +137,20 @@
                         <span class="estate-info-icon-wrapper">
                             <i class="fas fa-table"></i>
                         </span>
+                        <span>{{ __("Location") }}</span>
+                    </div>
+                </div>
+                <div class="estate-new-feature">
+                    <select class="estate-location w-25 custom-select">
+                        <option value="0">Select Location</option>
+                        
+                    </select>
+                </div>
+                <div class="estate-info-title-wrapper">
+                    <div class="estate-header">
+                        <span class="estate-info-icon-wrapper">
+                            <i class="fas fa-table"></i>
+                        </span>
                         <span>{{ __("Parking & Garden") }}</span>
                     </div>
                 </div>

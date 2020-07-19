@@ -48,6 +48,8 @@ class Property extends Model
      */
     protected $fillable = ['created_at', 
                             'updated_at', 
+                            'title',
+                            'slug',
                             'location', 
                             'created_by', 
                             'property_status',	
