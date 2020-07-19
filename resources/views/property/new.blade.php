@@ -108,7 +108,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <label for="number_of_rooms">{{ __("Number of Floors") }}</label>
-                            <select class="custom-select" id="number_of_rooms" name="number_of_rooms">
+                            <select class="custom-select" id="number_of_floors" name="number_of_floors">
                                 @for ($i = 1; $i < 50; $i++)
                                     <option value="{{ $i }}">{{ $i }} @if($i == 1){{ __('Floor') }}@else{{ __('Floors') }}@endif</option>
                                 @endfor
@@ -141,7 +141,8 @@
                     </div>
                 </div>
                 <div class="estate-new-feature estate-location-wrapper">
-                    <select class="d-none estate-location-clonable w-25 custom-select">
+                    <input type="hidden" id="estate_location" name="estate_location">
+                    <select class="d-none estate-location-clonable estate-location w-25 custom-select">
                         <option value="0">{{ __("Select Location") }}</option>
                     </select>
                     <select class="estate-location w-25 custom-select">

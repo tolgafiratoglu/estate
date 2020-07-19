@@ -13,6 +13,7 @@ use App\Repositories\InteriorFeatureRepository;
 use App\Repositories\LocationRepository;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
@@ -27,13 +28,14 @@ class PropertyController extends Controller
 
         $validatedData = $request->validate([
             'title' => 'required',
-            'slug' => 'required'
+            'slug' => 'required',
+            'location'=> 'required'
         ]);
-
-        var_dump($validatedData);
 
         $title = $validatedData['title'];
         $slug  = $validatedData['slug'];
+
+        $userId = Auth::user()->id;
 
         $propertyType = $request->property_type;
         $propertyStatus = $request->property_status;
@@ -52,6 +54,7 @@ class PropertyController extends Controller
         $hasParkSpace = (boolean) $request->has_park_space;
         $numberOfParkSpaces = $request->number_of_park_spaces;
         $images = $request->images;
+        $estate_location = $request->estate_location;
 
         $propertyObject = [
             'title'=>$title,
@@ -67,7 +70,9 @@ class PropertyController extends Controller
             'number_of_floors'=>$numberOfFloors,
             'which_floor'=>$whichFloor,
             'has_garden'=>$hasGarden,
-            'has_park_space'=>$hasParkSpace
+            'has_park_space'=>$hasParkSpace,
+            'location'=>$estate_location,
+            'created_by'=>$userId
         ];
 
         $propertyRepository->create($propertyObject);

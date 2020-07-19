@@ -354,6 +354,8 @@ $(function () {
                 var numberOfFloors  = $("#number_of_floors").val();
                 var interiorFeatures  = $("#interior_features").val();
                 var exteriorFeatures  = $("#exterior_features").val();
+                var estate_location = $("#estate_location").val();
+                var which_floor = $("#which_floor").val();
 
                 var hasGarden  = $("#has_garden").is(':checked');
                 var hasParkSpace  = $("#has_park_space").is(':checked');
@@ -373,6 +375,7 @@ $(function () {
                     newPropertyForm.append('_token', $('meta[name=csrf-token]')[0].content);
                     newPropertyForm.append('title', title);
                     newPropertyForm.append('slug', slug);
+                    newPropertyForm.append('estate_location', estate_location);
                     newPropertyForm.append('property_type', propertyType);
                     newPropertyForm.append('property_status', propertyStatus);
                     newPropertyForm.append('description', description);
@@ -382,6 +385,7 @@ $(function () {
                     newPropertyForm.append('number_of_rooms', numberOfRooms);
                     newPropertyForm.append('number_of_bathrooms', numberOfBathrooms);
                     newPropertyForm.append('number_of_floors', numberOfFloors);
+                    newPropertyForm.append('which_floor', which_floor);
                     newPropertyForm.append('interior_features', interiorFeatures);
                     newPropertyForm.append('exterior_features', exteriorFeatures);
                     
@@ -399,6 +403,8 @@ $(function () {
                     newPropertyForm.append('number_of_park_spaces', numberOfParkSpaces);
 
                     newPropertyForm.append('images', images);
+
+                    newPropertyForm.append('location', location);
 
                     for (var p of newPropertyForm) {
                         // console.log(p);
@@ -442,7 +448,8 @@ $(function () {
 
     }
 
-    function initLocationSelector(){
+    function initLocationSelector()
+    {
 
         var token = $('meta[name=csrf-token]')[0].content;
 
@@ -451,6 +458,7 @@ $(function () {
                 var locationId = $(this).find("option:selected").attr('value');
 
                 if(locationId > 0){
+                    $("#estate_location").val(locationId);
                     $.ajax({
                         url: '/api/location/children?token=' + token + '&parent_id=' + locationId,
                         type: 'GET',
@@ -464,6 +472,7 @@ $(function () {
                             if(response.length > 0){
                                 var clonable = $(".estate-location-clonable").clone();
                                     clonable.removeClass("d-none");
+                                    clonable.removeClass("estate-location-clonable");
                                     
                                     $.each(response,
                                             function(index, element){
@@ -472,6 +481,8 @@ $(function () {
                                         );
                                 $(".estate-location-wrapper").append(clonable);
                             }
+
+                            initLocationSelector();
                         },
                         error: function(jqXHR,status,error){
                             
