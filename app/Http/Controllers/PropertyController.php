@@ -12,6 +12,8 @@ use App\Repositories\ExteriorFeatureRepository;
 use App\Repositories\InteriorFeatureRepository;
 use App\Repositories\LocationRepository;
 
+use App\Repositories\PropertyInteriorFeatureRepository;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +25,9 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function save(Request $request, PropertyRepository $propertyRepository)
+    public function save(Request $request, 
+                        PropertyRepository $propertyRepository,
+                        PropertyInteriorFeatureRepository $propertyInteriorFeatureRepository)
     {
 
         $validatedData = $request->validate([
@@ -48,7 +52,9 @@ class PropertyController extends Controller
         $numberOfFloors = $request->number_of_floors;
         $whichFloor = $request->which_floor;
         $interiorFeatures = $request->interior_features;
+            $interiorFeatureIds = (array) explode(",",$interiorFeatures); 
         $exteriorFeatures = $request->exterior_features;
+            $exteriorFeatureIds = (array) explode(",",$exteriorFeatures); 
         $hasGarden = (boolean) $request->has_garden;
         $gardenArea = $request->garden_area;
         $hasParkSpace = (boolean) $request->has_park_space;
@@ -75,7 +81,14 @@ class PropertyController extends Controller
             'created_by'=>$userId
         ];
 
-        $propertyRepository->create($propertyObject);
+        $newProperty = $propertyRepository->create($propertyObject);
+        $propertyId = $newProperty->id;
+
+        if(sizeof($interiorFeatureIds) > 0){
+            foreach($interiorFeatureIds AS $interiorFeatureId){
+                $propertyInteriorFeatureRepository->create(['property'=>$propertyId, 'interior_feature'=>$interiorFeatureId]);
+            }
+        }
 
     }        
 
