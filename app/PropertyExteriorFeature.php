@@ -13,12 +13,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PropertyExteriorFeature extends Model
 {
+
+    public $timestamps = false;
+
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'property_place';
+    protected $table = 'property_exterior_feature';
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -30,21 +33,21 @@ class PropertyExteriorFeature extends Model
     /**
      * @var array
      */
-    protected $fillable = ['property', 'place'];
+    protected $fillable = ['property', 'exterior_feature'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function place()
     {
-        return $this->belongsTo('App\Place', 'place');
+        return $this->belongsTo('App\ExteriorFeature', 'exterior_feature');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function property()
+    public function exteriorFeatures()
     {
-        return $this->belongsTo('App\Property', 'property');
+        return $this->belongsTo('App\ExteriorFeature', 'exterior_feature');
     }
 }

@@ -354,6 +354,7 @@ $(function () {
                 var numberOfFloors  = $("#number_of_floors").val();
                 var interiorFeatures  = $("#interior_features").val();
                 var exteriorFeatures  = $("#exterior_features").val();
+                var view  = $("#view").val();
                 var estate_location = $("#estate_location").val();
                 var which_floor = $("#which_floor").val();
 
@@ -388,6 +389,7 @@ $(function () {
                     newPropertyForm.append('which_floor', which_floor);
                     newPropertyForm.append('interior_features', interiorFeatures);
                     newPropertyForm.append('exterior_features', exteriorFeatures);
+                    newPropertyForm.append('view', view);
                     
                     newPropertyForm.append('has_garden', hasGarden);
                     newPropertyForm.append('has_park_space', hasParkSpace);

@@ -6,18 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integer $id
- * @property string $created_at
- * @property string $updated_at
- * @property string $title
+ * @property integer $property
+ * @property integer $view
  */
-class Cooling extends Model
+class PropertyView extends Model
 {
+
+    public $timestamps = false;
+
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'cooling';
+    protected $table = 'property_view';
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -29,6 +31,6 @@ class Cooling extends Model
     /**
      * @var array
      */
-    protected $fillable = ['created_at', 'updated_at', 'title'];
+    protected $fillable = ['property', 'view'];
 
 }

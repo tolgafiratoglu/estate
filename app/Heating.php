@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  * @property string $title
- * @property propertyPlaces[] $propertyPlaces
  */
 class Heating extends Model
 {

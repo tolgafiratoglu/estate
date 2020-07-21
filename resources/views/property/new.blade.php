@@ -263,6 +263,24 @@
                 <div class="estate-info-title-wrapper">
                     <div class="estate-header">
                         <span class="estate-info-icon-wrapper">
+                            <i class="fas fa-table"></i>
+                        </span>
+                        <span>{{ __("View") }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <select id="view" name="view" class="custom-select chosen-selector" multiple>
+                            @foreach($viewOptions AS $viewOption)
+                                <option value='{{ $viewOption["id"] }}'>{{  __($viewOption["title"]) }}</option>
+                            @endforeach
+                        </select>
+                        <small class="form-text text-muted">{{ __('View of the property (e.g. seaside, mountainview)') }}</small>
+                    </div>
+                </div>
+                <div class="estate-info-title-wrapper">
+                    <div class="estate-header">
+                        <span class="estate-info-icon-wrapper">
                             <i class="fas fa-map"></i>
                         </span>
                         <span>{{ __("Property on Map") }}</span>

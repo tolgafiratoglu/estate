@@ -13,6 +13,9 @@ use App\Repositories\InteriorFeatureRepository;
 use App\Repositories\LocationRepository;
 
 use App\Repositories\PropertyInteriorFeatureRepository;
+use App\Repositories\PropertyExteriorFeatureRepository;
+use App\Repositories\PropertyViewRepository;
+use App\Repositories\PropertyMediaRepository;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +30,10 @@ class PropertyController extends Controller
      */
     public function save(Request $request, 
                         PropertyRepository $propertyRepository,
-                        PropertyInteriorFeatureRepository $propertyInteriorFeatureRepository)
+                        PropertyInteriorFeatureRepository $propertyInteriorFeatureRepository,
+                        PropertyExteriorFeatureRepository $propertyExteriorFeatureRepository,
+                        PropertyViewRepository $propertyViewRepository,
+                        PropertyMediaRepository $propertyMediaRepository)
     {
 
         $validatedData = $request->validate([
@@ -52,9 +58,13 @@ class PropertyController extends Controller
         $numberOfFloors = $request->number_of_floors;
         $whichFloor = $request->which_floor;
         $interiorFeatures = $request->interior_features;
-            $interiorFeatureIds = (array) explode(",",$interiorFeatures); 
+            $interiorFeatureIds = (array) explode(",",$interiorFeatures);
+        $images = $request->images;
+            $imageIds = (array) explode(",",$images);     
         $exteriorFeatures = $request->exterior_features;
-            $exteriorFeatureIds = (array) explode(",",$exteriorFeatures); 
+            $exteriorFeatureIds = (array) explode(",",$exteriorFeatures);
+        $view = $request->view;
+            $viewIds = (array) explode(",",$view); 
         $hasGarden = (boolean) $request->has_garden;
         $gardenArea = $request->garden_area;
         $hasParkSpace = (boolean) $request->has_park_space;
@@ -84,9 +94,31 @@ class PropertyController extends Controller
         $newProperty = $propertyRepository->create($propertyObject);
         $propertyId = $newProperty->id;
 
+        // Save interior features:
         if(sizeof($interiorFeatureIds) > 0){
             foreach($interiorFeatureIds AS $interiorFeatureId){
                 $propertyInteriorFeatureRepository->create(['property'=>$propertyId, 'interior_feature'=>$interiorFeatureId]);
+            }
+        }
+
+        // Save exterior features:
+        if(sizeof($exteriorFeatureIds) > 0){
+            foreach($exteriorFeatureIds AS $exteriorFeatureId){
+                $propertyExteriorFeatureRepository->create(['property'=>$propertyId, 'exterior_feature'=>$exteriorFeatureId]);
+            }
+        }
+
+        // Save view:
+        if(sizeof($viewIds) > 0){
+            foreach($viewIds AS $viewId){
+                $propertyViewRepository->create(['property'=>$propertyId, 'view'=>$viewId]);
+            }
+        }
+
+        // Save images:
+        if(sizeof($imageIds) > 0){
+            foreach($imageIds AS $imageId){
+                $propertyMediaRepository->create(['property'=>$propertyId, 'media'=>$imageId]);
             }
         }
 
@@ -112,11 +144,11 @@ class PropertyController extends Controller
 
         $heatingOptions = $heatingRepository->all();
         $coolingOptions = $coolingRepository->all();
+        
         $viewOptions    = $viewRepository->all();
-
         $exteriorFeatureOptions = $exteriorFeatureRepository->all();
         $interiorFeatureOptions = $interiorFeatureRepository->all();
-
+        
         $locations = $locationRepository->findWhere(["parent"=>NULL]);
 
         $newPropertyOptions = [
