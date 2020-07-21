@@ -89,8 +89,7 @@
         public function getStatusList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
-            $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
-                                        ->where(['is_deleted'=>$deleted]);
+            $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug');
 
                 // If offset is defined:
                 if($offset != NULL){

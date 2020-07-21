@@ -1,6 +1,7 @@
 /*
     1. Overall Design
     2. Search filter
+    3. Property layout
 */
 
 /* 1. Overall design starts */
@@ -26,12 +27,12 @@ body{
 
 /* 2. Search filter starts */
 
-.qual-filter-canvas-wrapper {
+.filter-canvas-wrapper {
     background-color: #f5f5f5 !important;
     border-color: #e5e5e5 !important;
 }
 
-.qual-filter-canvas-wrapper {
+.filter-canvas-wrapper {
     float: left;
     width: 320px;
     border: 1px solid #e5e5e5;
@@ -40,15 +41,15 @@ body{
     z-index: 10000;
 }
 
-    .qual-filter-wrapper *{
+    .filter-wrapper *{
         box-sizing: border-box;
     }
 
-    .qual-filter-wrapper .qual-filter-inner-wrapper{
+    .filter-wrapper .filter-inner-wrapper{
         width: 100%;
     }
 
-    .qual-filter-wrapper .qual-filter-wrapper-unit{
+    .filter-wrapper .filter-wrapper-unit{
         float: left;
         width: 100%;
         margin-bottom: 12px;
@@ -56,12 +57,12 @@ body{
         clear: both;
     }
 
-    .qual-filter-wrapper .qual-filter-wrapper-unit-scrollable{
+    .filter-wrapper .filter-wrapper-unit-scrollable{
         overflow: auto;
         overflow-x: hidden;
     }
 
-    .qual-filter-wrapper .qual-filter-wrapper-unit-bathroom{
+    .filter-wrapper .filter-wrapper-unit-bathroom{
         background-color: #FFFFFF;
         padding: 3px 12px;
         border: 1px solid #e5e5e5;
@@ -71,28 +72,28 @@ body{
         margin-top: 12px;
     }
 
-    .qual-filter-wrapper .qual-child-locations{
+    .filter-wrapper .child-locations{
         margin-top: 12px;
     }
 
-    .qual-filter-wrapper .qual-filter-wrapper-unit .qual-menu-icon{
+    .filter-wrapper .filter-wrapper-unit .menu-icon{
         float: right;
         line-height: 26px;
     }
 
 
-    .qual-filter-wrapper .filter-label-wrapper{
+    .filter-wrapper .filter-label-wrapper{
         float: left;
         width: 100%;
     }
 
-    .qual-filter-wrapper .filter-label-wrapper label{
+    .filter-wrapper .filter-label-wrapper label{
         font-weight: bold;
         font-size: 13px;
         float: left;
     }
 
-    .qual-filter-wrapper .filter-label-range{
+    .filter-wrapper .filter-label-range{
         font-size: 13px;
         display: block;
         float: left;
@@ -100,25 +101,25 @@ body{
         line-height: 1.2;
     }
 
-    .qual-filter-wrapper .filter-col-left{
+    .filter-wrapper .filter-col-left{
         float: left;
         width: 50%;
         padding: 0px 6px 0px 0px;
     }
 
-    .qual-filter-wrapper .filter-col-right{
+    .filter-wrapper .filter-col-right{
         float: left;
         width: 50%;
         padding: 0px 0px 0px 6px;
     }
 
-    .qual-filter-wrapper .filter-input{
+    .filter-wrapper .filter-input{
         position: relative;
         width: 100%;
         height: 36px;
     }
 
-    .qual-filter-wrapper .value-wrapper{
+    .filter-wrapper .value-wrapper{
         line-height: 36px;
         font-size: 12px;
         padding: 0px 12px;
@@ -134,19 +135,19 @@ body{
         overflow: hidden;
     }
 
-    .qual-filter-wrapper .value-wrapper i{
+    .filter-wrapper .value-wrapper i{
         margin-right: 6px;
     }
 
-    .qual-filter-wrapper .value-wrapper .default-label{
+    .filter-wrapper .value-wrapper .default-label{
         display: inline-block;
     }
 
-    .qual-filter-wrapper .value-wrapper .custom-label{
+    .filter-wrapper .value-wrapper .custom-label{
         display: none;
     }
 
-    .qual-filter-wrapper .filter-input .arrow-icon-wrapper{
+    .filter-wrapper .filter-input .arrow-icon-wrapper{
         position: absolute;
         right: 0px;
         text-align: center;
@@ -155,7 +156,7 @@ body{
         width: 36px;
     }
 
-    .qual-filter-wrapper .filter-input .dropdown-content{
+    .filter-wrapper .filter-input .dropdown-content{
         background-color: #FFFFFF;
         border: 1px solid #e5e5e5;
         position: absolute;
@@ -168,26 +169,26 @@ body{
         overflow: hidden !important;
     }
 
-    .qual-filter-wrapper .filter-input:hover .dropdown-content{
+    .filter-wrapper .filter-input:hover .dropdown-content{
         top: 34px;
         visibility: visible;
         opacity: 1;
         overflow: auto !important;
     }
 
-    .qual-filter-wrapper .filter-input .dropdown-content.qual-orderby-dropdown{
+    .filter-wrapper .filter-input .dropdown-content.orderby-dropdown{
         display: none;
     }
 
-    .qual-filter-wrapper .filter-input:hover .dropdown-content.qual-orderby-dropdown{
+    .filter-wrapper .filter-input:hover .dropdown-content.orderby-dropdown{
         display: block;
     }
 
-    .qual-filter-wrapper .filter-location-input:hover .dropdown-content{
+    .filter-wrapper .filter-location-input:hover .dropdown-content{
         top: 0px !important;
     }
 
-    .qual-filter-wrapper .filter-input-wrapper{
+    .filter-wrapper .filter-input-wrapper{
         float: left;
         margin-left: 0px;
         width: 100%;
@@ -196,7 +197,7 @@ body{
         background-color: #fafafa;
     }
 
-    .qual-filter-wrapper .filter-input-wrapper input{
+    .filter-wrapper .filter-input-wrapper input{
         width: 100%;
         border: 1px solid #e5e5e5;
         padding: 6px;
@@ -204,7 +205,7 @@ body{
         margin: 0px;
     }
 
-    .qual-filter-wrapper .filter-content-wrapper{
+    .filter-wrapper .filter-content-wrapper{
         font-size: 12px;
         padding: 12px 12px 6px 12px;
         float: left;
@@ -213,34 +214,34 @@ body{
         width: 100%;
     }
 
-    .qual-child-location-wrapper{
+    .child-location-wrapper{
         width: 100%;
         float: left;
         clear: both;
     }
 
-    .qual-filter-wrapper .filter-content-wrapper-multiple{
+    .filter-wrapper .filter-content-wrapper-multiple{
         padding: 0px !important;
         overflow: hidden;
     }
 
-    .qual-multiplea-all-label{
+    .multiplea-all-label{
         font-size: 12px;
     }
 
-    .qual-filter-wrapper .filter-content-wrapper ul{
+    .filter-wrapper .filter-content-wrapper ul{
         padding: 0px;
         margin: 0px;
         list-style: none;
         width: 100%;
     }
 
-    .qual-filter-wrapper .filter-content-wrapper ul li{
+    .filter-wrapper .filter-content-wrapper ul li{
         cursor: pointer;
         margin: 0px;
     }
 
-    .qual-filter-wrapper .filter-content-wrapper.qual-filter-wrapper-unit-scrollable ul li{
+    .filter-wrapper .filter-content-wrapper.filter-wrapper-unit-scrollable ul li{
         cursor: pointer;
         float: left;
         width: 50%;
@@ -253,28 +254,28 @@ body{
         line-height: 2.5;
     }
 
-    .qual-filter-wrapper .filter-content-wrapper ul li.qual_number_of_rooms{
+    .filter-wrapper .filter-content-wrapper ul li.qual_number_of_rooms{
         float: left;
         width: 25%;
     }
 
-    .qual-filter-wrapper .filter-content-wrapper ul li.child-list-item{
+    .filter-wrapper .filter-content-wrapper ul li.child-list-item{
         margin-left: 12px;
     }
 
-    .qual-filter-wrapper .filter-content-wrapper ul li:before{
+    .filter-wrapper .filter-content-wrapper ul li:before{
         font-family: "FontAwesome";
         content: "\f096" !important;
         margin-right: 6px;
         font-size: 14px;
     }
 
-    .qual-filter-wrapper .filter-content-wrapper ul li.active:before{
+    .filter-wrapper .filter-content-wrapper ul li.active:before{
         font-family: "FontAwesome";
         content: "\f046" !important;
     }
 
-    .qual-filter-wrapper .filter-content-title{
+    .filter-wrapper .filter-content-title{
         font-weight: bold;
         float: left;
         margin-left: 0px;
@@ -282,13 +283,13 @@ body{
         line-height: 13px;
     }
 
-    .qual-filter-wrapper .filter-content-content{
+    .filter-wrapper .filter-content-content{
         float: left;
         margin-left: 0px;
         width: 100%;
     }
 
-    .qual-filter-wrapper .qual-filter-value{
+    .filter-wrapper .filter-value{
         width: 100% !important;
         border: 1px solid #e5e5e5 !important;
         height: 35px !important;
@@ -296,11 +297,11 @@ body{
         margin: 0px;
     }
 
-    .qual-filter-wrapper-extra-padding{
+    .filter-wrapper-extra-padding{
         margin-top: 12px;
     }
 
-    .qual-top-filter-wrapper{
+    .top-filter-wrapper{
         float: left;
         width: 100% !important;
         margin-bottom: 24px;
@@ -310,10 +311,185 @@ body{
         border-bottom: 1px solid #e5e5e5;
     }
 
-    .qual-top-filter-wrapper .qual-filter-cell{
+    .top-filter-wrapper .filter-cell{
         float: left; margin-left: 0px; width: 33%; padding: 0px 6px;
     }
 
-    .qual-top-filter-wrapper .qual-filter-wrapper-extra-padding{
+    .top-filter-wrapper .filter-wrapper-extra-padding{
         margin-top: 0px !important;
     }
+
+/* Property Template */
+
+.property-list{
+    width: calc(100% - 320px);
+    float: left;
+    margin-left: 0px;
+}
+
+.property-list .property-list-item{
+    margin-bottom: 24px;
+    float: left;
+
+    min-height: 345px;
+    height: auto;
+}
+
+    .property-list .property-list-item.row-1{
+        width: 100%;
+    }
+
+    .property-list .property-list-item.row-2{
+        width: 48%;
+        width: calc(50% - 12px);
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    .property-list .property-list-item.row-2:nth-child(2n + 1){
+        margin-left: 0px;
+    }
+
+    .property-list .property-list-item.row-2:nth-child(2n + 2){
+        margin-right: 0px;
+    }
+
+    .property-list .property-list-item.row-3{
+        width: 32%;
+        width: calc(33.3% - 16px);
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    .property-list .property-list-item.row-3:nth-child(3n + 1){
+        margin-left: 0px;
+    }
+
+    .property-list .property-list-item.row-3:nth-child(3n + 3){
+        margin-right: 0px;
+    }
+
+
+    .property-list .property-list-item.row-4{
+        width: 24%;
+        width: calc(25% - 18px);
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    .property-list .property-list-item.row-4:nth-child(4n + 1){
+        margin-left: 0px;
+    }
+
+    .property-list .property-list-item.row-4:nth-child(4n + 4){
+        margin-right: 0px;
+    }
+
+
+    .property-list .property-list-item.row-5{
+        width: 20%;
+        width: calc(20% - 19.2px);
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    .property-list .property-list-item.row-5:nth-child(5n + 1){
+        margin-left: 0px;
+    }
+
+    .property-list .property-list-item.row-5:nth-child(5n + 5){
+        margin-right: 0px;
+    }
+
+
+.property-list .featured-image-wrapper{
+    background-color: #e5e5e5;
+}
+
+.property-list .property-list-item img{
+    display: block;
+    width: 100%;
+    min-height: 179px;
+    margin: 0px;
+}
+
+    .property-list .property-details {
+        background-color: #FFFFFF;
+        width: 100%;
+        min-height: 125px;
+        float: left;
+        margin-left: 0px;
+        padding: 12px;
+        border-left: 1px solid #e5e5e5;
+        border-right: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .property-list .property-details h4{
+        margin: 0px;
+    }
+
+    .property-list .property-details h4 a{
+        color: #000000;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+
+    .property-list .property-details p{
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+
+    .property-list .address{
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .property-list .property-bottom{
+        position: relative;
+        width: 100%;
+
+        float: left;
+        clear: both;
+        font-size: 12px;
+        line-height: 1;
+        color: #000000;
+        background-color: #E9E9E9;
+    }
+
+    .property-list .info {
+        float: left;
+        margin-left: 0px;
+        width: 100%;
+        font-size: 13px;
+        color: #999;
+    }
+
+    .property-list .property-bottom {
+        position: relative;
+        width: 100%;
+        float: left;
+        clear: both;
+        font-size: 12px;
+        line-height: 1;
+        color: #000000;
+        background-color: #E9E9E9;
+    }
+
+        .property-list .property-location {
+            float: left;
+            line-height: 36px;
+            padding-left: 12px;
+        }
+
+        .property-list .property-price {
+            float: right;
+            right: 0px;
+            height: 100%;
+            background-color: #3299BB;
+            border: 1px solid #3299BB;
+            color: #FFFFFF;
+            padding: 12px;
+            font-weight: 600;
+        }

@@ -38,7 +38,9 @@
         /*
         * Returns list of items defined by parameters
         *
-        * @param $deleted if items are deleted or not
+        * @param $isDeleted if items are deleted or not
+        * @param $isApproved if items are approved or not
+        * @param $isDrafted if items are drafted or not
         * @param $offset offset of the collection
         * @param $limit limit of the collection
         * @param $orderBy order by a field
@@ -47,11 +49,11 @@
         *
         * @return array
         */
-        public function getPropertyList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
+        public function getPropertyList($isDeleted = false, $isApproved = true, $isDrafted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
             $propertyListObject = Property::select('id', 'created_at', 'updated_at', 'location', 'created_by', 'property_status',	'property_type',	'featured_image', 'price', 'address', 'area', 'year_built', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors',  'lat', 'lon', 'is_approved', 'is_drafted', 'is_deleted', 'has_garden', 'area_of_garden', 'has_park_area', 'number_of_park_areas')
-                                        ->where(['is_deleted'=>$deleted]);
+                                        ->where(['is_deleted'=>$isDeleted, 'is_approved'=>$isApproved, 'is_drafted'=>$isDrafted]);
 
                 // If offset is defined:
                 if($offset != NULL){

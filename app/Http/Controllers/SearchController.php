@@ -19,23 +19,28 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(LocationRepository $locationRepository, PropertyTypeRepository $propertyTypeRepository, PropertyStatusRepository $propertyStatusRepository, InteriorFeatureRepository $interiorFeatureRepository, ExteriorFeatureRepository $exteriorFeatureRepository, PropertyRepository $propertyRepository)
+    public function index(LocationRepository $locationRepository, 
+                            PropertyTypeRepository $propertyTypeRepository, 
+                            PropertyStatusRepository $propertyStatusRepository, 
+                            InteriorFeatureRepository $interiorFeatureRepository, 
+                            ExteriorFeatureRepository $exteriorFeatureRepository, 
+                            PropertyRepository $propertyRepository)
     {
 
         // Get locations:
-        $locations = $locationRepository->getLocations(true, false, 0);
+        $locations = $locationRepository->getLocations(true, false, NULL);
 
         // Get property types:
         $propertyTypes = $propertyTypeRepository->getPropertyTypes(false);
 
         // Get property status:
-        $propertyStatus = $propertyStatusRepository->getStatusList(false);
+        $propertyStatus = $propertyStatusRepository->all();
 
         // Get interior features:
-        $interiorFeatures = $interiorFeatureRepository->getInteriorFeatureList(false);
+        $interiorFeatures = $interiorFeatureRepository->all();
 
         // Get exterior features:
-        $exteriorFeatures = $exteriorFeatureRepository->getExteriorFeatureList(false);
+        $exteriorFeatures = $exteriorFeatureRepository->all();
 
         $propertyStats = [];
 
@@ -44,13 +49,13 @@ class SearchController extends Controller
         $propertyStats["min_price"] = $propertyRepository->getMinValue('price');
         $propertyStats["max_price"] = $propertyRepository->getMaxValue('price');
         $propertyStats["max_number_of_rooms"] = $propertyRepository->getMaxValue('number_of_rooms');
-        $propertyStats["min_floor"] = $propertyRepository->getMinValue('floor');
-        $propertyStats["max_floor"] = $propertyRepository->getMaxValue('floor');
-        $propertyStats["min_age_of_building"] = $propertyRepository->getMinValue('age_of_building');
-        $propertyStats["max_age_of_building"] = $propertyRepository->getMaxValue('age_of_building');
+        $propertyStats["min_floor"] = $propertyRepository->getMinValue('number_of_floors');
+        $propertyStats["max_floor"] = $propertyRepository->getMaxValue('number_of_floors');
+        $propertyStats["max_age_of_building"] = date("Y") - $propertyRepository->getMinValue('year_built');
+        $propertyStats["min_age_of_building"] = date("Y") - $propertyRepository->getMaxValue('year_built');
 
         // Get properties for the initial property list view:
-        $initialProperties = $propertyRepository->getPropertyList(false, 0, 12, 'id', 'DESC');
+        $initialProperties = $propertyRepository->getPropertyList(false, true, false, 0, 12, 'id', 'DESC');
 
         return view('search')->with(["locations"=>$locations, "propertyTypes"=> $propertyTypes, "propertyStatus"=>$propertyStatus, "interiorFeatures"=>$interiorFeatures, "exteriorFeatures"=>$exteriorFeatures, "propertyStats"=>$propertyStats, "initialProperties"=>$initialProperties]);
     }

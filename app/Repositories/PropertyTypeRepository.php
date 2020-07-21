@@ -74,8 +74,7 @@
         function getPropertyTypes($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL)
         {
 
-            $propertyTypesObject = PropertyType::select('id', 'title', 'slug')
-                                        ->where(['is_deleted'=>$deleted]);
+            $propertyTypesObject = PropertyType::select('id', 'title', 'slug');
 
                 // If offset is defined:
                 if($offset != NULL){
