@@ -52,8 +52,12 @@
         public function getPropertyList($isDeleted = false, $isApproved = true, $isDrafted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
-            $propertyListObject = Property::select('id', 'created_at', 'updated_at', 'location', 'created_by', 'property_status',	'property_type',	'featured_image', 'price', 'address', 'area', 'year_built', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors',  'lat', 'lon', 'is_approved', 'is_drafted', 'is_deleted', 'has_garden', 'area_of_garden', 'has_park_area', 'number_of_park_areas')
-                                        ->where(['is_deleted'=>$isDeleted, 'is_approved'=>$isApproved, 'is_drafted'=>$isDrafted]);
+            $propertyListObject = Property::select('property.id AS id', 'property.title AS property_title', 'location', 'location.name AS location_name', 'price', 'address', 'area', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors', 'lat', 'lon', 'is_approved', 'is_drafted', 'media.folder AS featured_image_folder', 'media.name AS feature_image_file_name')
+                                            ->leftJoin('media', 'property.featured_image', '=', 'media.id')
+                                            ->leftJoin('location', 'property.location', '=', 'location.id')
+                                            ->join('users', 'users.id', '=', 'property.created_by')
+                                            ->where(['property.is_deleted'=>$isDeleted, 'property.is_approved'=>$isApproved, 'property.is_drafted'=>$isDrafted])
+                                                ->where(['users.is_blocked'=>false]);                                                                
 
                 // If offset is defined:
                 if($offset != NULL){

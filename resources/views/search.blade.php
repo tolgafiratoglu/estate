@@ -222,37 +222,69 @@
                     </div>
                 </div>
             </div> <!-- End of filter -->
-            <div id="property_results" class="property-list">
-                @foreach($initialProperties AS $initialProperty)
-                    <article class="property-list-item row-3">
-                        <div class="featured-image-wrapper">
-                            <a data-browser="url" class="" href="http://codes.qualstudio.com/uptown/property/office-building-in-brooklyn/">
-                                <img src="http://codes.qualstudio.com/uptown/wp-content/uploads/2016/06/Hualien_Press_003-400x266.jpg">
-                            </a>
+            <div id="property_results" class="property-list-wrapper">
+                <div class="filter-wrapper top-filter">
+                    <div class="header-handler">
+                        <span class="order-label">Recent Properties</span> <i>in</i> <span class="location-label">All Locations</span>
+                    </div>
+                    <div class="map-handler-wrapper">
+                        <div class="map-handler" data-map="top"><i class="fa fa-map-o"></i> Show Map</div>
+                    </div>
+                    <div class="order-filter-wrapper">
+                        <div class="filter-wrapper-unit ">
+                            <input id="list_order" name="order" value="date,DESC" type="hidden">
+                            <div class="filter-input">
+                                <div class="value-wrapper"><i class="fa fa-sort-amount-desc"></i><span class="default-label">Recent First</span><span class="custom-label"></span></div>
+                                <div class="arrow-icon-wrapper">
+                                    <i class="fa fa-angle-down"></i>
+                                </div>
+                                <div class="dropdown-content orderby-dropdown transition-200">
+                                    <div class="filter-content-wrapper">
+                                        <ul>
+                                            <li data-id="date,DESC" class="filter-switcher filter-order-switcher active" data-target="qual_order">Recent First</li><li data-id="date,ASC" class="qual-filter-switcher qual-filter-order-switcher " data-target="qual_order">Ascending Date</li><li data-id="price,ASC" class="qual-filter-switcher qual-filter-order-switcher " data-target="qual_order">Ascending Price</li><li data-id="price,DESC" class="qual-filter-switcher qual-filter-order-switcher " data-target="qual_order">Descending Price</li><li data-id="title,ASC" class="qual-filter-switcher qual-filter-order-switcher " data-target="qual_order">Alphabetic Order</li><li data-id="title,DESC" class="qual-filter-switcher qual-filter-order-switcher " data-target="qual_order">Reverse Alphabetic</li>                </ul>
+                                    </div>
+                                    <div class="filter-content-wrapper filter-content-location-wrapper uptown-hidden"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="property-details">
-                            <h4>
-                                <a data-browser="url" class="" href="http://codes.qualstudio.com/uptown/property/office-building-in-brooklyn/">
-                                    Office Building in B...                        
+                    </div>
+                </div>
+                <div class="property-list">
+                    @foreach($initialProperties AS $property)
+                        <article class="property-list-item row-3">
+                            <div class="featured-image-wrapper">
+                                <a data-browser="url" class="" href="{{ url('property', $property['id']) }}">
+                                    @if(array_key_exists('featured_image_folder', $property) && $property['featured_image_folder'] != NULL)
+                                        <img src="{{ asset($property['featured_image_folder'].$property['feature_image_file_name']) }}">
+                                    @else
+                                        <div class="no-image"></div>
+                                    @endif                            
                                 </a>
-                            </h4>
-                            <div class="address">
-                                Valley Stream No 2                    
                             </div>
-                            <div class="info">
-                                <i class="fa fa-object-ungroup"></i> <span class="property-area">1000 m<sup>2</sup></span> /  <i class="fa fa-bed"></i> <span class="property-rooms">12</span> Rooms                    
+                            <div class="property-details">
+                                <h4>
+                                    <a data-browser="url" class="" href="{{ url('property', $property['id']) }}">
+                                        {{ $property["property_title"] }}             
+                                    </a>
+                                </h4>
+                                <div class="address">
+                                    {{ $property["address"] }}                    
+                                </div>
+                                <div class="info">
+                                    <i class="fa fa-object-ungroup"></i> <span class="property-area">{{ $property["area"] }} m<sup>2</sup></span> /  <i class="fa fa-bed"></i> <span class="property-rooms">{{ $property["number_of_rooms"] }}</span> Rooms                    
+                                </div>
                             </div>
-                        </div>
-                        <div class="property-bottom">
-                            <div class="property-location">
-                                <i class="fa fa-map-marker"></i> Brooklyn                    
-                            </div>
-                            <div class="property-price">
-                                $300,000                                                    
-                            </div>
-                        </div>    
-                    </article>
-                @endforeach
+                            <div class="property-bottom">
+                                <div class="property-location">
+                                    <i class="fa fa-map-marker"></i> {{ $property["location_name"] }}                    
+                                </div>
+                                <div class="property-price">
+                                    ${{ number_format($property["price"]) }}                                                    
+                                </div>
+                            </div>    
+                        </article>
+                    @endforeach
+                </div>    
             </div> <!-- Property results -->
         </div>
     </div>
