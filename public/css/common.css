@@ -78,6 +78,12 @@
         clear: both;
     }
 
+.estate-feature{
+    margin: 1rem 0px;
+    padding: 1rem 0px;
+    border-bottom: 1px solid #e5e5e5;
+}    
+
 /* 3. Image Upload */
 
 .image-upload-button-wrapper{

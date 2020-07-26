@@ -132,167 +132,181 @@
                         </div>
                     </div>
                 </form>
-                <div class="estate-info-title-wrapper">
-                    <div class="estate-header">
-                        <span class="estate-info-icon-wrapper">
-                            <i class="fas fa-map-marker"></i>
-                        </span>
-                        <span>{{ __("Location") }}</span>
+                <div class="estate-feature">
+                    <div class="estate-info-title-wrapper">
+                        <div class="estate-header">
+                            <span class="estate-info-icon-wrapper">
+                                <i class="fas fa-map-marker"></i>
+                            </span>
+                            <span>{{ __("Location") }}</span>
+                        </div>
+                    </div>
+                    <div class="estate-new-feature estate-location-wrapper">
+                        <input type="hidden" id="estate_location" name="estate_location">
+                        <select class="d-none estate-location-clonable estate-location w-25 custom-select">
+                            <option value="0">{{ __("Select Location") }}</option>
+                        </select>
+                        <select class="estate-location w-25 custom-select">
+                            <option value="0">{{ __("Select Location") }}</option>
+                            @foreach($locations AS $location)
+                                <option value='{{ $location["id"] }}'>{{ __($location["name"]) }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-                <div class="estate-new-feature estate-location-wrapper">
-                    <input type="hidden" id="estate_location" name="estate_location">
-                    <select class="d-none estate-location-clonable estate-location w-25 custom-select">
-                        <option value="0">{{ __("Select Location") }}</option>
-                    </select>
-                    <select class="estate-location w-25 custom-select">
-                        <option value="0">{{ __("Select Location") }}</option>
-                        @foreach($locations AS $location)
-                            <option value='{{ $location["id"] }}'>{{ __($location["name"]) }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="estate-info-title-wrapper">
-                    <div class="estate-header">
-                        <span class="estate-info-icon-wrapper">
-                            <i class="fas fa-parking"></i>
-                        </span>
-                        <span>{{ __("Parking & Garden") }}</span>
+                <div class="estate-feature">
+                    <div class="estate-info-title-wrapper">
+                        <div class="estate-header">
+                            <span class="estate-info-icon-wrapper">
+                                <i class="fas fa-parking"></i>
+                            </span>
+                            <span>{{ __("Parking & Garden") }}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="estate-new-feature">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="has_garden">
-                        <label class="form-check-label" for="has_garden">{{ __("Has Garden") }}</label>
+                    <div class="estate-new-feature">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="has_garden">
+                            <label class="form-check-label" for="has_garden">{{ __("Has Garden") }}</label>
+                        </div>
                     </div>
-                </div>
-                <div class="estate-new-feature estate-garden-area d-none">
-                    <div class="form-group">
-                            <label for="area">{{ __("Garden Area") }}</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="garden_area" name="garden_area" placeholder='{{ __("Garden Area") }}'>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="area_unit">m<sup>2</sup></span>
+                    <div class="estate-new-feature estate-garden-area d-none">
+                        <div class="form-group">
+                                <label for="area">{{ __("Garden Area") }}</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="garden_area" name="garden_area" placeholder='{{ __("Garden Area") }}'>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="area_unit">m<sup>2</sup></span>
+                                    </div>
                                 </div>
-                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="estate-new-feature">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="has_park_space">
-                        <label class="form-check-label" for="has_park_space">{{ __("Has Parking Areas") }}</label>
+                    <div class="estate-new-feature">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="has_park_space">
+                            <label class="form-check-label" for="has_park_space">{{ __("Has Parking Areas") }}</label>
+                        </div>
                     </div>
-                </div>
-                <div class="estate-new-feature estate-park-spaces d-none">
-                    <div class="form-group">
-                            <label for="area">{{ __("Number of Park Spaces") }}</label>
-                            <select class="custom-select" id="number_of_park_spaces" name="number_of_park_spaces">
-                                @for ($i = 1; $i < 10; $i++)
-                                    <option value="{{ $i }}">{{ $i }}</option>
-                                @endfor
+                    <div class="estate-new-feature estate-park-spaces d-none">
+                        <div class="form-group">
+                                <label for="area">{{ __("Number of Park Spaces") }}</label>
+                                <select class="custom-select" id="number_of_park_spaces" name="number_of_park_spaces">
+                                    @for ($i = 1; $i < 10; $i++)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                        </div>
+                    </div>
+                </div>    
+                <div class="estate-feature">
+                    <div class="estate-info-title-wrapper">
+                        <div class="estate-header">
+                            <span class="estate-info-icon-wrapper">
+                                <i class="fas fa-bars"></i>
+                            </span>
+                            <span>{{ __("Custom Feature") }}</span>
+                        </div>
+                    </div>
+                    <div class="estate-new-feature estate-custom-variables">
+                        <table class="table">
+                            <tbody>
+                                <tr class="clonable d-none">
+                                    <td>
+                                        <input type="text" class="form-control" name="custom_variable_label[]" placeholder='{{ __("Custom Label") }}'>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="custom_variable_value[]" placeholder='{{ __("Custom Feature Value") }}'>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control" name="custom_variable_label[]" placeholder='{{ __("Custom Label") }}'>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="custom_variable_value[]" placeholder='{{ __("Custom Feature Value") }}'>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="custom-variable-add-row btn btn-info"><i class="fas fa-plus"></i>{{ __("Add Custom Feature") }}</button>
+                    </div>
+                </div>   
+                <div class="estate-feature"> 
+                    <div class="estate-info-title-wrapper">
+                        <div class="estate-header">
+                            <span class="estate-info-icon-wrapper">
+                                <i class="fas fa-couch"></i>
+                            </span>
+                            <span>{{ __("Interior Features") }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <select id="interior_features" name="interior_features" class="custom-select chosen-selector" multiple>
+                                @foreach($interiorFeatureOptions AS $interiorFeatureOption)
+                                    <option value='{{ $interiorFeatureOption["id"] }}'>{{  __($interiorFeatureOption["title"]) }}</option>
+                                @endforeach
                             </select>
+                            <small class="form-text text-muted">{{ __('Interior features of the property') }}</small>
+                        </div>
                     </div>
-                </div>
-                <div class="estate-info-title-wrapper">
-                    <div class="estate-header">
-                        <span class="estate-info-icon-wrapper">
-                            <i class="fas fa-bars"></i>
-                        </span>
-                        <span>{{ __("Custom Feature") }}</span>
+                </div>    
+                <div class="estate-feature">
+                    <div class="estate-info-title-wrapper">
+                        <div class="estate-header">
+                            <span class="estate-info-icon-wrapper">
+                                <i class="fas fa-city"></i>
+                            </span>
+                            <span>{{ __("Exterior Features") }}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="estate-new-feature estate-custom-variables">
-                    <table class="table">
-                        <tbody>
-                            <tr class="clonable d-none">
-                                <td>
-                                    <input type="text" class="form-control" name="custom_variable_label[]" placeholder='{{ __("Custom Label") }}'>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" name="custom_variable_value[]" placeholder='{{ __("Custom Feature Value") }}'>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" class="form-control" name="custom_variable_label[]" placeholder='{{ __("Custom Label") }}'>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" name="custom_variable_value[]" placeholder='{{ __("Custom Feature Value") }}'>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button type="button" class="custom-variable-add-row btn btn-info"><i class="fas fa-plus"></i>{{ __("Add Custom Feature") }}</button>
-                </div>
-                <div class="estate-info-title-wrapper">
-                    <div class="estate-header">
-                        <span class="estate-info-icon-wrapper">
-                            <i class="fas fa-couch"></i>
-                        </span>
-                        <span>{{ __("Interior Features") }}</span>
+                    <div class="row">
+                        <div class="col-sm">
+                            <select id="exterior_features" name="exterior_features"  class="custom-select chosen-selector" multiple>
+                                @foreach($exteriorFeatureOptions AS $exteriorFeatureOption)
+                                    <option value='{{ $exteriorFeatureOption["id"] }}'>{{ __($exteriorFeatureOption["title"]) }}</option>
+                                @endforeach
+                            </select>
+                            <small class="form-text text-muted">{{ __('Exterior features of the property') }}</small>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <select id="interior_features" name="interior_features" class="custom-select chosen-selector" multiple>
-                            @foreach($interiorFeatureOptions AS $interiorFeatureOption)
-                                <option value='{{ $interiorFeatureOption["id"] }}'>{{  __($interiorFeatureOption["title"]) }}</option>
-                            @endforeach
-                        </select>
-                        <small class="form-text text-muted">{{ __('Interior features of the property') }}</small>
+                </div>   
+                <div class="estate-feature"> 
+                    <div class="estate-info-title-wrapper">
+                        <div class="estate-header">
+                            <span class="estate-info-icon-wrapper">
+                                <i class="fas fa-mountain"></i>
+                            </span>
+                            <span>{{ __("View") }}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="estate-info-title-wrapper">
-                    <div class="estate-header">
-                        <span class="estate-info-icon-wrapper">
-                            <i class="fas fa-table"></i>
-                        </span>
-                        <span>{{ __("Exterior Features") }}</span>
+                    <div class="row">
+                        <div class="col-sm">
+                            <select id="view" name="view" class="custom-select chosen-selector" multiple>
+                                @foreach($viewOptions AS $viewOption)
+                                    <option value='{{ $viewOption["id"] }}'>{{  __($viewOption["title"]) }}</option>
+                                @endforeach
+                            </select>
+                            <small class="form-text text-muted">{{ __('View of the property (e.g. seaside, mountainview)') }}</small>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <select id="exterior_features" name="exterior_features"  class="custom-select chosen-selector" multiple>
-                            @foreach($exteriorFeatureOptions AS $exteriorFeatureOption)
-                                <option value='{{ $exteriorFeatureOption["id"] }}'>{{ __($exteriorFeatureOption["title"]) }}</option>
-                            @endforeach
-                        </select>
-                        <small class="form-text text-muted">{{ __('Exterior features of the property') }}</small>
+                </div>   
+                <div class="estate-feature">
+                    <div class="estate-info-title-wrapper">
+                        <div class="estate-header">
+                            <span class="estate-info-icon-wrapper">
+                                <i class="fas fa-map"></i>
+                            </span>
+                            <span>{{ __("Property on Map") }}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="estate-info-title-wrapper">
-                    <div class="estate-header">
-                        <span class="estate-info-icon-wrapper">
-                            <i class="fas fa-table"></i>
-                        </span>
-                        <span>{{ __("View") }}</span>
+                    <div class="estate-new-feature">
+                        <input type="hidden" id="lat_value" name="lat_value" value="">
+                        <input type="hidden" id="lng_value" name="lng_value" value="">
+                        <input type="hidden" id="zoom_value" name="zoom_value" value="">
+                        <input type="text" id="map_search_keyword">
+                        <div class="estate-mappable clickable-map" data-show="1" data-lat="0" data-lng="0" data-zoom="11"></div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <select id="view" name="view" class="custom-select chosen-selector" multiple>
-                            @foreach($viewOptions AS $viewOption)
-                                <option value='{{ $viewOption["id"] }}'>{{  __($viewOption["title"]) }}</option>
-                            @endforeach
-                        </select>
-                        <small class="form-text text-muted">{{ __('View of the property (e.g. seaside, mountainview)') }}</small>
-                    </div>
-                </div>
-                <div class="estate-info-title-wrapper">
-                    <div class="estate-header">
-                        <span class="estate-info-icon-wrapper">
-                            <i class="fas fa-map"></i>
-                        </span>
-                        <span>{{ __("Property on Map") }}</span>
-                    </div>
-                </div>
-                <div class="estate-new-feature">
-                    <input type="hidden" id="lat_value" name="lat_value" value="">
-                    <input type="hidden" id="lng_value" name="lng_value" value="">
-                    <input type="hidden" id="zoom_value" name="zoom_value" value="">
-                    <input type="text" id="map_search_keyword">
-                    <div class="estate-mappable clickable-map" data-show="1" data-lat="0" data-lng="0" data-zoom="11"></div>
-                </div>
+                </div>    
                 <div class="estate-info-title-wrapper">
                     <div class="estate-header">
                         <span class="estate-info-icon-wrapper">
