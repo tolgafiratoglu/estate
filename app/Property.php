@@ -50,6 +50,7 @@ class Property extends Model
                             'updated_at', 
                             'title',
                             'slug',
+                            'description',
                             'location', 
                             'created_by', 
                             'property_status',	

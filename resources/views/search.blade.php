@@ -253,7 +253,7 @@
                     @foreach($initialProperties AS $property)
                         <article class="property-list-item row-3">
                             <div class="featured-image-wrapper">
-                                <a data-browser="url" class="" href="{{ url('property', $property['id']) }}">
+                                <a data-browser="url" class="" href="{{ url('property', $property['slug']) }}">
                                     @if(array_key_exists('featured_image_folder', $property) && $property['featured_image_folder'] != NULL)
                                         <img src="{{ asset($property['featured_image_folder'].$property['feature_image_file_name']) }}">
                                     @else
@@ -263,7 +263,7 @@
                             </div>
                             <div class="property-details">
                                 <h4>
-                                    <a data-browser="url" class="" href="{{ url('property', $property['id']) }}">
+                                    <a data-browser="url" class="" href="{{ url('property', $property['slug']) }}">
                                         {{ $property["property_title"] }}             
                                     </a>
                                 </h4>

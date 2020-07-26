@@ -38,7 +38,7 @@ class PropertyController extends Controller
 
         $validatedData = $request->validate([
             'title' => 'required',
-            'slug' => 'required',
+            'slug' => 'required|unique:property,slug',
             'location'=> 'required'
         ]);
 
@@ -72,6 +72,11 @@ class PropertyController extends Controller
         $images = $request->images;
         $estate_location = $request->estate_location;
 
+        $lat = $request->lat;
+        $lon = $request->lon;
+
+        $featuredImage = $request->featured_image;
+
         $propertyObject = [
             'title'=>$title,
             'slug'=>$slug,
@@ -88,7 +93,9 @@ class PropertyController extends Controller
             'has_garden'=>$hasGarden,
             'has_park_space'=>$hasParkSpace,
             'location'=>$estate_location,
-            'created_by'=>$userId
+            'created_by'=>$userId,
+            "lat"=>$lat,
+            "lon"=>$lon
         ];
 
         $newProperty = $propertyRepository->create($propertyObject);
@@ -122,7 +129,29 @@ class PropertyController extends Controller
             }
         }
 
+        // Set featured image id:
+        $propertyRepository->update(['featured_image'=>$featuredImage], $propertyId);
+
     }        
+
+    /**
+     * Single property page
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function single(Request $request,
+                            PropertyRepository $propertyRepository)
+    {
+
+        $slug = $request->slug;
+
+        $property = $propertyRepository->getSingleBySlug($slug);
+
+        echo "<pre>";
+            var_dump($property);
+        echo "</pre>";
+
+    }
 
     /**
      * New property

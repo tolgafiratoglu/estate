@@ -135,7 +135,7 @@
                 <div class="estate-info-title-wrapper">
                     <div class="estate-header">
                         <span class="estate-info-icon-wrapper">
-                            <i class="fas fa-table"></i>
+                            <i class="fas fa-map-marker"></i>
                         </span>
                         <span>{{ __("Location") }}</span>
                     </div>
@@ -155,7 +155,7 @@
                 <div class="estate-info-title-wrapper">
                     <div class="estate-header">
                         <span class="estate-info-icon-wrapper">
-                            <i class="fas fa-table"></i>
+                            <i class="fas fa-parking"></i>
                         </span>
                         <span>{{ __("Parking & Garden") }}</span>
                     </div>
@@ -196,7 +196,7 @@
                 <div class="estate-info-title-wrapper">
                     <div class="estate-header">
                         <span class="estate-info-icon-wrapper">
-                            <i class="fas fa-table"></i>
+                            <i class="fas fa-bars"></i>
                         </span>
                         <span>{{ __("Custom Feature") }}</span>
                     </div>
@@ -206,18 +206,18 @@
                         <tbody>
                             <tr class="clonable d-none">
                                 <td>
-                                    <input type="text" class="form-control" placeholder='{{ __("Custom Label") }}'>
+                                    <input type="text" class="form-control" name="custom_variable_label[]" placeholder='{{ __("Custom Label") }}'>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" placeholder='{{ __("Custom Feature Value") }}'>
+                                    <input type="text" class="form-control" name="custom_variable_value[]" placeholder='{{ __("Custom Feature Value") }}'>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" placeholder='{{ __("Custom Label") }}'>
+                                    <input type="text" class="form-control" name="custom_variable_label[]" placeholder='{{ __("Custom Label") }}'>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" placeholder='{{ __("Custom Feature Value") }}'>
+                                    <input type="text" class="form-control" name="custom_variable_value[]" placeholder='{{ __("Custom Feature Value") }}'>
                                 </td>
                             </tr>
                         </tbody>
@@ -227,7 +227,7 @@
                 <div class="estate-info-title-wrapper">
                     <div class="estate-header">
                         <span class="estate-info-icon-wrapper">
-                            <i class="fas fa-table"></i>
+                            <i class="fas fa-couch"></i>
                         </span>
                         <span>{{ __("Interior Features") }}</span>
                     </div>

@@ -35,6 +35,59 @@
             return Property::max($field);
         }
 
+        public function getSingleBySlug($slug)
+        {
+
+            $propertyQuery = Property::select(
+                                                'property.id AS id', 
+                                                'property.title AS property_title', 
+                                                'property.slug AS slug', 
+                                                'property.description AS description',
+                                                'location', 
+                                                'location.name AS location_name', 
+                                                'price', 
+                                                'address', 
+                                                'area', 
+                                                'number_of_rooms', 
+                                                'number_of_bathrooms', 
+                                                'which_floor', 
+                                                'number_of_floors', 
+                                                'lat', 
+                                                'lon', 
+                                                'is_approved', 
+                                                'is_drafted', 
+                                                'has_garden',
+                                                'area_of_garden',
+                                                'has_park_area',
+                                                'number_of_park_areas',
+                                                'media.folder AS featured_image_folder', 
+                                                'media.name AS feature_image_file_name',
+                                                'users.name AS user_name',
+                                                'users.lastname AS user_lastname',
+                                                'users.email AS user_email',
+                                                'users.is_agent AS user_is_agent',
+                                                'heating.title AS heating_title',
+                                                'cooling.title AS cooling_title'
+                                            )
+                                            ->leftJoin('media', 'property.featured_image', '=', 'media.id')
+                                            ->leftJoin('location', 'property.location', '=', 'location.id')
+                                            ->leftJoin('property_status', 'property.property_status', '=', 'property_status.id')
+                                            ->leftJoin('property_type', 'property.property_type', '=', 'property_type.id')
+                                            ->leftJoin('heating', 'property.heating', '=', 'heating.id')
+                                            ->leftJoin('cooling', 'property.cooling', '=', 'cooling.id')
+                                                ->join('users', 'users.id', '=', 'property.created_by')
+                                                ->where(['property.slug'=>$slug, 'property.is_deleted'=>false])
+                                                    ->where(['users.is_blocked'=>false]);
+
+            $propertyObject = $propertyQuery->first();
+
+            if($propertyObject != NULL){
+                return $propertyObject->toArray();                                                    
+            } else {
+                return NULL;
+            }
+        }
+
         /*
         * Returns list of items defined by parameters
         *
@@ -52,7 +105,7 @@
         public function getPropertyList($isDeleted = false, $isApproved = true, $isDrafted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
-            $propertyListObject = Property::select('property.id AS id', 'property.title AS property_title', 'location', 'location.name AS location_name', 'price', 'address', 'area', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors', 'lat', 'lon', 'is_approved', 'is_drafted', 'media.folder AS featured_image_folder', 'media.name AS feature_image_file_name')
+            $propertyListObject = Property::select('property.id AS id', 'property.title AS property_title', 'property.slug AS slug', 'location', 'location.name AS location_name', 'price', 'address', 'area', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors', 'lat', 'lon', 'is_approved', 'is_drafted', 'media.folder AS featured_image_folder', 'media.name AS feature_image_file_name')
                                             ->leftJoin('media', 'property.featured_image', '=', 'media.id')
                                             ->leftJoin('location', 'property.location', '=', 'location.id')
                                             ->join('users', 'users.id', '=', 'property.created_by')

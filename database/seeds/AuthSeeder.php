@@ -17,7 +17,8 @@ class AuthSeeder extends Seeder
 
         if(count($checkUser) == 0){
             $password = bcrypt('admin');
-            $userRepository->create(['username'=>'admin', 'password'=>$password, 'email'=>'admin@yourdomain.com', 'email_verified_at'=>date('Y-m-d H:i:s'), 'is_admin'=> true, 'is_super_admin' => true]);
+            $domain = getenv(DOMAIN_NAME);
+            $userRepository->create(['username'=>'admin', 'password'=>$password, 'email'=>'admin@yourdomain.com', 'public_email'=>'admin@yourdomain.com', 'email_verified_at'=>date('Y-m-d H:i:s'), 'is_admin'=> true, 'is_super_admin' => true]);
         }
         
     }

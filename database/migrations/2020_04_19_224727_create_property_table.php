@@ -24,7 +24,8 @@ class CreatePropertyTable extends Migration
                 $table->bigIncrements('id');
                 $table->timestamps();
                 $table->string('title');
-                $table->string('slug');
+                $table->string('slug')->unique();
+                $table->text('description');
                 $table->unsignedBigInteger('location');
                     $table->foreign('location')->references('id')->on('location');
                 $table->unsignedBigInteger('created_by');
@@ -64,6 +65,12 @@ class CreatePropertyTable extends Migration
                 $table->boolean('is_approved')->default(false);
                 $table->boolean('is_drafted')->default(false);
                 $table->boolean('is_deleted')->default(false);
+
+                // If the property will provide custom contact info other than agent profile:
+                $table->boolean('is_custom_info')->default(false);
+                $table->string('custom_info_name')->nullable();
+                $table->string('custom_info_phone')->nullable();
+                $table->string('custom_info_email')->nullable();
                 
             });
         }
