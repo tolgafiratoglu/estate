@@ -35,6 +35,13 @@
             return Property::max($field);
         }
 
+        /*
+        * Returns property info by a given slug
+        *  
+        * @param $slug Unique slug of the property.
+        *
+        * @return array
+        */
         public function getSingleBySlug($slug)
         {
 
@@ -43,6 +50,10 @@
                                                 'property.title AS property_title', 
                                                 'property.slug AS slug', 
                                                 'property.description AS description',
+                                                'property.is_custom_info',
+                                                'property.custom_info_name AS custom_name',
+                                                'property.custom_info_phone AS custom_phone',
+                                                'property.custom_info_email AS custom_email',
                                                 'location', 
                                                 'location.name AS location_name', 
                                                 'price', 

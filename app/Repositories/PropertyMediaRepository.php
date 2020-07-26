@@ -18,4 +18,22 @@
             return "App\\PropertyMedia";
         }
 
+        public function getPropertyMedia($slug)
+        {
+            $imagesObject = PropertyMedia::select(
+                                                    'media.folder AS folder', 
+                                                    'media.name AS file_name'
+                                                   )
+                                ->leftJoin('property', 'property_media.property', '=', 'property.id')
+                                ->leftJoin('media', 'property_media.media', '=', 'media.id')
+                                ->where('property.slug', '=', $slug);
+
+            if($imagesObject != NULL){
+                return $imagesObject->get()->toArray();                                                    
+            } else {
+                return NULL;
+            }
+
+        }
+
     }    

@@ -75,7 +75,11 @@ class Property extends Model
                             'lon', 
                             'is_approved', 
                             'is_drafted', 
-                            'is_deleted'
+                            'is_deleted',
+                            'is_custom_info',
+                            'custom_info_name',
+                            'custom_info_phone',
+                            'custom_info_email'
                         ];
 
 }
