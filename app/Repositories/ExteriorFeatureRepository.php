@@ -18,6 +18,15 @@
             return "App\\ExteriorFeature";
         }
 
+        public function getPropertyFeatures($propertyId)
+        {
+            return ExteriorFeature::select('exterior_feature.id', 'exterior_feature.title')
+                        ->leftJoin('property_exterior_feature', 'property_exterior_feature.exterior_feature', '=', 'exterior_feature.id')
+                        ->leftJoin('property', 'property.id', '=', 'property_exterior_feature.property')
+                        ->where(["property.id" => $propertyId])
+                        ->get()->toArray();
+        }
+
         /*
         * Returns list count
         *

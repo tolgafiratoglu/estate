@@ -140,18 +140,27 @@ class PropertyController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function single(Request $request,
-                            PropertyRepository $propertyRepository,
-                            PropertyMediaRepository $propertyMediaRepository
+                                PropertyRepository $propertyRepository,
+                                PropertyMediaRepository $propertyMediaRepository,
+                                ExteriorFeatureRepository $exteriorFeatureRepository,
+                                InteriorFeatureRepository $interiorFeatureRepository,
+                                ViewRepository $viewRepository
                             )
     {
 
         $slug = $request->slug;
 
-        $property = $propertyRepository->getSingleBySlug($slug);
-        $propertyImages = $propertyMediaRepository->getPropertyMedia($slug);
+        $propertyId = $propertyRepository->getPropertyIdBySlug($slug);
+
+        $property = $propertyRepository->getSingleBySlug($propertyId);
+        $propertyImages = $propertyMediaRepository->getPropertyMedia($propertyId);
+
+        $interiorFeatures = $interiorFeatureRepository->getPropertyFeatures($propertyId);
+        $exteriorFeatures = $exteriorFeatureRepository->getPropertyFeatures($propertyId);
+        $views            = $viewRepository->getPropertyViews($propertyId);
 
         echo "<pre>";
-            var_dump($propertyImages);
+            var_dump($views);
         echo "</pre>";
 
     }

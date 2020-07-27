@@ -17,6 +17,19 @@
             return "App\\Property";
         }
 
+        public function getPropertyIdBySlug($slug)
+        {
+
+            $propertyObj = Property::select('id')->where(['slug'=>$slug])->first();
+
+            if($propertyObj != NULL){
+                return $propertyObj->toArray()['id'];
+            }else{
+                return NULL;
+            }
+
+        }
+
         /*
         * Minimum area for any given field:
         * @return integer
@@ -42,7 +55,7 @@
         *
         * @return array
         */
-        public function getSingleBySlug($slug)
+        public function getSingleBySlug($propertyId)
         {
 
             $propertyQuery = Property::select(
@@ -87,7 +100,7 @@
                                             ->leftJoin('heating', 'property.heating', '=', 'heating.id')
                                             ->leftJoin('cooling', 'property.cooling', '=', 'cooling.id')
                                                 ->join('users', 'users.id', '=', 'property.created_by')
-                                                ->where(['property.slug'=>$slug, 'property.is_deleted'=>false])
+                                                ->where(['property.id'=>$propertyId, 'property.is_deleted'=>false])
                                                     ->where(['users.is_blocked'=>false]);
 
             $propertyObject = $propertyQuery->first();
