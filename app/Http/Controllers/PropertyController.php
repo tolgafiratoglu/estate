@@ -159,9 +159,19 @@ class PropertyController extends Controller
         $exteriorFeatures = $exteriorFeatureRepository->getPropertyFeatures($propertyId);
         $views            = $viewRepository->getPropertyViews($propertyId);
 
+        $singleOptions = [
+            "property"=>$property,
+            "propertyImages"=>$propertyImages,
+            "interiorFeatures"=>$interiorFeatures,
+            "exteriorFeatures"=>$exteriorFeatures,
+            "views"=>$views
+        ];
+
         echo "<pre>";
-            var_dump($views);
+            var_dump($propertyImages);
         echo "</pre>";
+
+        return view('property.single', $singleOptions);
 
     }
 
