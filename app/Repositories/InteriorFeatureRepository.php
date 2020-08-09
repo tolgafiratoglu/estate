@@ -19,7 +19,7 @@
 
         public function getPropertyFeatures($propertyId)
         {
-            return InteriorFeature::select('interior_feature.id', 'interior_feature.title')
+            return InteriorFeature::select('interior_feature.id AS feature_id', 'interior_feature.title AS feature_title')
                         ->leftJoin('property_interior_feature', 'property_interior_feature.interior_feature', '=', 'interior_feature.id')
                         ->leftJoin('property', 'property.id', '=', 'property_interior_feature.property')
                         ->where(["property.id" => $propertyId])

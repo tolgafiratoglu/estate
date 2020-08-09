@@ -20,7 +20,7 @@
 
         public function getPropertyFeatures($propertyId)
         {
-            return ExteriorFeature::select('exterior_feature.id', 'exterior_feature.title')
+            return ExteriorFeature::select('exterior_feature.id AS feature_id', 'exterior_feature.title AS feature_title')
                         ->leftJoin('property_exterior_feature', 'property_exterior_feature.exterior_feature', '=', 'exterior_feature.id')
                         ->leftJoin('property', 'property.id', '=', 'property_exterior_feature.property')
                         ->where(["property.id" => $propertyId])

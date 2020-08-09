@@ -167,10 +167,6 @@ class PropertyController extends Controller
             "views"=>$views
         ];
 
-        echo "<pre>";
-            var_dump($propertyImages);
-        echo "</pre>";
-
         return view('property.single', $singleOptions);
 
     }

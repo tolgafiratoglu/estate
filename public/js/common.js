@@ -522,6 +522,22 @@ $(function () {
         );    
     }
 
+    function init_owl_carousel(){
+
+        if($(".qual-main-slider").length > 0){
+
+            $(".qual-main-slider").owlCarousel({
+                navigation : false, // Show next and prev buttons
+                slideSpeed : 300,
+                paginationSpeed : 400,
+                singleItem:true,
+                dots: true
+            });
+
+        }
+
+    }
+
     $( document ).ready(function() {
 
         initSlugTrigger();
@@ -538,6 +554,8 @@ $(function () {
         initSaveButton();
 
         init_checkboxes();
+
+        init_owl_carousel();
 
     });
 
