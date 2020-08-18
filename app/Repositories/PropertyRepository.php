@@ -91,7 +91,8 @@
                                                 'users.email AS user_email',
                                                 'users.is_agent AS user_is_agent',
                                                 'heating.title AS heating_title',
-                                                'cooling.title AS cooling_title'
+                                                'cooling.title AS cooling_title',
+                                                'year_built'
                                             )
                                             ->leftJoin('media', 'property.featured_image', '=', 'media.id')
                                             ->leftJoin('location', 'property.location', '=', 'location.id')

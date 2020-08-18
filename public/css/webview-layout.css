@@ -621,3 +621,35 @@ body{
     .estate-info-wrapper .estate-header .svg-wrapper svg.details-icon {
         color: #FFFFFF;
     }
+
+.estate-main-slider img{
+    width: 100%;
+}    
+
+.property-title-wrapper {
+    float: left;
+    width: 100%;
+}
+
+    .property-title-wrapper h1{
+        font-size: 30px;
+        line-height: 1.25;
+        text-transform: none;
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+
+    .property-address-wrapper {
+        line-height: 1.5;
+        margin-bottom: 12px;
+        color: #5a5a5a;
+        font-size: 13px;
+    }
+
+    .property-address-wrapper svg{
+        margin-right: 6px;
+    }
+
+ul.estate-main-slider{
+    list-style: none;
+}    

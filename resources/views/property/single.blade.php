@@ -12,8 +12,8 @@
                     <i class="fa fa-map-marker"></i>{{ $property["address"] }}                     
                 </div>
             @endif
-            <div class="qual-uptown-slider-wrapper">
-                <ul class="qual-light-slider">
+            <div class="estate-uptown-slider-wrapper">
+                <ul class="estate-main-slider">
                     @foreach($propertyImages AS $propertyImage)
                         <li data-thumb="{{ asset($propertyImage['folder'].'thumb/'.$propertyImage['file_name']) }}">
                             <img src="{{ asset($propertyImage['folder'].'large/'.$propertyImage['file_name']) }}">
@@ -24,27 +24,27 @@
             <div class="estate-infocard">
                 <div class="estate-infocard-cell">
                     <div class="estate-infocard-row-left">{{ __("Property Area") }}</div>
-                    <div class="estate-infocard-row-right">201 m<sup>2</sup></div>
+                    <div class="estate-infocard-row-right">{{ $property["area"] }} @if($measurementUnit == "meter") m<sup>2 @else ft<sup>2 @endif</sup></div>
                 </div>
                 <div class="estate-infocard-cell">
                     <div class="estate-infocard-row-left">{{ __("Price") }}</div>
-                    <div class="estate-infocard-row-right">1,001$</div>
+                    <div class="estate-infocard-row-right">{{ $property["price"] }}$</div>
                 </div>
                 <div class="estate-infocard-cell">
                     <div class="estate-infocard-row-left">{{ __("Rooms") }}</div>
-                    <div class="estate-infocard-row-right">3</div>
+                    <div class="estate-infocard-row-right">{{ $property["number_of_rooms"] }}</div>
                 </div>
                 <div class="estate-infocard-cell">
                     <div class="estate-infocard-row-left">{{ __("Bathrooms") }}</div>
-                    <div class="estate-infocard-row-right">0</div>
+                    <div class="estate-infocard-row-right">{{ $property["number_of_bathrooms"] }}</div>
                 </div>
                 <div class="estate-infocard-cell">
                     <div class="estate-infocard-row-left">{{ __("Age of Building") }}</div>
-                    <div class="estate-infocard-row-right">5</div>
+                    <div class="estate-infocard-row-right">{{ $property["year_built"] }}</div>
                 </div>
                 <div class="estate-infocard-cell">
                     <div class="estate-infocard-row-left">{{ __("Floor") }}</div>
-                    <div class="estate-infocard-row-right">5</div>
+                    <div class="estate-infocard-row-right">{{ $property["which_floor"] }}</div>
                 </div>
             </div>
             <div class="estate-info-wrapper">

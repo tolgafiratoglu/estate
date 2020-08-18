@@ -17,6 +17,8 @@ use App\Repositories\PropertyExteriorFeatureRepository;
 use App\Repositories\PropertyViewRepository;
 use App\Repositories\PropertyMediaRepository;
 
+use App\Repositories\SystemDefaultsRepository;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -144,7 +146,8 @@ class PropertyController extends Controller
                                 PropertyMediaRepository $propertyMediaRepository,
                                 ExteriorFeatureRepository $exteriorFeatureRepository,
                                 InteriorFeatureRepository $interiorFeatureRepository,
-                                ViewRepository $viewRepository
+                                ViewRepository $viewRepository,
+                                SystemDefaultsRepository $systemDefaultsRepository
                             )
     {
 
@@ -159,12 +162,17 @@ class PropertyController extends Controller
         $exteriorFeatures = $exteriorFeatureRepository->getPropertyFeatures($propertyId);
         $views            = $viewRepository->getPropertyViews($propertyId);
 
+        $defaultMeasurementUnit = $systemDefaultsRepository->getSetting("default_measurement_unit");
+        $defaultMoneyUnit = $systemDefaultsRepository->getSetting("default_money_unit");
+
         $singleOptions = [
             "property"=>$property,
             "propertyImages"=>$propertyImages,
             "interiorFeatures"=>$interiorFeatures,
             "exteriorFeatures"=>$exteriorFeatures,
-            "views"=>$views
+            "views"=>$views,
+            "measurementUnit"=>$defaultMeasurementUnit,
+            "moneyUnit"=>$defaultMoneyUnit
         ];
 
         return view('property.single', $singleOptions);
