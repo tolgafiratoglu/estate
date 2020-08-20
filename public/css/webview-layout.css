@@ -3,6 +3,7 @@
     2. Search filter
     3. Property layout
     4. Single property
+    5. Header style
 */
 
 /* 1. Overall design starts */
@@ -653,3 +654,201 @@ body{
 ul.estate-main-slider{
     list-style: none;
 }    
+
+/* 5. Header Styling */
+
+.header-wrapper{
+    height: 54px;
+    background-color: #333;
+}
+
+.header-boxed{
+    max-width: 1200px;
+    margin: 0px auto;
+}
+
+.header-left-side-wrapper{
+    height: 54px;
+    float: left;
+}
+
+.header-right-side-wrapper{
+    height: 54px;
+    float: right;
+}
+
+    .header-right-side-wrapper .artifex-search-input-canvas{
+        margin-top: 14.5px;
+    }    
+
+    .header-logo-wrapper{
+        height: 100%;
+        float: right;
+    }
+
+    .header-menu-wrapper{
+        font-size: 14px;
+        text-transform: uppercase;
+        z-index: 20000 !important;
+        color: #333333;
+        width: auto;
+        line-height: 54px !important;
+    }
+
+        .header-menu-wrapper *{
+            z-index: 20000 !important;
+        }
+
+    .header-menu-wrapper .menu{
+        margin: 0px auto;
+        float: right;
+    }
+
+    .header-menu-wrapper .menu > li{
+        margin-right: 36px;
+        text-align: left;
+        font-size: 12px;
+    }
+
+
+    .header-menu-wrapper .menu > li:last-of-type{
+        margin-right: 0px !important;
+    }
+
+    .header-menu-wrapper .sub-menu{
+        padding: 0px;
+        background-color: #333333;
+
+        -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-menu-wrapper a{
+        font-size: 12px;
+        text-decoration: none;
+        color: #ffffff;
+        letter-spacing: 0.3px !important;
+    }
+
+    .header-menu-wrapper ul{
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .header-menu-wrapper ul li ul a{
+        font-size: 12px;
+    }
+
+    .header-menu-wrapper ul li{
+        position: relative;
+        top: 0px;
+        left: 0px;
+        float: left;
+        width: auto;
+    }
+
+    .header-menu-wrapper ul.sub-menu li{
+        margin-left: 0px;
+    }
+
+    .header-menu-wrapper li ul li{
+        width: 150px;
+        color: #2f2f2f;
+        font-size: inherit;
+        cursor: pointer;
+        padding: 6px 18px;
+        line-height: 30px;
+    }
+
+        .header-menu-wrapper li ul li{
+            border-top: 1px solid rgba(255, 211, 78, 0.2);
+            color: #e5e5e5 !important;
+        }
+
+            .header-menu-wrapper li ul li:first-of-type{
+                border-top: none !important;
+            }
+
+        .header-menu-wrapper li:hover ul li{
+            color: #FFFFFF;
+        }
+
+        .header-menu-wrapper li ul li:last-child{
+            padding-bottom: 12px;
+        }
+
+    .header-menu-wrapper ul  li.menu-item-has-children > a:after{
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f107";
+        margin-left: 6px;
+        float: right;
+        line-height: 54px;
+    }
+
+    .header-menu-wrapper ul li ul li.menu-item-has-children > a:after{
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f105";
+        float: right;
+        margin-top: 0px !important;
+        line-height: 30px;
+    }
+
+    .header-menu-wrapper ul li a:before{
+        content : "";
+    }
+
+    .header-menu-wrapper ul.sub-menu{
+        visibility: hidden;
+        position: absolute;
+    }
+
+    .header-menu-wrapper .menu-item-has-children > .sub-menu{
+        top: 100%;
+        top: calc(100% + 12px);
+        opacity: 0;
+
+        -webkit-transition-duration: 400ms;
+        transition-duration: 400ms;
+    }
+
+    .header-menu-wrapper .menu-item-has-children:hover > .sub-menu{
+        visibility: visible;
+        opacity: 1;
+        top: 100%;
+        left: -12px;
+        line-height: 20px;
+        z-index: 1001;
+    }
+
+    .header-menu-wrapper .menu-item-has-children:last-of-type:hover > .sub-menu:before{
+        border-width: 0 12px 12px 12px !important;
+        border-color: transparent transparent #ffffff transparent;
+        right: 0px !important;
+    }
+
+    .header-menu-wrapper .menu-item-has-children .menu-item-has-children .sub-menu{
+        top: 0px !important;
+        left: 100% !important;
+        left: calc(100% + 12px) !important;
+
+        opacity: 0;
+        border: none;
+
+        -webkit-transition-duration: 400ms;
+        transition-duration: 400ms;
+    }
+
+    .header-menu-wrapper .menu-item-has-children:hover .menu-item-has-children:hover .sub-menu{
+        top: 0px !important;
+        left: 100% !important;
+        opacity: 1;
+    }
+
+    .header-menu-wrapper .menu-item-has-children:hover .menu-item-has-children:hover .sub-menu:before{
+        border: none;
+        content: "" !important;
+    }
