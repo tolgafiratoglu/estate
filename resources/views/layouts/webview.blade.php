@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="header-right-side-wrapper">
-                        
+                        {{ $menu }}
                     </div>
                     <div class="header-left-side-wrapper hide-in-mobile">
                         <div class="header-menu-wrapper">

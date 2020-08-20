@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Support\Facades\View;
+
+use App\Repositories\MenuRepository;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -21,8 +25,12 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(MenuRepository $menuRepository)
     {
-        //
+       
+        $menuTree = $menuRepository->getMenuTree("header", null);
+
+        View::share('menu', "test");
+
     }
 }
