@@ -29,8 +29,9 @@ class AppServiceProvider extends ServiceProvider
     {
        
         $menuTree = $menuRepository->getMenuTree("header", null);
+        $headerMenuContent = build_header_menu($menuTree);
 
-        View::share('menu', "test");
+        View::share('headerMenu', $headerMenuContent);
 
     }
 }
