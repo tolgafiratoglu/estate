@@ -251,7 +251,7 @@
                 </div>
                 <div class="property-list">
                     @foreach($initialProperties AS $property)
-                        <x-property :property="$property" />
+                        <x-property :property="$property" :rows="3" />
                     @endforeach
                 </div>    
             </div> <!-- Property results -->

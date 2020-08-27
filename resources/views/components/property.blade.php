@@ -1,4 +1,4 @@
-<article class="property-list-item row-3">
+<article class="property-list-item row-{{ $rows }}">
     <div class="featured-image-wrapper">
         <a href="{{ url('property', $property['slug']) }}">
             @if(array_key_exists('featured_image_folder', $property) && $property['featured_image_folder'] != NULL)

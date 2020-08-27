@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Repositories\PropertyRepository;
+
 class HomeController extends Controller
 {
     /**
@@ -21,8 +23,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(PropertyRepository $propertyRepository)
     {
-        return view('home');
+
+        $latestProperties = $propertyRepository->getPropertyList(false, true, false, 0, 4, 'id', 'DESC');
+
+        return view('home', ["latestProperties"=>$latestProperties]);
     }
 }

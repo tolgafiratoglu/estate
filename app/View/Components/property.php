@@ -14,15 +14,22 @@ class Property extends Component
     */
     public $property;
 
+    /*
+    * Rows
+    * $var integer
+    */
+    public $rows;
+
     /**
      * Create a new component instance.
      *
      * @param  array  $property
      * @return void
      */
-    public function __construct($property)
+    public function __construct($property, $rows)
     {
         $this->property = $property;
+        $this->rows = $rows;
     }
 
     /**
