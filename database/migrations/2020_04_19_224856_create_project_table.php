@@ -41,7 +41,9 @@ class CreateProjectTable extends Migration
                 $table->decimal('lat', 18, 15)->nullable()->default(null);
                 $table->decimal('lon', 18, 15)->nullable()->default(null);
                 
-                $table->boolean('is_approved')->default(false);
+                $table->enum('approval_status', ['denied', 'waiting_approval', 'approved'])->default('waiting_approval');
+
+                // $table->boolean('is_approved')->default(false);
                 $table->boolean('is_drafted')->default(false);
                 $table->boolean('is_deleted')->default(false);
                 

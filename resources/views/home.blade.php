@@ -14,11 +14,13 @@
                         {{ __("Search") }}
                     </div>
                 </div>
-                <div class="property-list">
-                    @foreach($latestProperties AS $property)
-                        <x-property :property="$property" rows="4" />
-                    @endforeach    
-                </div>
+                @if(sizeof($latestProperties))
+                    <div class="property-list">
+                        @foreach($latestProperties AS $property)
+                            <x-property :property="$property" rows="4" />
+                        @endforeach    
+                    </div>
+                @endif   
             </div>
 
         </div>

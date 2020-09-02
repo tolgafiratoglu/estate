@@ -27,6 +27,7 @@ class HomeController extends Controller
     {
 
         $latestProperties = $propertyRepository->getPropertyList(false, 'approved', false, 0, 4, 'id', 'DESC');
+        $latestProjects = $propertyRepository->getPropertyList(false, 'approved', false, 0, 4, 'id', 'DESC');
 
         return view('home', ["latestProperties"=>$latestProperties]);
     }

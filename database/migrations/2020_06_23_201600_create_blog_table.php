@@ -24,7 +24,9 @@ class CreateBlogTable extends Migration
                 $table->unsignedBigInteger('created_by');
                     $table->foreign('created_by')->references('id')->on('users');
 
-                $table->boolean('is_approved')->default(false);
+                $table->enum('approval_status', ['denied', 'waiting_approval', 'approved'])->default('waiting_approval');
+
+                // $table->boolean('is_approved')->default(false);
                 $table->boolean('is_drafted')->default(false);
                 $table->boolean('is_deleted')->default(false);
 

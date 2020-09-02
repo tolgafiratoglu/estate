@@ -127,7 +127,7 @@
         *
         * @return array
         */
-        public function getPropertyList($isDeleted = false, $approvalStatus = true, $isDrafted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
+        public function getPropertyList($isDeleted = false, $approvalStatus = 'approved', $isDrafted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
             $propertyListObject = Property::select('property.id AS id', 'property.title AS property_title', 'property.slug AS slug', 'location', 'location.name AS location_name', 'price', 'address', 'area', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors', 'lat', 'lon', 'approval_status', 'is_drafted', 'media.folder AS featured_image_folder', 'media.name AS feature_image_file_name')
