@@ -55,7 +55,7 @@ class SearchController extends Controller
         $propertyStats["min_age_of_building"] = date("Y") - $propertyRepository->getMaxValue('year_built');
 
         // Get properties for the initial property list view:
-        $initialProperties = $propertyRepository->getPropertyList(false, true, false, 0, 12, 'id', 'DESC');
+        $initialProperties = $propertyRepository->getPropertyList(false, 'approved', false, 0, 12, 'id', 'DESC');
 
         return view('search')->with(["locations"=>$locations, "propertyTypes"=> $propertyTypes, "propertyStatus"=>$propertyStatus, "interiorFeatures"=>$interiorFeatures, "exteriorFeatures"=>$exteriorFeatures, "propertyStats"=>$propertyStats, "initialProperties"=>$initialProperties]);
     }

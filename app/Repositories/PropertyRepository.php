@@ -78,7 +78,7 @@
                                                 'number_of_floors', 
                                                 'lat', 
                                                 'lon', 
-                                                'is_approved', 
+                                                'approval_status', 
                                                 'is_drafted', 
                                                 'has_garden',
                                                 'area_of_garden',
@@ -127,14 +127,14 @@
         *
         * @return array
         */
-        public function getPropertyList($isDeleted = false, $isApproved = true, $isDrafted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
+        public function getPropertyList($isDeleted = false, $approvalStatus = true, $isDrafted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
-            $propertyListObject = Property::select('property.id AS id', 'property.title AS property_title', 'property.slug AS slug', 'location', 'location.name AS location_name', 'price', 'address', 'area', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors', 'lat', 'lon', 'is_approved', 'is_drafted', 'media.folder AS featured_image_folder', 'media.name AS feature_image_file_name')
+            $propertyListObject = Property::select('property.id AS id', 'property.title AS property_title', 'property.slug AS slug', 'location', 'location.name AS location_name', 'price', 'address', 'area', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors', 'lat', 'lon', 'approval_status', 'is_drafted', 'media.folder AS featured_image_folder', 'media.name AS feature_image_file_name')
                                             ->leftJoin('media', 'property.featured_image', '=', 'media.id')
                                             ->leftJoin('location', 'property.location', '=', 'location.id')
                                             ->join('users', 'users.id', '=', 'property.created_by')
-                                            ->where(['property.is_deleted'=>$isDeleted, 'property.is_approved'=>$isApproved, 'property.is_drafted'=>$isDrafted])
+                                            ->where(['property.is_deleted'=>$isDeleted, 'property.approval_status'=>$approvalStatus, 'property.is_drafted'=>$isDrafted])
                                                 ->where(['users.is_blocked'=>false]);                                                                
 
                 // If offset is defined:

@@ -23,12 +23,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer floor
  * @property decimal lat
  * @property decimal lon
- * @property boolean is_approved
  * @property boolean is_drafted
  * @property boolean is_deleted
  */
 class Property extends Model
 {
+
     /**
      * The table associated with the model.
      * 
@@ -73,7 +73,8 @@ class Property extends Model
                             'number_of_park_areas',
                             'lat', 
                             'lon', 
-                            'is_approved', 
+                            'approval_status',
+                            // 'is_approved', 
                             'is_drafted', 
                             'is_deleted',
                             'is_custom_info',

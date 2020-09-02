@@ -23,7 +23,7 @@ class CreateMenuTable extends Migration
                 $table->string("target", 10);
                 $table->text("custom_url");
                 $table->unsignedBigInteger('parent')->nullable()->default(null);
-                    $table->foreign('menu')->references('id')->on('menu');
+                    $table->foreign('parent')->references('id')->on('menu')->onDelete('SET NULL');
                 $table->unsignedBigInteger('property')->nullable()->default(null);
                     $table->foreign('property')->references('id')->on('property');
                 $table->unsignedBigInteger('blog')->nullable()->default(null);

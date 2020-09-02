@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HeatingSeeder::class);
         $this->call(CoolingSeeder::class);
         $this->call(ViewSeeder::class);
+        $this->call(SystemMediaSeeder::class);
     }
 }

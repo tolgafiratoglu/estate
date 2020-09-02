@@ -31,7 +31,7 @@ class CreatePropertyTable extends Migration
                 $table->unsignedBigInteger('created_by');
                     $table->foreign('created_by')->references('id')->on('users');
 
-                // $table->enum('status', ['denied', 'waiting_approval', 'approved'])->default('waiting_approval');
+                $table->enum('approval_status', ['denied', 'waiting_approval', 'approved'])->default('waiting_approval');
 
                 $table->unsignedBigInteger('property_status');
                     $table->foreign('property_status')->references('id')->on('property_status');
@@ -62,7 +62,7 @@ class CreatePropertyTable extends Migration
                 $table->boolean('has_park_area')->default(false);
                 $table->integer('number_of_park_areas')->nullable();
 
-                $table->boolean('is_approved')->default(false);
+                // $table->boolean('is_approved')->default(false);
                 $table->boolean('is_drafted')->default(false);
                 $table->boolean('is_deleted')->default(false);
 

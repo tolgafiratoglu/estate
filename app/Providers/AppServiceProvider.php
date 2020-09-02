@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\View;
 
 use App\Repositories\MenuRepository;
 
+use Illuminate\Support\Facades\Schema;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -28,10 +30,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(MenuRepository $menuRepository)
     {
        
-        $menuTree = $menuRepository->getMenuTree("header", null);
-        $headerMenuContent = build_header_menu($menuTree);
+        if(Schema::hasTable('menu') != false) {
+            $menuTree = $menuRepository->getMenuTree("header", null);
+            $headerMenuContent = build_header_menu($menuTree);
 
-        View::share('headerMenu', $headerMenuContent);
+            View::share('headerMenu', $headerMenuContent);
+        }
 
     }
 }

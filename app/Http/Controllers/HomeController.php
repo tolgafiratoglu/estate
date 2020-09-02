@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index(PropertyRepository $propertyRepository)
     {
 
-        $latestProperties = $propertyRepository->getPropertyList(false, true, false, 0, 4, 'id', 'DESC');
+        $latestProperties = $propertyRepository->getPropertyList(false, 'approved', false, 0, 4, 'id', 'DESC');
 
         return view('home', ["latestProperties"=>$latestProperties]);
     }
