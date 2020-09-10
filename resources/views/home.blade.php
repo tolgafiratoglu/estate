@@ -8,10 +8,10 @@
             <div class="latest-property-list-wrapper">
                 <div class="latest-property-list-header">
                     <div class="latest-property-list-title">
-                        {{ __("Latest Properties") }}
+                        {{ __("webview.home.latest_properties") }}
                     </div>
                     <div class="latest-property-list-search">
-                        {{ __("Search") }}
+                        {{ __("webview.home.search") }}
                     </div>
                 </div>
                 @if(sizeof($latestProperties))
