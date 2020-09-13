@@ -35,7 +35,8 @@
                                     );
 
                 if($settingsObject->first() != NULL){                        
-                    return $settingsObject->first()->toArray();
+                    $setting = $settingsObject->first()->toArray();
+                    return $setting["meta_value"];
                 } else {
                     return NULL;
                 }
