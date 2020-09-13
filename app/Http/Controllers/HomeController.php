@@ -49,7 +49,7 @@ class HomeController extends Controller
         // Get search background image, if show_Search is true:
         if($settings["show_search"] == true)
         {
-            $templateArgs["search_background"] = $systemMediaRepository->getSettings("search_background");
+            $templateArgs["search_background"] = $systemMediaRepository->getSetting("search_background");
         }
 
         // Passes parameters to home template:    

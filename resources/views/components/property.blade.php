@@ -15,7 +15,7 @@
             </a>
         </h4>
         <div class="address">
-            {{ $property["address"] }}                    
+            {{ \Illuminate\Support\Str::limit($property["address"], 20, '...') }}                    
         </div>
         <div class="info">
             <i class="fa fa-object-ungroup"></i> <span class="property-area">{{ $property["area"] }} m<sup>2</sup></span> /  <i class="fa fa-bed"></i> <span class="property-rooms">{{ $property["number_of_rooms"] }}</span> Rooms                    
@@ -26,7 +26,7 @@
             <i class="fa fa-map-marker"></i> {{ $property["location_name"] }}                    
         </div>
         <div class="property-price">
-            ${{ number_format($property["price"]) }}                                                    
+            <span class="currency">$</span>{{ number_format($property["price"]) }}                                                    
         </div>
     </div>    
 </article>
