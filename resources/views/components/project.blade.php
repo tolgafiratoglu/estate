@@ -22,8 +22,8 @@
         <div class="property-location">
             <i class="fa fa-map-marker"></i> {{ $project["location_name"] }}                    
         </div>
-        <div class="property-price">
-            <span class="currency">$</span>{{ $project["project_title"] }}                                                    
+        <div class="estimated-date">
+            {{ date('F Y', strtotime($project["estimated_completion_date"])) }}                                                    
         </div>
     </div>    
 </article>

@@ -505,6 +505,17 @@ body{
             font-weight: 600;
         }
 
+        .property-list .estimated-date {
+            float: right;
+            right: 0px;
+            height: 100%;
+            background-color: #78C0A8;
+            border: 1px solid #78C0A8;
+            color: #FFFFFF;
+            padding: 12px;
+            font-weight: 600;
+        }
+
         .property-list .property-price .currency{
             margin-right: 0.1rem;
         }    
