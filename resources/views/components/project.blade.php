@@ -11,11 +11,13 @@
     <div class="property-details">
         <h4>
             <a data-browser="url" class="" href="{{ url('project', $project['slug']) }}">
-                {{ $project["project_title"] }}             
+                {{ \Illuminate\Support\Str::limit($project["project_title"], 20, '...') }}             
             </a>
         </h4>
         <div class="info">
-            <i class="fa fa-object-ungroup"></i> <span class="property-area">{{ $project["number_of_properties"] }} m<sup>2</sup></span> /  <i class="fa fa-bed"></i> <span class="property-rooms">{{ $project["min_number_of_rooms"] }}</span> Rooms                    
+            @if($project["number_of_properties"] > 0)
+                <i class="fa fa-building"></i><span class="info-label">{{ $project["number_of_properties"] }} {{ __("Properties For Sale") }}</span>                    
+            @endif
         </div>
     </div>
     <div class="property-bottom">

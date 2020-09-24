@@ -477,6 +477,10 @@ body{
         color: #999;
     }
 
+        .property-list .info .info-label{
+            margin-left: 0.2rem;
+        }  
+
     .property-list .property-bottom {
         position: relative;
         width: 100%;
@@ -509,8 +513,8 @@ body{
             float: right;
             right: 0px;
             height: 100%;
-            background-color: #78C0A8;
-            border: 1px solid #78C0A8;
+            background-color: #3299BB;
+            border: 1px solid #3299BB;
             color: #FFFFFF;
             padding: 12px;
             font-weight: 600;

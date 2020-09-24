@@ -11,7 +11,7 @@
     <div class="property-details">
         <h4>
             <a data-browser="url" class="" href="{{ url('property', $property['slug']) }}">
-                {{ $property["property_title"] }}             
+                {{ \Illuminate\Support\Str::limit($property["property_title"], 20, '...') }}             
             </a>
         </h4>
         <div class="address">
