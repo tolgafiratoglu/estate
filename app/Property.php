@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+
 /**
  * @property integer $id
  * @property string created_at
@@ -28,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Property extends Model
 {
+
+    use HasFactory;
 
     /**
      * The table associated with the model.

@@ -20,14 +20,17 @@
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
     <link rel="stylesheet" href="{{ asset('css/lightslider.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nouislider.min.css') }}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/nouislider.min.js') }}"></script>
     <script src="{{ asset('js/fontawesome/all.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/chosen.jquery.js') }}"></script>
     <script src="{{ asset('js/lightslider.js') }}"></script>
     <script src='//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false&key=AIzaSyDhLnCaYqsOFz3DelD1Sjls5ozSuHvK5lA&ver=1.0.0'></script>
+    <script src="{{ asset('js/webview.js') }}"></script>
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 

@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 /**
  * @property integer $id
  * @property integer $user_id
@@ -20,6 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Media extends Model
 {
+
+    use HasFactory;
+
     /**
      * The table associated with the model.
      * 

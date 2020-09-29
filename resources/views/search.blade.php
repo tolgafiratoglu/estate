@@ -137,7 +137,7 @@
             
                     <div class="filter-wrapper-unit ">
                         <input id="qual_area" value="0,10000" type="hidden">
-                        <div class="value-range noUi-target noUi-ltr noUi-horizontal noUi-background" id="value-range-area" type="hidden" data-target="qual_area" data-postfix="m<sup>2</sup>" data-start="0" data-end="10000"><div class="noUi-base"><div class="noUi-origin" style="left: 0%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin" style="left: 100%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div>
+                        <div class="filter-value-range noUi-target noUi-ltr noUi-horizontal noUi-background" id="filter-value-range-area" type="hidden" data-target="qual_area" data-postfix="m<sup>2</sup>" data-start="0" data-end="10000"><div class="noUi-base"><div class="noUi-origin" style="left: 0%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin" style="left: 100%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div>
                     </div>
             
                     <div class="filter-label-wrapper filter-wrapper-extra-padding ">
@@ -175,7 +175,7 @@
             
                     <div class="filter-wrapper-unit filter-wrapper-range-wrapper ">
                         <input id="qual_number_of_rooms" value="0,12" type="hidden">
-                        <div class="value-range noUi-target noUi-ltr noUi-horizontal noUi-background" id="value-range-room" type="hidden" data-target="qual_number_of_rooms" data-start="0" data-end="12"><div class="noUi-base"><div class="noUi-origin" style="left: 0%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin" style="left: 100%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div>
+                        <div class="filter-value-range noUi-target noUi-ltr noUi-horizontal noUi-background" id="filter-value-range-room" type="hidden" data-target="qual_number_of_rooms" data-start="0" data-end="12"><div class="noUi-base"><div class="noUi-origin" style="left: 0%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin" style="left: 100%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div>
                     </div>
             
                     <div class="filter-wrapper-unit filter-wrapper-unit-bathroom ">
@@ -209,7 +209,7 @@
             
                     <div class="filter-wrapper-unit ">
                         <input id="qual_floor" value="0,10" type="hidden">
-                        <div class="value-range noUi-target noUi-ltr noUi-horizontal noUi-background" id="value-range-floor" type="hidden" data-target="qual_floor" data-start="0" data-end="10"><div class="noUi-base"><div class="noUi-origin" style="left: 0%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin" style="left: 100%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div>
+                        <div class="filter-value-range noUi-target noUi-ltr noUi-horizontal noUi-background" id="filter-value-range-floor" type="hidden" data-target="qual_floor" data-start="0" data-end="10"><div class="noUi-base"><div class="noUi-origin" style="left: 0%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin" style="left: 100%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div>
                     </div>
             
                     <div class="filter-label-wrapper filter-wrapper-extra-padding ">
@@ -218,7 +218,7 @@
             
                     <div class="filter-wrapper-unit ">
                         <input id="qual_age_of_building" value="0,94" type="hidden">
-                        <div class="value-range noUi-target noUi-ltr noUi-horizontal noUi-background" id="value-range-age" type="hidden" data-target="qual_age_of_building" data-start="0" data-end="94"><div class="noUi-base"><div class="noUi-origin" style="left: 0%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin" style="left: 100%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div>
+                        <div class="filter-value-range noUi-target noUi-ltr noUi-horizontal noUi-background" id="filter-value-range-age" type="hidden" data-target="qual_age_of_building" data-start="0" data-end="94"><div class="noUi-base"><div class="noUi-origin" style="left: 0%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin" style="left: 100%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div>
                     </div>
                 </div>
             </div> <!-- End of filter -->
