@@ -191,6 +191,24 @@ body{
         top: 0px !important;
     }
 
+        .filter-switcher-multiple.active .fa-square{
+            display: none;
+        }
+
+        .filter-switcher-multiple.active .fa-check-square{
+            display: inline-block;
+        }
+
+        .filter-switcher-multiple .fa-check-square{
+            display: none;
+        }
+
+        .filter-switcher-multiple .fa-square{
+            display: inline-block;
+        }
+
+        
+
     .filter-wrapper .filter-input-wrapper{
         float: left;
         margin-left: 0px;
@@ -266,17 +284,7 @@ body{
         margin-left: 12px;
     }
 
-    .filter-wrapper .filter-content-wrapper ul li:before{
-        font-family: "FontAwesome";
-        content: "\f096" !important;
-        margin-right: 6px;
-        font-size: 14px;
-    }
-
-    .filter-wrapper .filter-content-wrapper ul li.active:before{
-        font-family: "FontAwesome";
-        content: "\f046" !important;
-    }
+    
 
     .filter-wrapper .filter-content-title{
         font-weight: bold;

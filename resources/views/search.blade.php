@@ -144,13 +144,21 @@
                         <label>Indoor Features</label>
                     </div>
             
-                    <div class="filter-wrapper-unit ">
+                    <div class="filter-wrapper-unit">
                         <input id="qual_interior_features" value="" type="hidden">
                         <div class="filter-content-wrapper filter-content-wrapper-multiple filter-wrapper-unit-scrollable">
                             <ul>
-                                <li class="filter-switcher-multiple qual_interior_features active default-switch" data-target="qual_interior_features" data-id="0">All Features</li>
+                                <li class="filter-switcher-multiple qual_interior_features active default-switch" data-target="qual_interior_features" data-id="0">
+                                    <i class="far fa-square"></i>
+                                    <i class="far fa-check-square"></i>
+                                    {{ __("All Features") }}
+                                </li>
                                 @foreach ($interiorFeatures as $interiorFeature)
-                                    <li class="filter-switcher-multiple qual_interior_features" data-target="qual_interior_features" data-id="{{ $interiorFeature['id'] }}">{{ $interiorFeature["title"] }}</li>                
+                                    <li class="filter-switcher-multiple qual_interior_features" data-target="qual_interior_features" data-id="{{ $interiorFeature['id'] }}">
+                                        <i class="far fa-square"></i>
+                                        <i class="far fa-check-square"></i>
+                                        {{ $interiorFeature["title"] }}
+                                    </li>                
                                 @endforeach
                             </ul>
                         </div>
