@@ -376,6 +376,14 @@ body{
 
 /* Property Template */
 
+.property-results-loading{
+    display: none;
+}
+
+.property-results-loading svg{
+    margin-right: 0.5rem;
+}
+
 .property-list-wrapper{
     width: calc(100% - 320px);
     float: left;

@@ -114,6 +114,50 @@
         }
 
         /*
+         * Property query base 
+        */
+        public function propertyQueryBase()
+        {
+            return Property::select('property.id AS id', 'property.title AS property_title', 'property.slug AS slug', 'location', 'location.name AS location_name', 'price', 'address', 'area', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors', 'lat', 'lon', 'approval_status', 'is_drafted', 'media.folder AS featured_image_folder', 'media.name AS feature_image_file_name')
+                                ->leftJoin('media', 'property.featured_image', '=', 'media.id')
+                                ->leftJoin('location', 'property.location', '=', 'location.id')
+                                ->join('users', 'users.id', '=', 'property.created_by')
+                                ->where(['users.is_blocked'=>false]);
+        }
+
+        /* 
+         * Search properties
+        */
+        public function search(
+            $propertyType = NULL,
+            $propertyStatus = NULL,
+            $minPrice = NULL,
+            $maxPrice = NULL,
+            $location = NULL,
+            $interiorFeatures = NULL,
+            $exteriorFeatures = NULL,
+            $area = NULL,
+            $floor = NULL,
+            $numberOfRooms = NULL,
+            $ageOfBuilding = NULL,
+            $address = NULL,
+            $keyword = NULL
+        ){
+
+            $searchObject = $this->propertyQueryBase()
+                                ->where(
+                                        [
+                                            'property.is_deleted'=>false, 
+                                            'property.approval_status'=>true, 
+                                            'property.is_drafted'=>true
+                                        ]
+                                    );   
+
+            return $searchObject->get()->toArray();
+
+        }
+
+        /*
         * Returns list of items defined by parameters
         *
         * @param $isDeleted if items are deleted or not
@@ -130,12 +174,12 @@
         public function getPropertyList($isDeleted = false, $approvalStatus = 'approved', $isDrafted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
-            $propertyListObject = Property::select('property.id AS id', 'property.title AS property_title', 'property.slug AS slug', 'location', 'location.name AS location_name', 'price', 'address', 'area', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors', 'lat', 'lon', 'approval_status', 'is_drafted', 'media.folder AS featured_image_folder', 'media.name AS feature_image_file_name')
-                                            ->leftJoin('media', 'property.featured_image', '=', 'media.id')
-                                            ->leftJoin('location', 'property.location', '=', 'location.id')
-                                            ->join('users', 'users.id', '=', 'property.created_by')
-                                            ->where(['property.is_deleted'=>$isDeleted, 'property.approval_status'=>$approvalStatus, 'property.is_drafted'=>$isDrafted])
-                                                ->where(['users.is_blocked'=>false]);                                                                
+            $propertyListObject = $this->propertyQueryBase()
+                                    ->where(
+                                        ['property.is_deleted'=>$isDeleted, 
+                                         'property.approval_status'=>$approvalStatus, 
+                                         'property.is_drafted'=>$isDrafted]
+                                        );                                   
 
                 // If offset is defined:
                 if($offset != NULL){

@@ -6,15 +6,15 @@
         <div class="col-md-12">
             
             <div id="filter-wrapper" class="filter-wrapper left-filter-wrapper filter-canvas-wrapper filter-canvas-wrapper-left">                
-                <a href="#" class="uptown-close-menu"><i class="fa fa-angle-left"></i>Back to Results</a>
+                <a href="#" class="uptown-close-menu"><i class="fas fa-angle-left"></i>{{ __("Back to Results") }}</a>
                 <div class="filter-inner-wrapper">
 
                     <div class="filter-wrapper-unit">
                         <input id="qual_location" name="location" value="0" type="hidden">
                         <div class="filter-input">
-                            <div class="value-wrapper"><i class="fa fa-map-marker"></i><span class="default-label">Any Location</span><span class="custom-label"></span></div>
+                            <div class="value-wrapper"><i class="fas fa-map-marker-alt"></i><span class="default-label">{{ __("Any Location") }}</span><span class="custom-label"></span></div>
                             <div class="arrow-icon-wrapper">
-                                <i class="fa fa-angle-down"></i>
+                                <i class="fas fa-angle-down"></i>
                             </div>
                             <div class="dropdown-content transition-200">
                                 <div class="filter-input-wrapper">
@@ -40,9 +40,9 @@
                     <div class="filter-wrapper-unit ">
                         <input id="qual_property_type" value="0" type="hidden">
                         <div class="filter-input">
-                            <div class="value-wrapper"><i class="fa fa-home"></i><span class="default-label">Any Type</span><span class="custom-label"></span></div>
+                            <div class="value-wrapper"><i class="fas fa-home"></i><span class="default-label">Any Type</span><span class="custom-label"></span></div>
                             <div class="arrow-icon-wrapper">
-                                <i class="fa fa-angle-down"></i>
+                                <i class="fas fa-angle-down"></i>
                             </div>
                             <div class="dropdown-content transition-200">
                                 <div class="filter-content-wrapper">
@@ -64,14 +64,14 @@
                     <div class="filter-wrapper-unit ">
                         <input id="qual_property_status" value="0" type="hidden">
                         <div class="filter-input">
-                            <div class="value-wrapper"><i class="fa fa-bell-o"></i><span class="default-label">Any Status</span><span class="custom-label"></span></div>
+                            <div class="value-wrapper"><i class="far fa-bell"></i><span class="default-label">{{ __("Any Status") }}</span><span class="custom-label"></span></div>
                             <div class="arrow-icon-wrapper">
-                                <i class="fa fa-angle-down"></i>
+                                <i class="fas fa-angle-down"></i>
                             </div>
                             <div class="dropdown-content transition-200">
                                 <div class="filter-content-wrapper">
                                     <ul>
-                                        <li class="filter-switcher active" data-target="qual_property_status" data-id="0">Any Status</li>
+                                        <li class="filter-switcher active" data-target="qual_property_status" data-id="0">{{ __("Any Status") }}</li>
                                         @foreach ($propertyStatus as $propertyStatusItem)
                                             <li data-id="{{ $propertyStatusItem['id'] }}" data-target="qual_property_status" class="filter-switcher">{{ $propertyStatusItem["title"] }}</li>
                                         @endforeach
@@ -165,15 +165,26 @@
                     </div>
             
                     <div class="filter-label-wrapper ">
-                        <label>Outdoor Features</label>
+                        <label>{{ __("Outdoor Features") }}</label>
                     </div>
             
                     <div class="filter-wrapper-unit ">
                         <input id="qual_exterior_features" value="" type="hidden">
                         <div class="filter-content-wrapper filter-content-wrapper-multiple filter-wrapper-unit-scrollable">
                             <ul>
-                                <li class="filter-switcher-multiple qual_interior_features active default-switch" data-target="qual_exterior_features" data-id="0">All Features</li>
-                                    <li class="filter-switcher-multiple qual_exterior_features" data-target="qual_exterior_features" data-id="20">Bus</li><li class="filter-switcher-multiple qual_exterior_features" data-target="qual_exterior_features" data-id="12">Hospital</li><li class="filter-switcher-multiple qual_exterior_features" data-target="qual_exterior_features" data-id="19">Metro</li><li class="filter-switcher-multiple qual_exterior_features" data-target="qual_exterior_features" data-id="11">Police</li><li class="filter-switcher-multiple qual_exterior_features" data-target="qual_exterior_features" data-id="10">School</li><li class="filter-switcher-multiple qual_exterior_features" data-target="qual_exterior_features" data-id="18">University</li>                </ul>
+                                <li class="filter-switcher-multiple qual_exterior_features active default-switch" data-target="qual_exterior_features" data-id="0">
+                                    <i class="far fa-square"></i>
+                                    <i class="far fa-check-square"></i>
+                                    {{ __("All Features") }}
+                                </li>
+                                @foreach ($exteriorFeatures as $exteriorFeature)
+                                    <li class="filter-switcher-multiple qual_exterior_features" data-target="qual_exterior_features" data-id="{{ $exteriorFeature['id'] }}">
+                                        <i class="far fa-square"></i>
+                                        <i class="far fa-check-square"></i>
+                                        {{ $exteriorFeature["title"] }}
+                                    </li>                
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
             
@@ -230,7 +241,7 @@
                     </div>
                 </div>
             </div> <!-- End of filter -->
-            <div id="property_results" class="property-list-wrapper">
+            <div class="property-list-wrapper">
                 <div class="filter-wrapper top-filter">
                     <div class="header-handler">
                         <span class="order-label">Recent Properties</span> <i>in</i> <span class="location-label">All Locations</span>
@@ -257,7 +268,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="property-list">
+                <div class="property-results-loading"><i class="fas fa-spinner spin"></i>{{ __("Loading search results...") }}</div>
+                <div id="property_results" class="property-list">
                     @foreach($initialProperties AS $property)
                         <x-property :property="$property" :rows="3" />
                     @endforeach

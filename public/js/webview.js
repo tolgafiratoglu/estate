@@ -21,8 +21,8 @@ var page_offset = 0;
             $(".qual-uptown-infinite-scroll").removeClass("active");
             $(".qual-uptown-pagination-no-posts").removeClass("active");
 
-            $(".qual-uptown-loading").show();
-            $("#qual_property_results").html("");
+            $(".property-results-loading").show();
+            $("#property_results").html("");
         }
 
         var location            = $("#qual_location").val();
@@ -78,7 +78,7 @@ var page_offset = 0;
                     data: request_data,
                     success: function(response){
 
-                        $(".qual-uptown-loading").hide();
+                        $(".property-results-loading").hide();
 
                         if(request_source == "infinite_scroll"){
                             if(response != ""){

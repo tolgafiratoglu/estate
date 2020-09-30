@@ -136,6 +136,33 @@ class PropertyController extends Controller
 
     }        
 
+    /*
+     * Search properties
+     * 
+     */
+    public function search(Request $request,
+                           PropertyRepository $propertyRepository)
+    {
+        $propertyType = $request->property_type;
+        $propertyStatus = $request->property_status;
+        $interiorFeatures = $request->interior_features;
+        $exteriorFeatures = $request->exterior_features;
+        $area = $request->area;
+        $floor = $request->floor;
+        $numberOfRooms = $request->number_of_rooms;
+        $ageOfBuilding = $request->age_of_building;
+        $address = $request->address;
+        $keyword = $request->keyword;
+        $minPrice = $request->min_price;
+        $maxPrice = $request->max_price;
+        $location = $request->location;
+
+        $searchResults = $propertyRepository->search($propertyType, $propertyStatus, $minPrice, $maxPrice, $location, $interiorFeatures, $exteriorFeatures, $area, $floor, $numberOfRooms, $ageOfBuilding, $address, $keyword);
+
+        return view('property.searchResults', $searchResults);
+
+    }
+
     /**
      * Single property page
      *
