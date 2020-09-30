@@ -159,7 +159,7 @@ class PropertyController extends Controller
 
         $searchResults = $propertyRepository->search($propertyType, $propertyStatus, $minPrice, $maxPrice, $location, $interiorFeatures, $exteriorFeatures, $area, $floor, $numberOfRooms, $ageOfBuilding, $address, $keyword);
 
-        return view('property.searchResults', $searchResults);
+        return view('property.search_results', ["searchResults"=>$searchResults]);
 
     }
 

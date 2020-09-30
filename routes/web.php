@@ -35,7 +35,7 @@ Route::get('/api/location/children', 'LocationController@getChildLocations')->na
 
 Route::post('/api/property/save', 'PropertyController@save')->name('save_property')->middleware('auth');
 
-Route::post('/api/search/property', 'PropertyController@search')->name('search_properties')->middleware('auth');
+Route::post('/api/search/property', 'PropertyController@search')->name('search_properties');
 
 Route::get('/api/admin/property-status', 'PropertyStatusController@getPropertyStatus')->name('get_property_status')->middleware('admin');
 Route::post('api/admin/property-status', 'PropertyStatusController@savePropertyStatus')->name('save_property_status')->middleware('admin');

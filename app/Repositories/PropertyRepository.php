@@ -141,17 +141,34 @@
             $numberOfRooms = NULL,
             $ageOfBuilding = NULL,
             $address = NULL,
-            $keyword = NULL
+            $keyword = NULL,
+            $offset = 0, 
+            $limit = 12, 
+            $orderBy = 'id',
+            $order = 'DESC'
         ){
 
             $searchObject = $this->propertyQueryBase()
                                 ->where(
                                         [
                                             'property.is_deleted'=>false, 
-                                            'property.approval_status'=>true, 
-                                            'property.is_drafted'=>true
+                                            'property.approval_status'=>'approved', 
+                                            'property.is_drafted'=>false
                                         ]
                                     );   
+
+                if($offset != NULL){
+                    $searchObject = $searchObject->offset($offset);
+                }
+
+                // If limit is defined:
+                if($limit != NULL){
+                    $searchObject = $searchObject->limit($limit);
+                }
+
+                if($order != NULL){
+                    $searchObject = $searchObject->orderBy($orderBy, $order);
+                }
 
             return $searchObject->get()->toArray();
 

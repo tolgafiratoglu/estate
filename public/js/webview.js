@@ -90,7 +90,7 @@ var page_offset = 0;
                                 $(".qual-uptown-pagination-no-posts").addClass("active");
                             }
                         }else{
-                            $("#qual_property_results").html(response);
+                            $("#property_results").html(response);
 
                             if(pagination == "infinite_scroll"){
                                 $(".qual-uptown-infinite-scroll").addClass("active");
