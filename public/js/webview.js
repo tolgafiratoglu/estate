@@ -25,21 +25,21 @@ var page_offset = 0;
             $("#property_results").html("");
         }
 
-        var location            = $("#qual_location").val();
-        var floor               = $("#qual_floor").val();
-        var property_type       = $("#qual_property_type").val();
-        var property_status     = $("#qual_property_status").val();
-        var interior_features   = $("#qual_interior_features").val();
-        var exterior_features   = $("#qual_exterior_features").val();
-        var number_of_bathrooms = $("#qual_number_of_bathrooms").val();
-        var order               = $("#qual_order").val();
+        var location            = $("#estate_location").val();
+        var floor               = $("#estate_floor").val();
+        var property_type       = $("#estate_property_type").val();
+        var property_status     = $("#estate_property_status").val();
+        var interior_features   = $("#estate_interior_features").val();
+        var exterior_features   = $("#estate_exterior_features").val();
+        var number_of_bathrooms = $("#estate_number_of_bathrooms").val();
+        var order               = $("#estate__order").val();
 
-        var area                 = $("#qual_area").val();
-        var number_of_rooms      = $("#qual_number_of_rooms").val();
-        var age_of_building     = $("#qual_age_of_building").val();
+        var area                 = $("#estate_area").val();
+        var number_of_rooms      = $("#estate_number_of_rooms").val();
+        var age_of_building     = $("#estate_age_of_building").val();
 
-        var address             = encodeURIComponent($("#qual_address").val());
-        var keyword             = encodeURIComponent($("#qual_keyword").val());
+        var address             = encodeURIComponent($("#estate_address").val());
+        var keyword             = encodeURIComponent($("#estate_keyword").val());
 
         var min_price    = $("#property_filter_min_price").val();
         var max_price    = $("#property_filter_max_price").val();

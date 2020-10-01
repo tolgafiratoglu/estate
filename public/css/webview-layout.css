@@ -30,6 +30,10 @@ body{
 
 /* 2. Search filter starts */
 
+.filter-close-menu{
+    display: none;
+}
+
 .filter-canvas-wrapper {
     background-color: #f5f5f5 !important;
     border-color: #e5e5e5 !important;
@@ -138,7 +142,7 @@ body{
         overflow: hidden;
     }
 
-    .filter-wrapper .value-wrapper i{
+    .filter-wrapper .value-wrapper svg{
         margin-right: 6px;
     }
 
@@ -191,19 +195,23 @@ body{
         top: 0px !important;
     }
 
-        .filter-switcher-multiple.active .fa-square{
+        .filter-switcher-multiple.active .fa-square,
+        .filter-switcher.active .fa-square{
             display: none;
         }
 
-        .filter-switcher-multiple.active .fa-check-square{
+        .filter-switcher-multiple.active .fa-check-square,
+        .filter-switcher.active .fa-check-square{
             display: inline-block;
         }
 
-        .filter-switcher-multiple .fa-check-square{
+        .filter-switcher-multiple .fa-check-square,
+        .filter-switcher .fa-check-square{
             display: none;
         }
 
-        .filter-switcher-multiple .fa-square{
+        .filter-switcher-multiple .fa-square,
+        .filter-switcher .fa-square{
             display: inline-block;
         }
 
@@ -270,12 +278,12 @@ body{
         margin: 0px;
     }
 
-    .qual_number_of_bathrooms{
+    .estate_number_of_bathrooms{
         width: 100% !important;
         line-height: 2.5;
     }
 
-    .filter-wrapper .filter-content-wrapper ul li.qual_number_of_rooms{
+    .filter-wrapper .filter-content-wrapper ul li.estate_number_of_rooms{
         float: left;
         width: 25%;
     }
