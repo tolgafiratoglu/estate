@@ -605,6 +605,8 @@ var page_offset = 0;
                     }
                 });
 
+                
+
             }
 
         );
@@ -937,6 +939,8 @@ var page_offset = 0;
             content_wrapper_close_handlers();
 
             enableFontAwesomeContent();
+
+            range_slider();
 
         }
     );
