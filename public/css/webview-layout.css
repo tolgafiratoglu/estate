@@ -249,6 +249,10 @@ body{
         clear: both;
     }
 
+        .child-location-wrapper .filter-wrapper-unit{
+            margin-top: 1rem;
+        }
+
     .filter-wrapper .filter-content-wrapper-multiple{
         padding: 0px !important;
         overflow: hidden;

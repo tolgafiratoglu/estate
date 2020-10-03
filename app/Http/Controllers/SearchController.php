@@ -28,7 +28,7 @@ class SearchController extends Controller
     {
 
         // Get locations:
-        $locations = $locationRepository->getLocations(true, false, NULL);
+        $locations = $locationRepository->getLocations(false, NULL);
 
         // Get property types:
         $propertyTypes = $propertyTypeRepository->getPropertyTypes(false);

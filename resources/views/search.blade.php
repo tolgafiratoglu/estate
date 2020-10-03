@@ -28,7 +28,7 @@
                                             {{ __("All Locations") }}
                                         </li>
                                         @foreach ($locations as $location)
-                                            <li data-getchildren="1" class="filter-switcher filter-location-switcher" data-target="estate_location" data-id="2">
+                                            <li data-getchildren="1" class="filter-switcher filter-location-switcher" data-label='{{ $location["name"] }}' data-target="estate_location" data-id='{{ $location["id"] }}'>
                                                 <i class="far fa-square"></i>
                                                 <i class="far fa-check-square"></i>
                                                 {{ $location["name"] }}
@@ -42,22 +42,32 @@
                     </div>
                     
                     <div class="filter-label-wrapper ">
-                        <label>Property Type</label>
+                        <label>{{ __("Property Type") }}</label>
                     </div>
             
                     <div class="filter-wrapper-unit ">
                         <input id="estate_property_type" value="0" type="hidden">
                         <div class="filter-input">
-                            <div class="value-wrapper"><i class="fas fa-home"></i><span class="default-label">Any Type</span><span class="custom-label"></span></div>
+                            <div class="value-wrapper">
+                                <i class="fas fa-home"></i><span class="default-label">{{ __("Any Type") }}</span><span class="custom-label"></span>
+                            </div>
                             <div class="arrow-icon-wrapper">
                                 <i class="fas fa-angle-down"></i>
                             </div>
                             <div class="dropdown-content transition-200">
                                 <div class="filter-content-wrapper">
                                     <ul>
-                                        <li class="filter-switcher active" data-target="estate_property_type" data-id="0">All Property Types</li>
+                                        <li class="filter-switcher active" data-target="estate_property_type" data-id="0">
+                                            <i class="far fa-square"></i>
+                                            <i class="far fa-check-square"></i>
+                                            {{ __("All Property Types") }}
+                                        </li>
                                         @foreach ($propertyTypes as $propertyType)
-                                            <li data-id="{{ $propertyType['id'] }}" data-target="estate_property_type" class="filter-switcher">{{ $propertyType["title"] }}</li>
+                                            <li data-id="{{ $propertyType['id'] }}" data-target="estate_property_type" data-label='{{ $propertyType["title"] }}' class="filter-switcher">
+                                                <i class="far fa-square"></i>
+                                                <i class="far fa-check-square"></i>
+                                                {{ $propertyType["title"] }}
+                                            </li>
                                         @endforeach
                                     </ul>    
                                 </div>
@@ -79,9 +89,17 @@
                             <div class="dropdown-content transition-200">
                                 <div class="filter-content-wrapper">
                                     <ul>
-                                        <li class="filter-switcher active" data-target="estate_property_status" data-id="0">{{ __("Any Status") }}</li>
+                                        <li class="filter-switcher active" data-target="estate_property_status" data-id="0">
+                                            <i class="far fa-square"></i>
+                                            <i class="far fa-check-square"></i>
+                                            {{ __("Any Status") }}
+                                        </li>
                                         @foreach ($propertyStatus as $propertyStatusItem)
-                                            <li data-id="{{ $propertyStatusItem['id'] }}" data-target="estate_property_status" class="filter-switcher">{{ $propertyStatusItem["title"] }}</li>
+                                            <li data-id="{{ $propertyStatusItem['id'] }}" data-target="estate_property_status" data-label='{{ $propertyStatusItem["title"] }}' class="filter-switcher">
+                                                <i class="far fa-square"></i>
+                                                <i class="far fa-check-square"></i>
+                                                {{ $propertyStatusItem["title"] }}
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </div>

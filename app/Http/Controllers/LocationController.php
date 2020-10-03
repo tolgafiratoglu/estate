@@ -40,7 +40,7 @@ class LocationController extends Controller
     /**
      * Public api method to return child locations
      *
-     * @return \Symfony\Component\HttpFoundation\Response 
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getChildLocations(Request $request, LocationRepository $locationRepository)
     {
@@ -48,10 +48,20 @@ class LocationController extends Controller
         $validatedData = $this->validate($request, ['parent_id' => 'required',]);
         $parentId = $validatedData["parent_id"];
 
-        $childLocations = $locationRepository->findWhere(["parent"=>$parentId], ["id", "name", "slug"]);
+        $childLocations = $locationRepository->getLocations(false, $parentId);
 
         return response()->json($childLocations);
+        
+    }
 
+    public function getChildLocationsMenu(Request $request, LocationRepository $locationRepository)
+    {
+        $validatedData = $this->validate($request, ['parent_id' => 'required', 'parent_label' => 'required',]);
+        $parentId = $validatedData["parent_id"];
+
+        $childLocations = $locationRepository->getLocations(false, $parentId);
+
+        return view('property.location_children')->with(["locations"=>$childLocations, "parent_label"=>$validatedData["parent_label"]]);
     }
 
 }

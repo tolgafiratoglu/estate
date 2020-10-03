@@ -245,9 +245,9 @@ var page_offset = 0;
 
                 var data_id     = target.attr("data-id");
                 var data_target = target.attr("data-target");
-                var label_value = target.html();
+                var label_value = target.attr("data-label");
 
-                var target_value_wrapper = target.closest(".qual-filter-wrapper-unit");
+                var target_value_wrapper = target.closest(".filter-wrapper-unit");
 
                 $("#"+data_target).val(data_id);
 
@@ -277,7 +277,7 @@ var page_offset = 0;
             }
         );
 
-        $(".qual-filter-location-switcher").click(
+        $(".filter-location-switcher").click(
             function(){
 
                 var getchildren = $(this).attr("data-getchildren");
@@ -287,27 +287,26 @@ var page_offset = 0;
 
                 $(".location-label").html($(this).html());
 
-                var base_url = $("#qual_uptown_base_url").val();
-                var qual_filter_nonce = $("#_qual_filter_nonce").val();
-
                 var parent_id = $(this).attr("data-id");
-                var parent_label = $(this).html();
+                var parent_label = $(this).attr("data-label")
 
                 var target_obj = $(this);
 
+                var csrfToken = $('meta[name=csrf-token]')[0].content;
+                var requestData = {_token: csrfToken, parent_id:parent_id, parent_label:parent_label};
+
                 $.ajax( {
-                    url : base_url
-                        + "/wp-admin/admin-ajax.php",
-                    type : 'POST',
-                    data: {action: "get_location_with_parent", parent_id:parent_id, parent_label:parent_label, qual_filter_nonce:qual_filter_nonce},
+                    url : "/api/location/children/row",
+                    type : 'GET',
+                    data: requestData,
                     success: function(response){
 
-                        if(parent_id > 0){
-                            target_obj.closest(".qual-filter-wrapper-unit").find(".qual-child-location-wrapper").html(response);
+                        if(parent_id > 0){          
+                            target_obj.closest(".filter-wrapper-unit").find(".child-location-wrapper").html(response);
                             location_keyup();
                             init_filter_handlers();
                         }else{
-                            target_obj.closest(".qual-filter-wrapper-unit").find(".qual-child-location-wrapper").html("");
+                            target_obj.closest(".filter-wrapper-unit").find(".child-location-wrapper").html("");
                         }
 
                     }

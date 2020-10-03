@@ -32,7 +32,7 @@ class Location extends Model
     /**
      * @var array
      */
-    protected $fillable = ['created_at', 'updated_at', 'name', 'slug', 'description'];
+    protected $fillable = ['created_at', 'updated_at', 'name', 'slug', 'description', 'is_deleted', 'parent'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
