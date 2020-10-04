@@ -229,7 +229,11 @@
                         <input id="estate_number_of_bathrooms" value="0" type="hidden">
                         <div class="filter-content-wrapper filter-content-wrapper-multiple">
                             <ul>
-                                <li class="filter-switcher-multiple estate_number_of_bathrooms" data-target="estate_number_of_bathrooms" data-id="1+">More Than One Bathrooms</li>
+                                <li class="filter-switcher-multiple estate_number_of_bathrooms" data-target="estate_number_of_bathrooms" data-id="1">
+                                    <i class="far fa-square"></i>
+                                    <i class="far fa-check-square"></i>
+                                    {{ __("More Than One Bathrooms") }}
+                                </li>
                             </ul>
                         </div>
                     </div>

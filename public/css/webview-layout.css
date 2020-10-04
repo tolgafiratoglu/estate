@@ -398,6 +398,7 @@ body{
 
 .property-list-wrapper{
     width: calc(100% - 320px);
+    min-height: 1540px;
     float: left;
     margin-left: 0px;
     padding-left: 24px;
