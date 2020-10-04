@@ -69,7 +69,7 @@ body{
         overflow-x: hidden;
     }
 
-    .filter-wrapper .filter-wrapper-unit-bathroom{
+    .filter-wrapper .filter-wrapper-selection{
         background-color: #FFFFFF;
         padding: 3px 12px;
         border: 1px solid #e5e5e5;
@@ -77,6 +77,7 @@ body{
         overflow-y: auto;
         overflow-x: hidden;
         margin-top: 12px;
+        line-height: 2.5 !important;
     }
 
     .filter-wrapper .child-locations{
@@ -596,6 +597,10 @@ body{
         .property-list .property-price .currency{
             margin-right: 0.1rem;
         }    
+
+#estate-map-content{
+    display: none;
+}
 
 .top-filter{
     float: left;

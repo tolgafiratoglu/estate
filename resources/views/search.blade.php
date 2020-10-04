@@ -225,7 +225,7 @@
                         </div>
                     </div>
             
-                    <div class="filter-wrapper-unit filter-wrapper-unit-bathroom ">
+                    <div class="filter-wrapper-unit filter-wrapper-selection ">
                         <input id="estate_number_of_bathrooms" value="0" type="hidden">
                         <div class="filter-content-wrapper filter-content-wrapper-multiple">
                             <ul>
@@ -237,7 +237,7 @@
                             </ul>
                         </div>
                     </div>
-            
+
                     <div class="filter-label-wrapper ">
                         <label>Address</label>
                     </div>
@@ -247,6 +247,46 @@
                     </div>
             
                     <div class="filter-label-wrapper ">
+                        <label>{{ __("Floor") }}</label> 
+                        <span class="filter-label-range">
+                            <span>{{ __("Between") }}</span> 
+                            <span id="estate_floor_range_min">0</span> 
+                            - <span id="estate_floor_range_max">10</span> 
+                            <span>{{ __("Floors") }}</span>
+                        </span>
+                    </div>
+                    <div class="filter-wrapper-unit ">
+                        <input id="estate_floor" value="0,10" type="hidden">
+                        <div class="filter-value-range" id="filter-value-range-floor" type="hidden" data-target="estate_floor" data-start="0" data-end="10">
+                        </div>
+                    </div>
+
+                    <div class="filter-wrapper-unit filter-wrapper-selection ">
+                        <input id="estate_number_of_parks" value="0" type="hidden">
+                        <div class="filter-content-wrapper filter-content-wrapper-multiple">
+                            <ul>
+                                <li class="filter-switcher-multiple estate_number_of_parks" data-target="estate_number_of_parks" data-id="1">
+                                    <i class="far fa-square"></i>
+                                    <i class="far fa-check-square"></i>
+                                    {{ __("Has Park Area") }}
+                                </li>
+                            </ul>
+                        </div>
+                        <input id="estate_has_pool" value="0" type="hidden">
+                        <div class="filter-content-wrapper filter-content-wrapper-multiple">
+                            <ul>
+                                <li class="filter-switcher-multiple estate_has_pool" data-target="estate_has_pool" data-id="1">
+                                    <i class="far fa-square"></i>
+                                    <i class="far fa-check-square"></i>
+                                    {{ __("Has Pool") }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+            
+                    <div class="filter-label-wrapper ">
                         <label>Keyword</label>
                     </div>
             
@@ -254,20 +294,15 @@
                         <input id="estate_keyword" class="filter-value filter-element" type="text" data-start="" value="" placeholder="Search Keyword in Details">
                     </div>
             
-                    <div class="filter-label-wrapper ">
-                        <label>Which Floor?</label> <span class="filter-label-range"><span>Between</span> <span id="estate_floor_range_min">0</span> - <span id="estate_floor_range_max">10</span> <span>Floors</span></span>
-                    </div>
-            
-                    <div class="filter-wrapper-unit ">
-                        <input id="estate_floor" value="0,10" type="hidden">
-                        <div class="filter-value-range" id="filter-value-range-floor" type="hidden" data-target="estate_floor" data-start="0" data-end="10">
-                        </div>
-                    </div>
-            
                     <div class="filter-label-wrapper filter-wrapper-extra-padding ">
-                        <label>Age of Building</label><div class="filter-label-range">Between <span id="estate_age_of_building_range_min">0</span> - <span id="estate_age_of_building_range_max">94</span> <span>Years</span></div>
-                    </div>
-            
+                        <label>{{ __("Age of Building") }}</label>
+                        <div class="filter-label-range">
+                            {{ __("Between") }} 
+                            <span id="estate_age_of_building_range_min">0</span> 
+                            - <span id="estate_age_of_building_range_max">94</span> 
+                            <span>{{ __("Years") }} </span>
+                        </div>
+                    </div>         
                     <div class="filter-wrapper-unit ">
                         <input id="estate_age_of_building" value="0,94" type="hidden">
                         <div class="filter-value-range" id="filter-value-range-age" type="hidden" data-target="estate_age_of_building" data-start="0" data-end="94">
@@ -278,7 +313,7 @@
             <div class="property-list-wrapper">
                 <div class="filter-wrapper top-filter">
                     <div class="header-handler">
-                        <span class="order-label">Recent Properties</span> <i>in</i> <span class="location-label">All Locations</span>
+                        <span class="order-label">{{ __("Recent Properties") }}</span> <i>in</i> <span class="location-label">{{ __("All Locations") }}</span>
                     </div>
                     <div class="map-handler-wrapper">
                         <div class="map-handler" data-map="top"><i class="fa fa-map-o"></i> Show Map</div>
@@ -303,6 +338,9 @@
                     </div>
                 </div>
                 <div class="property-results-loading"><i class="fas fa-spinner spin"></i>{{ __("Loading search results...") }}</div>
+                <div id="estate-map-content">
+                    <div class="estate-mappable"></div>
+                </div>
                 <div id="property_results" class="property-list">
                     @foreach($initialProperties AS $property)
                         <x-property :property="$property" :rows="3" />

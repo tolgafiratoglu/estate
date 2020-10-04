@@ -3,27 +3,15 @@ var page_offset = 0;
     var xhr;
     var request_source = "filter";
 
-    var ajax_request = function request_ajax(){
-
-        if(xhr && xhr.readyState != 4){
-            xhr.abort();
-        }
+    function getFilterRequestData()
+    {
 
         var csrfToken = $('meta[name=csrf-token]')[0].content;
 
         var posts_per_page  = $("#qual_property_results").attr("data-perpage");
         var pagination = $("#qual_property_results").attr("data-pagination");
 
-        if(request_source == "infinite_scroll"){
-            page_offset += 1;
-        }else{
-
-            $(".qual-uptown-infinite-scroll").removeClass("active");
-            $(".qual-uptown-pagination-no-posts").removeClass("active");
-
-            $(".property-results-loading").show();
-            $("#property_results").html("");
-        }
+        
 
         var location            = $("#estate_location").val();
         var floor               = $("#estate_floor").val();
@@ -72,10 +60,33 @@ var page_offset = 0;
                 request_data["keyword"] = keyword;
             }
 
+        return request_data;    
+
+    }
+
+    var ajax_request = function request_ajax(){
+
+        if(xhr && xhr.readyState != 4){
+            xhr.abort();
+        }
+
+        if(request_source == "infinite_scroll"){
+            page_offset += 1;
+        }else{
+
+            $(".qual-uptown-infinite-scroll").removeClass("active");
+            $(".qual-uptown-pagination-no-posts").removeClass("active");
+
+            $(".property-results-loading").show();
+            $("#property_results").html("");
+        }
+
+        var requestData = getFilterRequestData();
+
                 xhr = $.ajax( {
                     url : "/api/search/property",
                     type : 'POST',
-                    data: request_data,
+                    data: requestData,
                     success: function(response){
 
                         $(".property-results-loading").hide();
@@ -471,23 +482,19 @@ var page_offset = 0;
             }
         );
 
-        $(".qual-map-handler").click(
+        $(".map-handler").click(
             function(){
 
                 var map_preference = $(this).attr("data-map");
 
                 popup_last_content = "map";
 
-                var base_url = $("#qual_uptown_base_url").val();
-                var qual_filter_nonce = $("#_qual_filter_nonce").val();
-
-                var request_data = {action: "get_map_locations", qual_filter_nonce: qual_filter_nonce};
+                var requestData = getFilterRequestData();
 
                 $.ajax( {
-                        url : base_url
-                            + "/wp-admin/admin-ajax.php",
+                        url : "/api/search/property/json",
                         type : 'POST',
-                        data: request_data,
+                        data: requestData,
                         success: function(response){
 
                             $(".qual-uptown-single-loading").removeClass("active");
@@ -515,7 +522,7 @@ var page_offset = 0;
                                     $(".qual-uptown-single-content-inner").html('<div class="qual-map-canvas-popup qual-uptown-mappable" data-setmarker="0" data-lat="'+lat+'" data-lng="'+lng+'" data-zoom="'+google_maps_front_default_zoom+'"></div>');
                                     $(".qual-uptown-single-content-inner").attr("data-loaded", 1);
 
-                                    init_map($(".qual-uptown-mappable.qual-map-canvas-popup"));
+                                    init_map($(".estate-mappable.estate-map-canvas-popup"));
 
                                     $("body").css({overflow: "hidden"});
 
@@ -524,18 +531,18 @@ var page_offset = 0;
                                     var map_status = $("#qual-uptown-map-content").attr("map-status");
 
                                     if(map_status == "open"){
-                                        $("#qual-uptown-map-content").hide();
-                                        $("#qual-uptown-map-content").html("");
-                                        $("#qual-uptown-map-content").attr("map-status", "close");
+                                        $("#estate-map-content").hide();
+                                        $("#estate-map-content").html("");
+                                        $("#estate-map-content").attr("map-status", "close");
                                     }else{
-                                        $("#qual-uptown-map-content").show();
-                                        $("#qual-uptown-map-content").attr("map-status", "open");
+                                        $("#estate-map-content").show();
+                                        $("#estate-map-content").attr("map-status", "open");
                                     }
 
-                                        $("#qual-uptown-map-content").html('<div class="qual-map-canvas-content qual-uptown-mappable" data-setmarker="0" data-lat="'+lat+'" data-lng="'+lng+'" data-zoom="'+google_maps_front_default_zoom+'"></div>');
-                                        $("#qual-uptown-map-content").attr("data-loaded", 1);
+                                        $("#estate-map-content").html('<div class="qual-map-canvas-content qual-uptown-mappable" data-setmarker="0" data-lat="'+lat+'" data-lng="'+lng+'" data-zoom="'+google_maps_front_default_zoom+'"></div>');
+                                        $("#estate-map-content").attr("data-loaded", 1);
 
-                                        init_map($(".qual-uptown-mappable.qual-map-canvas-content"));
+                                        init_map($(".estate-mappable.estate-map-canvas-content"));
 
                                 }
 
