@@ -158,9 +158,9 @@ class PropertyController extends Controller
         $maxPrice = $request->max_price;
         $location = $request->location;
         $hasParkArea = $request->has_park;
-        $hasPool = $request->has_pool;
+        $hasGarden = $request->has_garden;
 
-        $searchResults = $propertyRepository->search($propertyType, $propertyStatus, $minPrice, $maxPrice, $location, $interiorFeatures, $exteriorFeatures, $area, $floor, $numberOfRooms, $hasParkArea, $hasPool, $ageOfBuilding, $address, $keyword);
+        $searchResults = $propertyRepository->search($propertyType, $propertyStatus, $minPrice, $maxPrice, $location, $interiorFeatures, $exteriorFeatures, $area, $floor, $numberOfRooms, $hasParkArea, $hasGarden, $ageOfBuilding, $address, $keyword);
 
         return view('property.search_results', ["searchResults"=>$searchResults]);
 

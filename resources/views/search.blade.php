@@ -262,23 +262,23 @@
                     </div>
 
                     <div class="filter-wrapper-unit filter-wrapper-selection ">
-                        <input id="estate_number_of_parks" value="0" type="hidden">
+                        <input id="estate_has_park_area" value="0" type="hidden">
                         <div class="filter-content-wrapper filter-content-wrapper-multiple">
                             <ul>
-                                <li class="filter-switcher-multiple estate_number_of_parks" data-target="estate_has_park_area" data-id="1">
+                                <li class="filter-switcher-multiple estate_has_park_area" data-target="estate_has_park_area" data-id="1">
                                     <i class="far fa-square"></i>
                                     <i class="far fa-check-square"></i>
                                     {{ __("Has Park Area") }}
                                 </li>
                             </ul>
                         </div>
-                        <input id="estate_has_pool" value="0" type="hidden">
+                        <input id="estate_has_garden" value="0" type="hidden">
                         <div class="filter-content-wrapper filter-content-wrapper-multiple">
                             <ul>
-                                <li class="filter-switcher-multiple estate_has_pool" data-target="estate_has_pool" data-id="1">
+                                <li class="filter-switcher-multiple estate_has_garden" data-target="estate_has_garden" data-id="1">
                                     <i class="far fa-square"></i>
                                     <i class="far fa-check-square"></i>
-                                    {{ __("Has Pool") }}
+                                    {{ __("Has Garden") }}
                                 </li>
                             </ul>
                         </div>

@@ -140,6 +140,7 @@
             $floor = NULL,
             $numberOfRooms = NULL,
             $hasParkArea = NULL,
+            $hasGarden = NULL,
             $ageOfBuilding = NULL,
             $address = NULL,
             $keyword = NULL,
@@ -178,6 +179,18 @@
                     $searchObject = $searchObject->where('property_type', '=', $propertyType);
                 }
 
+                // Park area:
+                if($hasParkArea > 0)
+                {
+                    $searchObject = $searchObject->where('has_park_area', '=', $hasParkArea);
+                }
+
+                // Has garden:
+                if($hasGarden > 0)
+                {
+                    $searchObject = $searchObject->where('has_garden', '=', $hasGarden);
+                }
+
                 // Min Price:
                 if($minPrice != NULL)
                 {
@@ -205,7 +218,45 @@
                     $searchObject = $searchObject->orderBy($orderBy, $order);
                 }
 
-                // echo $searchObject->toSql();
+                if($area != NULL){
+                    $areaExp = explode(",", $area);
+                    if(sizeof($areaExp) == 2){
+                        $searchObject = $searchObject->where('area', '>=', $areaExp[0]);
+                        $searchObject = $searchObject->where('area', '<=', $areaExp[1]);
+                    }
+                }
+
+                if($numberOfRooms != NULL){
+                    $numberOfRoomsExp = explode(",", $numberOfRooms);
+                    if(sizeof($numberOfRoomsExp) == 2){
+                        $searchObject = $searchObject->where('number_of_rooms', '>=', $numberOfRoomsExp[0]);
+                        $searchObject = $searchObject->where('number_of_rooms', '<=', $numberOfRoomsExp[1]);
+                    }
+                }
+
+                if($floor != NULL){
+                    $floorsExp = explode(",", $floor);
+                    if(sizeof($floorsExp) == 2){
+                        $searchObject = $searchObject->where('which_floor', '>=', $floorsExp[0]);
+                        $searchObject = $searchObject->where('which_floor', '<=', $floorsExp[1]);
+                    }
+                }
+
+                if($ageOfBuilding != NULL){
+                    $ageOfBuildingExp = explode(",", $ageOfBuilding);
+                    if(sizeof($ageOfBuildingExp) == 2){
+                        $searchObject = $searchObject->where('year_built', '<=', date("Y") - $ageOfBuildingExp[0]);
+                        $searchObject = $searchObject->where('year_built', '>=', date("Y") - $ageOfBuildingExp[1]);
+                    }
+                }
+
+                if($address != NULL){
+                    $searchObject = $searchObject->where('address', 'LIKE', "%".$address."%");
+                }    
+
+                if($keyword != NULL){
+                    $searchObject = $searchObject->where('title', 'LIKE', "%".$keyword."%");
+                }  
 
             return $searchObject->get()->toArray();
 
