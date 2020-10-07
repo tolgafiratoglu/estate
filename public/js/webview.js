@@ -20,6 +20,8 @@ var page_offset = 0;
         var interior_features   = $("#estate_interior_features").val();
         var exterior_features   = $("#estate_exterior_features").val();
         var number_of_bathrooms = $("#estate_number_of_bathrooms").val();
+        var has_park_area = $("#estate_has_park_area").val();
+        var has_pool = $("#estate_has_pool").val();
         var order               = $("#estate__order").val();
 
         var area                 = $("#estate_area").val();
@@ -48,6 +50,8 @@ var page_offset = 0;
                                     area: area,
                                     floor: floor,
                                     number_of_rooms: number_of_rooms,
+                                    has_park_area: has_park_area,
+                                    has_pool: has_pool,
                                     age_of_building: age_of_building,
                                     order: order
                             };

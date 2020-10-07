@@ -265,7 +265,7 @@
                         <input id="estate_number_of_parks" value="0" type="hidden">
                         <div class="filter-content-wrapper filter-content-wrapper-multiple">
                             <ul>
-                                <li class="filter-switcher-multiple estate_number_of_parks" data-target="estate_number_of_parks" data-id="1">
+                                <li class="filter-switcher-multiple estate_number_of_parks" data-target="estate_has_park_area" data-id="1">
                                     <i class="far fa-square"></i>
                                     <i class="far fa-check-square"></i>
                                     {{ __("Has Park Area") }}

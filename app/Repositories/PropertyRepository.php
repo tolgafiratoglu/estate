@@ -129,16 +129,17 @@
          * Search properties
         */
         public function search(
-            $propertyType = NULL,
-            $propertyStatus = NULL,
+            $propertyType = 0,
+            $propertyStatus = 0,
             $minPrice = NULL,
             $maxPrice = NULL,
-            $location = NULL,
+            $location = 0,
             $interiorFeatures = NULL,
             $exteriorFeatures = NULL,
             $area = NULL,
             $floor = NULL,
             $numberOfRooms = NULL,
+            $hasParkArea = NULL,
             $ageOfBuilding = NULL,
             $address = NULL,
             $keyword = NULL,
@@ -147,6 +148,8 @@
             $orderBy = 'id',
             $order = 'DESC'
         ){
+
+            
 
             $searchObject = $this->propertyQueryBase()
                                 ->where(
@@ -157,6 +160,37 @@
                                         ]
                                     );   
 
+                // Set location if not zero                                    
+                if($location > 0)
+                {
+                    $searchObject = $searchObject->where('location', '=', $location);
+                }
+
+                // Property status:
+                if($propertyStatus > 0)
+                {
+                    $searchObject = $searchObject->where('property_status', '=', $propertyStatus);
+                }
+
+                // Property type:
+                if($propertyType > 0)
+                {
+                    $searchObject = $searchObject->where('property_type', '=', $propertyType);
+                }
+
+                // Min Price:
+                if($minPrice != NULL)
+                {
+                    $searchObject = $searchObject->where('price', '>=', $minPrice);
+                }
+
+                // Max Price:
+                if($maxPrice != NULL)
+                {
+                    $searchObject = $searchObject->where('price', '<=', $maxPrice);
+                }
+
+                // Set offset if not null:
                 if($offset != NULL){
                     $searchObject = $searchObject->offset($offset);
                 }
@@ -166,9 +200,12 @@
                     $searchObject = $searchObject->limit($limit);
                 }
 
+                // Set order if defined:
                 if($order != NULL){
                     $searchObject = $searchObject->orderBy($orderBy, $order);
                 }
+
+                // echo $searchObject->toSql();
 
             return $searchObject->get()->toArray();
 

@@ -143,21 +143,24 @@ class PropertyController extends Controller
     public function search(Request $request,
                            PropertyRepository $propertyRepository)
     {
-        $propertyType = $request->property_type;
-        $propertyStatus = $request->property_status;
+
+        $propertyType = (int) $request->property_type;
+        $propertyStatus = (int) $request->property_status;
         $interiorFeatures = $request->interior_features;
         $exteriorFeatures = $request->exterior_features;
         $area = $request->area;
         $floor = $request->floor;
         $numberOfRooms = $request->number_of_rooms;
         $ageOfBuilding = $request->age_of_building;
-        $address = $request->address;
-        $keyword = $request->keyword;
+        $address = (string) $request->address;
+        $keyword = (string) $request->keyword;
         $minPrice = $request->min_price;
         $maxPrice = $request->max_price;
         $location = $request->location;
+        $hasParkArea = $request->has_park;
+        $hasPool = $request->has_pool;
 
-        $searchResults = $propertyRepository->search($propertyType, $propertyStatus, $minPrice, $maxPrice, $location, $interiorFeatures, $exteriorFeatures, $area, $floor, $numberOfRooms, $ageOfBuilding, $address, $keyword);
+        $searchResults = $propertyRepository->search($propertyType, $propertyStatus, $minPrice, $maxPrice, $location, $interiorFeatures, $exteriorFeatures, $area, $floor, $numberOfRooms, $hasParkArea, $hasPool, $ageOfBuilding, $address, $keyword);
 
         return view('property.search_results', ["searchResults"=>$searchResults]);
 
