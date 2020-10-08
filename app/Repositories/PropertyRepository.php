@@ -118,7 +118,7 @@
         */
         public function propertyQueryBase()
         {
-            return Property::select('property.id AS id', 'property.title AS property_title', 'property.slug AS slug', 'location', 'location.name AS location_name', 'price', 'address', 'area', 'number_of_rooms', 'number_of_bathrooms', 'which_floor', 'number_of_floors', 'lat', 'lon', 'approval_status', 'is_drafted', 'media.folder AS featured_image_folder', 'media.name AS feature_image_file_name')
+            return Property::select('property.id AS id', 'property.title AS property_title', 'property.slug AS slug', 'location', 'location.name AS location_name', 'price', 'area', 'address', 'number_of_rooms', 'media.folder AS featured_image_folder', 'media.name AS feature_image_file_name')
                                 ->leftJoin('media', 'property.featured_image', '=', 'media.id')
                                 ->leftJoin('location', 'property.location', '=', 'location.id')
                                 ->join('users', 'users.id', '=', 'property.created_by')
@@ -257,6 +257,17 @@
                 if($keyword != NULL){
                     $searchObject = $searchObject->where('title', 'LIKE', "%".$keyword."%");
                 }  
+
+                if($interiorFeatures != NULL){
+                    $interiorFeaturesExp = explode(",", $interiorFeatures);
+                    if(sizeof($interiorFeaturesExp) > 0){
+                        $interiorFeaturesQuery = array_map(function($value){return (int) $value; },$interiorFeaturesExp);
+                            $searchObject = $searchObject->leftJoin('property_interior_feature AS pif', 'property.id', '=', 'pif.property');
+                            $searchObject = $searchObject->whereIn('pif.interior_feature', $interiorFeaturesQuery);
+                    }
+                }
+
+                $searchObject = $searchObject->groupBy('property.id', 'property.title', 'property.slug', 'location', 'location.name', 'address', 'price', 'area', 'number_of_rooms', 'media.folder', 'media.name');
 
             return $searchObject->get()->toArray();
 
