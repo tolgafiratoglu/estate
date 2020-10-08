@@ -16,15 +16,23 @@ class SystemSettingsSeeder extends Seeder
         
         $defaultSystemSettings = config('settings.system_settings');
 
+        var_dump($defaultSystemSettings);
+
         if(sizeof($defaultSystemSettings) > 0)
         {
-            foreach($defaultSystemSettings AS $metaKey=>$metaValue)
+            foreach($defaultSystemSettings AS $metaContextKey=>$metaContextValue)
             {
-                $metaValueCheck = $systemSettingsRepository->getSetting($metaKey);
 
-                if($metaValueCheck == NULL)
+                var_dump($metaContextKey, $metaContextKey);
+
+                foreach($metaContextValue AS $metaKey=>$metaValue)
                 {
-                    $systemSettingsRepository->create(['meta_key'=>$metaKey, 'meta_value'=>$metaValue]);
+                    $metaValueCheck = $systemSettingsRepository->getSetting($metaContextKey, $metaKey);
+
+                    if($metaValueCheck == NULL)
+                    {
+                        $systemSettingsRepository->create(['context'=>$metaContextKey, 'meta_key'=>$metaKey, 'meta_value'=>$metaValue]);
+                    }
                 }
             }
         }    

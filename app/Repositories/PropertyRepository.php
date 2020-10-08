@@ -267,6 +267,15 @@
                     }
                 }
 
+                if($exteriorFeatures != NULL){
+                    $exteriorFeaturesExp = explode(",", $exteriorFeatures);
+                    if(sizeof($exteriorFeaturesExp) > 0){
+                        $exteriorFeaturesQuery = array_map(function($value){return (int) $value; },$exteriorFeaturesExp);
+                            $searchObject = $searchObject->leftJoin('property_exterior_feature AS pif', 'property.id', '=', 'pif.property');
+                            $searchObject = $searchObject->whereIn('pif.exterior_feature', $exteriorFeaturesQuery);
+                    }
+                }
+
                 $searchObject = $searchObject->groupBy('property.id', 'property.title', 'property.slug', 'location', 'location.name', 'address', 'price', 'area', 'number_of_rooms', 'media.folder', 'media.name');
 
             return $searchObject->get()->toArray();
