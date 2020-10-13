@@ -18,13 +18,16 @@ class SystemLimitsSeeder extends Seeder
 
         if(sizeof($defaultSystemLimits) > 0)
         {
-            foreach($defaultSystemLimits AS $metaKey=>$metaValue)
+            foreach($defaultSystemLimits AS $metaContextKey=>$metaContextValue)
             {
-                $metaValueCheck = $systemLimitsRepository->getSetting($metaKey);
-
-                if($metaValueCheck == NULL)
+                foreach($metaContextValue AS $metaKey=>$metaValue)
                 {
-                    $systemLimitsRepository->create(['meta_key'=>$metaKey, 'meta_value'=>$metaValue]);
+                    $metaValueCheck = $systemLimitsRepository->getSetting($metaContextKey, $metaKey);
+
+                    if($metaValueCheck == NULL)
+                    {
+                        $systemLimitsRepository->create(['context'=>$metaContextKey, 'meta_key'=>$metaKey, 'meta_value'=>$metaValue]);
+                    }
                 }
             }
         }

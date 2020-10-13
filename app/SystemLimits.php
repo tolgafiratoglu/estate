@@ -16,6 +16,6 @@ class SystemLimits extends Model
     /**
      * @var array
      */
-    protected $fillable = ['meta_key', 'meta_value'];
+    protected $fillable = ['context', 'meta_key', 'meta_value'];
 
 }

@@ -24,12 +24,13 @@
         *
         * @return array
         */
-        public function getSetting($metaKey) 
+        public function getSetting($context, $metaKey) 
         {
 
             $settingsObject = SystemDefaults::select('meta_key', 'meta_value')
                                     ->where(
                                         [
+                                            'context'=>$context,
                                             'meta_key'=>$metaKey
                                         ]
                                     );

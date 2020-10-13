@@ -18,13 +18,16 @@ class SystemDefaultsSeeder extends Seeder
 
         if(sizeof($defaultSystemValues) > 0)
         {
-            foreach($defaultSystemValues AS $metaKey=>$metaValue)
+            foreach($defaultSystemValues AS $metaContextKey=>$metaContextValue)
             {
-                $metaValueCheck = $systemDefaultsRepository->getSetting($metaKey);
-
-                if($metaValueCheck == NULL)
+                foreach($metaContextValue AS $metaKey=>$metaValue)
                 {
-                    $systemDefaultsRepository->create(['meta_key'=>$metaKey, 'meta_value'=>$metaValue]);
+                    $metaValueCheck = $systemDefaultsRepository->getSetting($metaContextKey, $metaKey);
+
+                    if($metaValueCheck == NULL)
+                    {
+                        $systemDefaultsRepository->create(['context'=>$metaContextKey, 'meta_key'=>$metaKey, 'meta_value'=>$metaValue]);
+                    }
                 }
             }
         }
