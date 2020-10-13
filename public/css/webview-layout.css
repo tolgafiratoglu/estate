@@ -760,7 +760,8 @@ ul.estate-main-slider{
 
 .header-wrapper{
     height: 54px;
-    background-color: #333;
+    background-color: #ffffff;
+    color: #aaaaaa;
 }
 
 .header-boxed{
@@ -818,7 +819,8 @@ ul.estate-main-slider{
 
     .header-menu-wrapper .sub-menu{
         padding: 0px;
-        background-color: #333333;
+        background-color: #ffffff;
+        color: #333333;
 
         -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
         -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
@@ -827,8 +829,8 @@ ul.estate-main-slider{
 
     .header-menu-wrapper a{
         font-size: 12px;
-        text-decoration: none;
-        color: #ffffff;
+        text-decoration: none !important;
+        color: #333333;
         letter-spacing: 0.3px !important;
     }
 

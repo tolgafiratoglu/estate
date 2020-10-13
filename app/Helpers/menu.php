@@ -6,13 +6,21 @@
     */
     function headerMenuItem($menuItem)
     {
-        $menuItemContent = '<li class="menu-item">';
+
+        $class = 'menu-item';
+            if(sizeof($menuItem["children"]) > 0){
+                $class .= ' menu-item-has-children';
+            }    
+
+        $menuItemContent = '<li class="'.$class.'">';
             $menuItemContent .= '<a href="'.$menuItem['url'].'">'.$menuItem["label"].'</a>';
             // Add children with a recursive call:
             if(sizeof($menuItem["children"]) > 0){
+                $menuItemContent .= '<ul class="sub-menu">';
                 foreach($menuItem["children"] AS $menuChild){
-                    $menuOutput .= headerMenuItem($menuChild);
+                    $menuItemContent .= headerMenuItem($menuChild);
                 }
+                $menuItemContent .= '</ul>';
             }
         $menuItemContent .= '</li>';
         return $menuItemContent;

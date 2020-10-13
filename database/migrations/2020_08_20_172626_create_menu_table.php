@@ -18,10 +18,10 @@ class CreateMenuTable extends Migration
             Schema::create('menu', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->timestamps();
-                $table->string("context", 10);
+                $table->enum('context', ['header','menu', 'footer'])->default('header');
                 $table->string("label", 100);
-                $table->string("target", 10);
-                $table->text("custom_url");
+                $table->enum('target', ['blank','self', 'parent', 'top'])->default('self');
+                $table->text("custom_url")->nullable()->default(null);
                 $table->unsignedBigInteger('parent')->nullable()->default(null);
                     $table->foreign('parent')->references('id')->on('menu')->onDelete('SET NULL');
                 $table->unsignedBigInteger('property')->nullable()->default(null);

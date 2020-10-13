@@ -342,9 +342,13 @@
                     <div class="estate-mappable"></div>
                 </div>
                 <div id="property_results" class="property-list">
-                    @foreach($initialProperties AS $property)
-                        <x-property :property="$property" :rows="3" />
-                    @endforeach
+                    @if(sizeof($initialProperties) == 0)
+                        <div class="property-search-result"><i class="far fa-list-alt"></i>{{ __("No Results Found") }}</div>
+                    @else    
+                        @foreach($initialProperties AS $property)
+                            <x-property :property="$property" :rows="3" />
+                        @endforeach
+                    @endif    
                 </div>    
             </div> <!-- Property results -->
         </div>
