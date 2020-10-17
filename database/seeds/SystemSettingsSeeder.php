@@ -16,14 +16,10 @@ class SystemSettingsSeeder extends Seeder
         
         $defaultSystemSettings = config('settings.system_settings');
 
-        var_dump($defaultSystemSettings);
-
         if(sizeof($defaultSystemSettings) > 0)
         {
             foreach($defaultSystemSettings AS $metaContextKey=>$metaContextValue)
             {
-
-                var_dump($metaContextKey, $metaContextKey);
 
                 foreach($metaContextValue AS $metaKey=>$metaValue)
                 {
@@ -36,6 +32,9 @@ class SystemSettingsSeeder extends Seeder
                 }
             }
         }    
+
+        // Language settings:
+        
 
     }
 }
