@@ -34,7 +34,25 @@ class SystemSettingsSeeder extends Seeder
         }    
 
         // Language settings:
-        
+        $languages = Languages::lookup();
+
+        if(sizeof($languages) > 0)
+        {
+            foreach($languages AS $languageKey=>$language)
+            {
+                $metaValueCheck = $systemSettingsRepository->getSetting("language", "enable_".$languageKey);
+
+                    if($metaValueCheck == NULL)
+                    {
+                        $metaValue = false;
+                        if($languageKey == "en"){
+                            $metaValue = true; 
+                        }
+                        $systemSettingsRepository->create(['context'=>"language", 'meta_key'=>"enable_".$languageKey, 'meta_value'=>$metaValue]);
+                    }
+            }
+        }
+
 
     }
 }

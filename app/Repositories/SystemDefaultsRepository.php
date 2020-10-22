@@ -24,6 +24,33 @@
         *
         * @return array
         */
+        public function getSettingsByContext($context) 
+        {
+
+            $settingsObject = SystemDefaults::select('meta_key', 'meta_value')
+                                    ->where(
+                                        [
+                                            'context'=>$context
+                                        ]
+                                    );
+
+                if($settingsObject->get() != NULL)
+                {         
+                    $settings = $settingsObject->get()->toArray();
+                    return getSettingCollection($settings);
+                } else {
+                    return NULL;
+                }
+
+        }
+
+        /*
+        * Returns meta_value for a given meta_key
+        *
+        * @param $meta_key Meta key
+        *
+        * @return array
+        */
         public function getSetting($context, $metaKey) 
         {
 

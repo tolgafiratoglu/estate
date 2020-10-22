@@ -13,6 +13,7 @@
                 'show_latest_blogs' => true
             ],
             'header' => [
+                'show_upper_header'=>true,
                 'show_logo' => true,
                 'show_upload_button' => true,
                 'show_menu' => true,
@@ -53,6 +54,15 @@
             'meta'=>[
                 'home_page_title' => 'Home Page',
                 'search_page_title' => 'Search Page',
+            ],
+            'social_media'=>[
+                'facebook_link'=>'#',
+                'google_link'=>'#',
+                'twitter_link'=>'#',
+                'linkedin_link'=>'#'
+            ],
+            'header'=>[
+                'email'=>'info@yourdomain.com'
             ]
         ],
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "218f25a2f605da2532ba75f34592b265",
+    "content-hash": "565ac6fde52a7b8e207a000f882c603b",
     "packages": [
         {
             "name": "brick/math",
@@ -830,6 +830,47 @@
             "time": "2019-11-02T09:15:47+00:00"
         },
         {
+            "name": "laravel-lang/lang",
+            "version": "7.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravel-Lang/lang.git",
+                "reference": "c1519eb78139869ab8829912adde5f58ca09552f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/c1519eb78139869ab8829912adde5f58ca09552f",
+                "reference": "c1519eb78139869ab8829912adde5f58ca09552f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "suggest": {
+                "andrey-helldar/laravel-lang-publisher": "Easy installation and update of translation files for your project",
+                "arcanedev/laravel-lang": "Translations manager and checker for Laravel 5",
+                "overtrue/laravel-lang": "Command to add languages in your project"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Laravel-Lang Team"
+                }
+            ],
+            "description": "Languages for Laravel",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm"
+            ],
+            "time": "2020-10-11T08:55:55+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v8.6.0",
             "source": {
@@ -1622,6 +1663,69 @@
                 "random"
             ],
             "time": "2018-07-02T15:55:56+00:00"
+        },
+        {
+            "name": "petercoles/multilingual-language-list",
+            "version": "1.15.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/petercoles/Multilingual-Language-List.git",
+                "reference": "9e9be075dec4bf3df09576b9220dc4d5ae74dddc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/petercoles/Multilingual-Language-List/zipball/9e9be075dec4bf3df09576b9220dc4d5ae74dddc",
+                "reference": "9e9be075dec4bf3df09576b9220dc4d5ae74dddc",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5|~6|~7|~8",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1",
+                "phpunit/phpunit": ">=8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PeterColes\\Languages\\LanguagesServiceProvider"
+                    ],
+                    "aliases": {
+                        "Languages": "PeterColes\\Languages\\LanguagesFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PeterColes\\Languages\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Coles",
+                    "email": "peterdcoles@gmail.com",
+                    "homepage": "https://petercoles.com"
+                }
+            ],
+            "description": "Lookup Objects for Language Names and Codes",
+            "homepage": "https://github.com/petercoles/multilingual-language-list",
+            "keywords": [
+                "language codes",
+                "language lists",
+                "language lookup",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/petercoles/multilingual-language-list/issues",
+                "source": "https://github.com/petercoles/Multilingual-Language-List/tree/1.15.2"
+            },
+            "time": "2020-09-24T15:10:15+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -6717,5 +6821,6 @@
     "platform": {
         "php": "^7.2"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }

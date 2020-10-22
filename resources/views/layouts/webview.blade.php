@@ -41,81 +41,66 @@
 </head>
 <body>
     <div class="content-wrapper">
-        <div class="header-wrapper">
-            <div class="header-boxed">
-                <div class="header-content-wrapper">
-                    <div class="header-left-side-wrapper">
-                        <div class="header-logo-wrapper">
-                            <a href="{{ URL::to('/') }}">
-                                <img style="vertical-align: baseline;" src="{{ asset('image/logo.png') }}" />
-                            </a>    
+        @if($headerSettings["show_menu"] == true)
+            <div class="header-top-wrapper">
+                <div class="header-social-media">
+
+                </div>
+                <div class="header-info-email">
+                    {{ $headerDefaults["email"] }}    
+                </div>
+                <div class="header-language">
+                    
+                </div>
+            </div>
+            <div class="header-wrapper">
+                <div class="header-boxed">
+                    <div class="header-content-wrapper">
+                        <div class="header-left-side-wrapper">
+                            @if($headerSettings["show_upload_button"] == true)
+                                <div class="header-logo-wrapper">
+                                    <a href="{{ URL::to('/') }}">
+                                        @if($headerLogo != NULL)
+                                            <img style="vertical-align: baseline;" src="{{ $headerLogo }}">
+                                        @else    
+                                            <img style="vertical-align: baseline;" src="{{ asset('image/logo.png') }}" />
+                                        @endif
+                                    </a>    
+                                </div>
+                            @endif
                         </div>
-                    </div>
-                    <div class="header-right-side-wrapper">
-                        
-                    </div>
-                    <div class="header-left-side-wrapper hide-in-mobile">
-                        <div class="header-menu-wrapper">
-                            <div class="header-menu">
-                                {!! $headerMenu !!}
-                            </div> <!-- .header-menu -->                    
+                        <div class="header-right-side-wrapper">
+                            @if($headerSettings["show_upload_button"] == true)
+                                <div class="header-upload-button">
+                                    <a href="{{ URL::to('/property/new') }}">
+                                        {{ __("Upload") }}
+                                    </a>    
+                                </div>
+                            @endif
+                            @if($headerSettings["show_authentication"] == true)
+                                <div class="header-authentication">
+                                    <ul>
+                                        <li><a href="{{ URL::to('/login') }}">{{ __("Login") }}</a></li>
+                                        <li><a href="{{ URL::to('/register') }}">{{ __("Register") }}</a></li>
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="header-left-side-wrapper hide-in-mobile">
+                            <div class="header-menu-wrapper">
+                                <div class="header-menu">
+                                    {!! $headerMenu !!}
+                                </div> <!-- .header-menu -->                    
                             </div> <!-- .header-menu-wrapper -->
                         </div> <!-- header-left-side-wrapper -->
                     </div> <!-- header-content-wrapper -->
-                </div> <!-- .header-wrapper -->
-            </div><!-- .content-wrapper -->
-        <!--
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <ul class="navbar-nav ml-auto">
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        -->
+                </div> <!-- .header-boxed -->
+            </div> <!-- .header-wrapper -->
+        @endif
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
+    </div><!-- .content-wrapper -->
+</div>
 </body>
 </html>

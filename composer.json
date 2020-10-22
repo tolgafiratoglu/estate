@@ -12,9 +12,11 @@
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
+        "laravel-lang/lang": "~7.0",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
+        "petercoles/multilingual-language-list": "^1.15",
         "prettus/l5-repository": "^2.6",
         "rachidlaasri/laravel-installer": "^4.1"
     },
@@ -45,7 +47,8 @@
             "database/factories"
         ],
         "files": [
-            "app/Helpers/menu.php"
+            "app/Helpers/menu.php",
+            "app/Helpers/settings.php"
         ]
     },
     "autoload-dev": {

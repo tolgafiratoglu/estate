@@ -178,6 +178,7 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         // Linux Installer:
         RachidLaasri\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class,
+        PeterColes\Languages\LanguagesServiceProvider::class,
     ],
 
     /*
@@ -228,6 +229,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Languages' => PeterColes\Languages\LanguagesFacade::class,
 
     ],
 

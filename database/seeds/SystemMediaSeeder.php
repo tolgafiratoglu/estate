@@ -20,9 +20,9 @@ class SystemMediaSeeder extends Seeder
         {
             foreach($defaultSystemMedia AS $metaKey=>$metaValue)
             {
-                $metaValueCheck = $systemMediaRepository->getSetting($metaKey);
+                $metaValueCount = $systemMediaRepository->findWhere(["meta_key"=>$metaKey])->count();
 
-                if($metaValueCheck == NULL)
+                if($metaValueCount == 0)
                 {
                     $systemMediaRepository->create(['meta_key'=>$metaKey, 'media'=>$metaValue]);
                 }

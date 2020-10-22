@@ -27,15 +27,18 @@
         public function getSetting($metaKey) 
         {
 
-            $settingsObject = SystemMedia::select('meta_key', 'media')
+            $settingsObject = SystemMedia::select('media.name AS media_name', 'media.folder AS media_folder')
+                                    ->leftJoin('media', 'media.id', '=', 'system_media.media')
                                     ->where(
                                         [
-                                            'meta_key'=>$metaKey
+                                            'system_media.meta_key'=>$metaKey
                                         ]
                                     );
 
             if($settingsObject->first() != NULL){                        
-                return $settingsObject->first()->toArray()["media"];
+                $mediaFolder = $settingsObject->first()->toArray()["media_folder"];
+                $mediaName = $settingsObject->first()->toArray()["media_name"];
+                return asset($mediaFolder.$mediaName);
             } else {
                 return NULL;
             }

@@ -18,6 +18,33 @@
         }
 
         /*
+        * Returns settings by a context.
+        *
+        * @param $context context
+        *
+        * @return array
+        */
+        public function getSettingByContext($context) 
+        {
+
+            $settingsObject = SystemSettings::select('meta_key', 'meta_value')
+                                    ->where(
+                                        [
+                                            "context"=>$context
+                                        ]
+                                    );
+
+                if($settingsObject->get() != NULL)
+                {         
+                    $settings = $settingsObject->get()->toArray();
+                    return getSettingCollection($settings);
+                } else {
+                    return NULL;
+                }
+
+        }
+
+        /*
         * Returns meta_value for a given meta_key
         *
         * @param $meta_key Meta key
@@ -30,8 +57,8 @@
             $settingsObject = SystemSettings::select('meta_key', 'meta_value')
                                     ->where(
                                         [
-                                            'context'=>$context,
-                                            'meta_key'=>$metaKey
+                                            "context"=>$context,
+                                            "meta_key"=>$metaKey
                                         ]
                                     );
 
