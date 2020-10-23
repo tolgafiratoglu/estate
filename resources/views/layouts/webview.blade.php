@@ -44,10 +44,22 @@
         @if($headerSettings["show_menu"] == true)
             <div class="header-top-wrapper">
                 <div class="header-social-media">
-
+                    @if(sizeof($headerSocialMedia) > 0)
+                        <ul>
+                            @foreach($headerSocialMedia AS $socialMediaKey=>$socialMediaBrand)
+                                 <li>
+                                    <a href="{{ $socialMediaBrand }}">
+                                        <i class='fab fa-{{ $socialMediaKey }}'></i>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif    
                 </div>
                 <div class="header-info-email">
-                    {{ $headerDefaults["email"] }}    
+                    @if(isset($headerDefaults["email"]))
+                        {{ $headerDefaults["email"] }}
+                    @endif    
                 </div>
                 <div class="header-language">
                     

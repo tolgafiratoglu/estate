@@ -5,6 +5,8 @@
     use App\SystemSettings as SystemSettings;
     use Prettus\Repository\Eloquent\BaseRepository;
 
+    use PeterColes\Languages\LanguagesFacade AS Languages;
+
     class SystemSettingsRepository extends BaseRepository{
 
         /**
@@ -15,6 +17,37 @@
         function model()
         {
             return "App\\SystemSettings";
+        }
+
+        /*
+        * Returns enabled languages
+        *
+        * @param $context context
+        *
+        * @return array
+        */
+        public function getEnabledLanguages()
+        {
+
+            // Enabled languages:
+            $enabledLanguages = [];
+
+            $languages = Languages::lookup();
+
+            if(sizeof($languages) > 0)
+            {
+                foreach($languages AS $languageKey=>$language)
+                {
+                    $isEnabled = $this->getSetting("language", "enable_".$languageKey);
+                        if($isEnabled == true)
+                        {
+                            $enabledLanguages[$languageKey] = $language;
+                        }
+                }
+            }
+
+            return $enabledLanguages;
+
         }
 
         /*

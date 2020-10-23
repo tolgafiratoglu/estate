@@ -56,10 +56,10 @@
                 'search_page_title' => 'Search Page',
             ],
             'social_media'=>[
-                'facebook_link'=>'#',
-                'google_link'=>'#',
-                'twitter_link'=>'#',
-                'linkedin_link'=>'#'
+                'facebook'=>'#',
+                'google'=>'#',
+                'twitter'=>'#',
+                'linkedin'=>'#'
             ],
             'header'=>[
                 'email'=>'info@yourdomain.com'

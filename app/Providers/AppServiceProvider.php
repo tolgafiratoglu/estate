@@ -51,6 +51,10 @@ class AppServiceProvider extends ServiceProvider
             // Header settings:
             $headerSettings = $systemSettingsRepository->getSettingByContext("header");
             View::share('headerSettings', $headerSettings);
+
+            $enabledLanguages = $systemSettingsRepository->getEnabledLanguages();
+            View::share('enabledLanguages', $enabledLanguages);
+
         }
         
         // Share header related defaults with all templates:
@@ -61,7 +65,7 @@ class AppServiceProvider extends ServiceProvider
             View::share('headerDefaults', $headerDefaults);
             // Social media default values:
             $socialMedia = $systemDefaultsRepository->getSettingsByContext("social_media");
-            View::share('headerSocialMedia', $headerDefaults);
+            View::share('headerSocialMedia', $socialMedia);
         }
 
         // Share logo with all templates
