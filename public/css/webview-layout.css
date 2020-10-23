@@ -759,9 +759,9 @@ ul.estate-main-slider{
 /* 5. Header Styling */
 
 .header-wrapper{
-    height: 54px;
+    height: 3.3rem;
     background-color: #ffffff;
-    color: #aaaaaa;
+    color: #2a2a2a;
 }
 
 .header-boxed{
@@ -770,12 +770,12 @@ ul.estate-main-slider{
 }
 
 .header-left-side-wrapper{
-    height: 54px;
+    height: 3.3rem;
     float: left;
 }
 
 .header-right-side-wrapper{
-    height: 54px;
+    height: 3.3rem;
     float: right;
 }
 
@@ -794,7 +794,7 @@ ul.estate-main-slider{
         z-index: 20000 !important;
         color: #333333;
         width: auto;
-        line-height: 54px !important;
+        line-height: 3.3rem !important;
     }
 
         .header-menu-wrapper *{
@@ -888,7 +888,7 @@ ul.estate-main-slider{
         content: "\f107";
         margin-left: 6px;
         float: right;
-        line-height: 54px;
+        line-height: 3.3rem;
     }
 
     .header-menu-wrapper ul li ul li.menu-item-has-children > a:after{
@@ -955,3 +955,74 @@ ul.estate-main-slider{
         border: none;
         content: "" !important;
     }
+
+.header-logo-wrapper{
+    min-width: 120px;
+    height: 100%;
+    display: table;
+    margin-right: 1rem;
+}    
+
+    .header-logo-wrapper a{
+        display: table-cell;
+        vertical-align: middle;
+    }    
+
+    .header-logo-wrapper img{
+        display: flex;
+        justify-content: center;
+        max-height: 100%;
+    }
+
+.header-upload-button{
+    height: 100%;
+    display: table;
+    float: left;
+    margin-left: 0px;
+}    
+
+    .header-upload-button-inner-wrapper{
+        display: table-cell;
+        vertical-align: middle;
+    }    
+
+    .header-upload-button-inner-wrapper a{
+        text-transform: uppercase;
+        font-size: 13px;
+        border: 2px solid #3b5998;
+        padding: 0.4rem 1rem;
+        border-radius: 6px;
+        color: #3b5998 !important;
+        text-decoration: none !important;
+    }
+
+    .header-upload-button-inner-wrapper a svg{
+       margin-right: 0.3rem;
+       color: #3b5998;
+    }    
+
+.header-authentication{
+    float: left;
+    margin-left: 0px;
+    height: 100% !important;
+    display: table;
+}
+
+    .header-authentication ul{
+        list-style: none;
+        height: 100% !important;
+    }
+
+    .header-authentication ul li{
+        float: left;
+        margin-left: 0.5rem;
+        line-height: 3.3rem;
+    }
+
+    .header-authentication ul li a{
+        color: #2a2a2a;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+    }        

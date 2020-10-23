@@ -73,9 +73,9 @@
                                 <div class="header-logo-wrapper">
                                     <a href="{{ URL::to('/') }}">
                                         @if($headerLogo != NULL)
-                                            <img style="vertical-align: baseline;" src="{{ $headerLogo }}">
+                                            <img src="{{ $headerLogo }}">
                                         @else    
-                                            <img style="vertical-align: baseline;" src="{{ asset('image/logo.png') }}" />
+                                            <img src="{{ asset('image/logo.png') }}" />
                                         @endif
                                     </a>    
                                 </div>
@@ -84,15 +84,20 @@
                         <div class="header-right-side-wrapper">
                             @if($headerSettings["show_upload_button"] == true)
                                 <div class="header-upload-button">
-                                    <a href="{{ URL::to('/property/new') }}">
-                                        {{ __("Upload") }}
-                                    </a>    
+                                    <div class="header-upload-button-inner-wrapper">
+                                        <a href="{{ URL::to('/property/new') }}">
+                                            <i class="fas fa-store-alt"></i>
+                                            {{ __("Add Listing") }}
+                                        </a>
+                                    </div>        
                                 </div>
                             @endif
                             @if($headerSettings["show_authentication"] == true)
                                 <div class="header-authentication">
                                     <ul>
+                                        <li><i class="fas fa-user-lock"></i></li>
                                         <li><a href="{{ URL::to('/login') }}">{{ __("Login") }}</a></li>
+                                        <li>/</li>
                                         <li><a href="{{ URL::to('/register') }}">{{ __("Register") }}</a></li>
                                     </ul>
                                 </div>
