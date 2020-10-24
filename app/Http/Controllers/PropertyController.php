@@ -192,8 +192,8 @@ class PropertyController extends Controller
         $exteriorFeatures = $exteriorFeatureRepository->getPropertyFeatures($propertyId);
         $views            = $viewRepository->getPropertyViews($propertyId);
 
-        $defaultMeasurementUnit = $systemDefaultsRepository->getSetting("default_measurement_unit");
-        $defaultMoneyUnit = $systemDefaultsRepository->getSetting("default_money_unit");
+        $defaultMeasurementUnit = $systemDefaultsRepository->getSetting("units", "default_measurement_unit");
+        $defaultMoneyUnit = $systemDefaultsRepository->getSetting("units", "default_money_unit");
 
         $singleOptions = [
             "property"=>$property,

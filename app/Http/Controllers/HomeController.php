@@ -34,8 +34,8 @@ class HomeController extends Controller
 
         // Home page settings:
         $settings = [];
-            $settings["show_latest_properties"] = $systemSettingsRepository->getSetting("main", "page_show_latest_properties");
-            $settings["show_latest_projects"] = $systemSettingsRepository->getSetting("main", "page_show_latest_projects");
+            $settings["show_latest_properties"] = $systemSettingsRepository->getSetting("main", "show_latest_properties");
+            $settings["show_latest_projects"] = $systemSettingsRepository->getSetting("main", "show_latest_projects");
             $settings["show_latest_blogs"] = $systemSettingsRepository->getSetting("main", "page_show_latest_blogs");
             $settings["show_search"] = $systemSettingsRepository->getSetting("main", "page_show_search");
 

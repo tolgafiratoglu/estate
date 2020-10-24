@@ -36,9 +36,16 @@
                                     );
 
             if($settingsObject->first() != NULL){                        
+                
                 $mediaFolder = $settingsObject->first()->toArray()["media_folder"];
                 $mediaName = $settingsObject->first()->toArray()["media_name"];
-                return asset($mediaFolder.$mediaName);
+
+                if($mediaName != NULL){
+                    return asset($mediaFolder.$mediaName);
+                } else {
+                    return NULL;
+                }
+
             } else {
                 return NULL;
             }

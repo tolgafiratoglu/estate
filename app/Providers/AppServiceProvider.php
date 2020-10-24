@@ -72,8 +72,8 @@ class AppServiceProvider extends ServiceProvider
         if(Schema::hasTable('system_media') != false) 
         {
             // Header settings:
-            $headerSettings = $systemMediaRepository->getSetting("header_logo");
-            View::share('headerLogo', $headerSettings);
+            $headerLogo = $systemMediaRepository->getSetting("header_logo");
+            View::share('headerLogo', $headerLogo);
         }
 
     }

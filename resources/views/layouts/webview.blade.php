@@ -43,27 +43,29 @@
     <div class="content-wrapper">
         @if($headerSettings["show_menu"] == true)
             <div class="header-top-wrapper">
-                <div class="header-social-media">
-                    @if(sizeof($headerSocialMedia) > 0)
-                        <ul>
-                            @foreach($headerSocialMedia AS $socialMediaKey=>$socialMediaBrand)
-                                 <li>
-                                    <a href="{{ $socialMediaBrand }}">
-                                        <i class='fab fa-{{ $socialMediaKey }}'></i>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endif    
-                </div>
-                <div class="header-info-email">
-                    @if(isset($headerDefaults["email"]))
-                        {{ $headerDefaults["email"] }}
-                    @endif    
-                </div>
-                <div class="header-language">
-                    
-                </div>
+                <div class="header-top-wrapper-inner">
+                    <div class="header-social-media">
+                        @if(sizeof($headerSocialMedia) > 0)
+                            <ul>
+                                @foreach($headerSocialMedia AS $socialMediaKey=>$socialMediaBrand)
+                                    <li>
+                                        <a href="{{ $socialMediaBrand }}">
+                                            <i class='fab fa-{{ $socialMediaKey }}'></i>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif    
+                    </div>
+                    <div class="header-info-email">
+                        @if(isset($headerDefaults["email"]))
+                            <a href="mailto:{{ $headerDefaults['email'] }}">{{ $headerDefaults["email"] }}</a>
+                        @endif    
+                    </div>
+                    <div class="header-language">
+                        
+                    </div>
+                </div>    
             </div>
             <div class="header-wrapper">
                 <div class="header-boxed">
@@ -73,7 +75,7 @@
                                 <div class="header-logo-wrapper">
                                     <a href="{{ URL::to('/') }}">
                                         @if($headerLogo != NULL)
-                                            <img src="{{ $headerLogo }}">
+                                            <img src="{{ $headerLogo }}" />
                                         @else    
                                             <img src="{{ asset('image/logo.png') }}" />
                                         @endif
@@ -114,7 +116,7 @@
                 </div> <!-- .header-boxed -->
             </div> <!-- .header-wrapper -->
         @endif
-        <main class="py-4">
+        <main class="main-content-wrapper">
             @yield('content')
         </main>
     </div><!-- .content-wrapper -->

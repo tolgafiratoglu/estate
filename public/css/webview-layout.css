@@ -4,6 +4,7 @@
     3. Property layout
     4. Single property
     5. Header style
+    6. Home design
 */
 
 /* 1. Overall design starts */
@@ -27,6 +28,11 @@ body{
     .shadowed-content{
         box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)!important;
     }
+
+.main-content-wrapper{
+    float: left;
+    width: 100%;
+}
 
 /* 2. Search filter starts */
 
@@ -762,6 +768,12 @@ ul.estate-main-slider{
     height: 3.3rem;
     background-color: #ffffff;
     color: #2a2a2a;
+    float: left;
+    width: 100%;
+
+    -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.1);
 }
 
 .header-boxed{
@@ -1026,3 +1038,83 @@ ul.estate-main-slider{
         font-size: 13px;
         font-weight: bold;
     }        
+
+.header-top-wrapper{
+    background-color: #2a2a2a;
+    color: #FFFFFF;
+    line-height: 2rem;
+    float: left;
+    width: 100% !important;
+}    
+
+    .header-top-wrapper-inner{
+        max-width: 1200px;
+        margin: 0px auto;
+    }    
+
+    .header-top-wrapper a{
+        color: #FFFFFF;
+    }    
+
+    .header-top-wrapper .header-social-media ul{
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        float: left;
+        margin-left: 0px;
+    }        
+
+        .header-top-wrapper .header-social-media li{
+            float: left;
+            margin-right: 0.5rem;
+        }    
+
+        .header-top-wrapper .header-social-media li a{
+            color: #FFFFFF;
+            text-decoration: none;
+            margin-right: 0.5rem;
+        }     
+
+        .header-top-wrapper .header-info-email{
+            float: left;
+            margin-left: 0.5rem;
+            font-size: 13px;
+        }
+
+        .header-top-wrapper .header-info-email a{
+            text-decoration: none;
+            color: #FFFFFF;
+        }    
+
+/* 6. Home Design */        
+
+.latest-list-header{
+    width: 100%;
+    float: left;
+    margin-left: 0px;
+    font-size: 15px !important;
+    line-height: 30px !important;
+    font-size: 0.9rem !important;
+    line-height: 3rem !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+    .latest-list-header .latest-list-title{
+        float: left;
+        margin-left: 0px;
+        width: 50%;
+        text-align: left;
+    }
+
+    .latest-list-header .latest-list-search{
+        float: left;
+        margin-left: 0px;
+        width: 50%;
+        text-align: right;
+    }
+
+    .latest-list-header .latest-list-search svg{
+        margin-right: 0.3rem;
+    }    
