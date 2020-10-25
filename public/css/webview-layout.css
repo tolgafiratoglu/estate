@@ -1115,6 +1115,11 @@ ul.estate-main-slider{
         text-align: right;
     }
 
+    .latest-list-header .latest-list-search a{
+        color: #000000 !important;
+        text-decoration: none;
+    }    
+
     .latest-list-header .latest-list-search svg{
         margin-right: 0.3rem;
     }    
