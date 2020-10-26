@@ -130,11 +130,9 @@ class PropertyStatusController extends Controller
         }
 
         // Get count of filtered & all results:
-        $propertyStatusFilteredCount = $propertyStatusRepository->findWhere(['deleted'=>$deleted, 'title'=>"%".$keyword."%"])->count();
         $propertyStatusCount = $propertyStatusRepository->findWhere(['deleted'=>$deleted])->count();
-        // $propertyStatusFilteredCount = $propertyStatusRepository->getStatusListFilteredCount($deleted, $keyword);
-        // $propertyStatusCount = $propertyStatusRepository->getStatusListCount($deleted);
-
+        $propertyStatusFilteredCount = $propertyStatusRepository->getStatusListFilteredCount($deleted, $keyword);
+        
         $propertyStatusList = ["data"=>$propertyStatusListResponse, "recordsTotal"=>$propertyStatusCount, "recordsFiltered"=>$propertyStatusFilteredCount];
 
         return response()->json($propertyStatusList);
@@ -186,7 +184,8 @@ class PropertyStatusController extends Controller
      *
      *  @return \Symfony\Component\HttpFoundation\Response 
      */
-    public function restorePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository){
+    public function restorePropertyStatus(Request $request, PropertyStatusRepository $propertyStatusRepository)
+    {
 
         $validatedData = $request->validate([
             'item_id' => 'required'
@@ -215,26 +214,26 @@ class PropertyStatusController extends Controller
         $id   = $request->id ? $request->id : NULL;
         
         $validationRules = [
-            'name' => 'unique:property_status,name',
+            'title' => 'unique:property_status,title',
             'slug' => 'required|unique:property_status,slug'
         ];
 
         if($id > 0) {
             $validationRules = [
-                'name' => 'unique:property_status,name,'.$id,
+                'title' => 'unique:property_status,title,'.$id,
                 'slug' => 'required|unique:property_status,slug,'.$id
             ];
         }
 
         $validatedData = $request->validate($validationRules);
 
-        $name = $validatedData["name"];
+        $title = $validatedData["title"];
         $slug = $validatedData["slug"];
 
         if($id > 0) {
-            $propertyStatus = $propertyStatusRepository->updatePropertyStatus($id, $name, $slug);
+            $propertyStatus = $propertyStatusRepository->updatePropertyStatus($id, $title, $slug);
         }else{    
-            $propertyStatus = $propertyStatusRepository->savePropertyStatus($name, $slug);
+            $propertyStatus = $propertyStatusRepository->savePropertyStatus($title, $slug);
         }
 
         return response()->json($propertyStatus);

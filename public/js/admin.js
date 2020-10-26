@@ -149,7 +149,7 @@ function saveItem(saveUrl, returnUrl, data)
 */
 function initPropertyStatusList() 
 {
-    var columns = [{ "data": "id" }, { "data": "name" }, { "data": "slug" }, { "data": "buttons" }];
+    var columns = [{ "data": "id" }, { "data": "title" }, { "data": "slug" }, { "data": "buttons" }];
     var columnDefs =  [{"targets": 3, "orderable": false, "className": "dt-right"}];
     initDataTable("/api/admin/property-status", columns, columnDefs, "/api/admin/property-status", "/api/admin/property-status/remove", "/api/admin/property-status/restore");
 
@@ -159,7 +159,7 @@ function initPropertyStatusList()
                 {
                     _token: $('meta[name=csrf-token]')[0].content, 
                     id: $("#item_id").val(),
-                    name: $("#property_status_name").val(), 
+                    title: $("#property_status_title").val(), 
                     slug: $("#property_status_slug").val()
                 }
             );

@@ -15,21 +15,6 @@
         function model()
         {
             return "App\\PropertyStatus";
-        }
-
-        /*
-        * Returns list count
-        *
-        * @param $deleted Is deleted?
-        *
-        * @return integer
-        */
-        public function getStatusListCount($deleted = false) 
-        {
-
-            $propertyStatusObject = PropertyStatus::where(['is_deleted'=>$deleted]);
-
-            return $propertyStatusObject->count();                                    
         }                            
 
         /*
@@ -43,10 +28,10 @@
         public function getStatusListFilteredCount($deleted = false, $keyword = NULL) 
         {
 
-            $propertyStatusObject = PropertyStatus::where(['is_deleted'=>$deleted]);
+            $propertyStatusObject = PropertyStatus::where(['deleted'=>$deleted]);
 
             if($keyword != NULL){
-                $propertyStatusObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
+                $propertyStatusObject = $propertyStatusObject->where('title', 'like', '%'.$keyword.'%');
             }
 
             return $propertyStatusObject->count();                                    
@@ -62,11 +47,11 @@
         public function getPropertyStatus($itemId) 
         {
 
-            $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug')
+            $propertyStatusObject = PropertyStatus::select('id', 'title', 'slug')
                                     ->where(
                                         [
                                             'id'=>$itemId,
-                                            'is_deleted'=>false
+                                            'deleted'=>false
                                         ]
                                     );
 
@@ -90,6 +75,10 @@
         {
 
             $propertyStatusObject = PropertyStatus::select('id', 'title', 'slug');
+
+                if($deleted != NULL){
+                    $propertyStatusObject = $propertyStatusObject->where(["deleted"=>$deleted]);
+                }
 
                 // If offset is defined:
                 if($offset != NULL){
@@ -116,28 +105,28 @@
         /*
         * Saves with given arguments
         *
-        * @param $name Name of the item
+        * @param $title Title of the item
         * @param $slug Slug of the item
         *
         * @return App\\PropertyStatus
         */
-        public function savePropertyStatus($name, $slug)
+        public function savePropertyStatus($title, $slug)
         {
-            return PropertyStatus::create(["name"=>$name, "slug"=>$slug]);
+            return PropertyStatus::create(["title"=>$title, "slug"=>$slug]);
         }
 
         /*
         * Saves with given arguments
         *
         * @param $id Id of the item
-        * @param $name Name of the item
+        * @param $title Title of the item
         * @param $slug Slug of the item
         *
         * @return App\\PropertyStatus
         */
-        public function updatePropertyStatus($id, $name, $slug)
+        public function updatePropertyStatus($id, $title, $slug)
         {
-            return PropertyStatus::where("id", $id)->update(["name"=>$name, "slug"=>$slug]);
+            return PropertyStatus::where("id", $id)->update(["title"=>$title, "slug"=>$slug]);
         }
 
         /*
@@ -163,7 +152,7 @@
         public function deletePropertyStatus($id)
         {
             $propertyStatus = PropertyStatus::find($id);
-                $propertyStatus->is_deleted = true;
+                $propertyStatus->deleted = true;
                 $propertyStatus->save();
                 return $propertyStatus;
         }
@@ -178,7 +167,7 @@
         public function restorePropertyStatus($id)
         {
             $propertyStatus = PropertyStatus::find($id);
-                $propertyStatus->is_deleted = false;
+                $propertyStatus->deleted = false;
                 $propertyStatus->save();
                     return $propertyStatus;
         }
