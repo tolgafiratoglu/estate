@@ -89,7 +89,7 @@
         public function getStatusList($deleted = false, $offset = NULL, $limit = NULL, $orderBy = NULL, $order = NULL, $keyword = NULL) 
         {
 
-            $propertyStatusObject = PropertyStatus::select('id', 'name', 'slug');
+            $propertyStatusObject = PropertyStatus::select('id', 'title', 'slug');
 
                 // If offset is defined:
                 if($offset != NULL){
@@ -106,7 +106,7 @@
                 }
 
                 if($keyword != NULL){
-                    $propertyStatusObject = $propertyStatusObject->where('name', 'like', '%'.$keyword.'%');
+                    $propertyStatusObject = $propertyStatusObject->where('title', 'like', '%'.$keyword.'%');
                 }
 
             return $propertyStatusObject->get()->toArray();

@@ -18,6 +18,7 @@ class CreateExteriorFeatureTable extends Migration
                 $table->bigIncrements('id');
                 $table->timestamps();
                 $table->string('title');
+                $table->boolean('deleted')->default(false);
             });
         }
     }

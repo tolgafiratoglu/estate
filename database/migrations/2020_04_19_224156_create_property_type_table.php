@@ -19,6 +19,7 @@ class CreatePropertyTypeTable extends Migration
                 $table->timestamps();
                 $table->string('title');
                 $table->string('slug')->unique()->nullable();
+                $table->boolean('deleted')->default(false);
             });
         }
     }

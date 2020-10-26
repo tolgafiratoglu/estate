@@ -27,8 +27,8 @@ class CreateBlogTable extends Migration
                 $table->enum('approval_status', ['denied', 'waiting_approval', 'approved'])->default('waiting_approval');
 
                 // $table->boolean('is_approved')->default(false);
-                $table->boolean('is_drafted')->default(false);
-                $table->boolean('is_deleted')->default(false);
+                $table->boolean('drafted')->default(false);
+                $table->boolean('deleted')->default(false);
 
             });
         }    

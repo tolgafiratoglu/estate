@@ -130,8 +130,10 @@ class PropertyStatusController extends Controller
         }
 
         // Get count of filtered & all results:
-        $propertyStatusFilteredCount = $propertyStatusRepository->getStatusListFilteredCount($deleted, $keyword);
-        $propertyStatusCount = $propertyStatusRepository->getStatusListCount($deleted);
+        $propertyStatusFilteredCount = $propertyStatusRepository->findWhere(['deleted'=>$deleted, 'title'=>"%".$keyword."%"])->count();
+        $propertyStatusCount = $propertyStatusRepository->findWhere(['deleted'=>$deleted])->count();
+        // $propertyStatusFilteredCount = $propertyStatusRepository->getStatusListFilteredCount($deleted, $keyword);
+        // $propertyStatusCount = $propertyStatusRepository->getStatusListCount($deleted);
 
         $propertyStatusList = ["data"=>$propertyStatusListResponse, "recordsTotal"=>$propertyStatusCount, "recordsFiltered"=>$propertyStatusFilteredCount];
 
