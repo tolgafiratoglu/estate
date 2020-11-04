@@ -15,10 +15,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Bootstrap Toggle -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-toggle.min.css') }}">
-
     <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin-layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
@@ -30,8 +28,6 @@
     <script src="{{ asset('js/fontawesome/all.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
-    <!-- Bootstrap Toggle -->
-    <script src="{{ asset('js/bootstrap-toggle.min.js') }}"></script>
 
     <!-- Scripts -->
     <script src="{{ asset('js/admin.js') }}" defer></script>

@@ -4,7 +4,7 @@
 
         'system_settings' => [
             'property_save' => [
-                'approval_needed' => true,
+                'approval_required' => true,
             ],
             'main' => [
                 'show_search' => true,

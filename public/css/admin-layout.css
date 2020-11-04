@@ -4,7 +4,7 @@
     3. Admin Content
 */
 
-/* Overall Design Begins */
+/* 1. Overall Design Begins */
 
 body{
     background-color: #f9f9f9 !important;
@@ -30,7 +30,7 @@ body{
 /* Overall Design Ends */
 
 
-/* Admin Sidebar Begins */
+/* 2. Admin Sidebar Begins */
 
     .admin-sidebar-wrapper{
         width: 20%;
@@ -87,3 +87,34 @@ body{
     }
 
 /* Admin Content Ends */
+
+/* Admin Settings  */
+
+.admin-toggle-item{
+    width: 100%;
+    height: 36px;
+}    
+
+    .admin-toggle-item .admin-toggle-switch-wrapper{
+        width: 50px;
+        float: left;
+    }    
+
+    .admin-toggle-item .admin-toggle-label{
+        width: calc(100% - 50px);
+        float: left;
+        padding-left: 1rem;
+    }    
+
+    .admin-toggle-item-wrapper{
+        margin-bottom: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+.admin-settings-wrapper h1{
+    font-size: 18px;
+    line-height: 28px;
+    text-transform: uppercase;
+}    
