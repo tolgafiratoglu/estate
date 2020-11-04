@@ -41,8 +41,8 @@
 
         'system_limits' => [
             'property'=>[
-                'user_max_daily_new_property' => 10,
-                'agent_max_daily_new_property' => 10
+                'user_max_daily_new_property' => ['initial'=>10, 'range_min'=>1, 'range_max'=>100],
+                'agent_max_daily_new_property' => ['initial'=>10, 'range_min'=>1, 'range_max'=>100]
             ]
         ], 
 

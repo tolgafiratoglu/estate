@@ -36,7 +36,7 @@
         public function getInteriorFeatureListCount($deleted = false) 
         {
 
-            $interiorFeatureObject = InteriorFeature::where(['is_deleted'=>$deleted]);
+            $interiorFeatureObject = InteriorFeature::where(['deleted'=>$deleted]);
 
             return $interiorFeatureObject->count();                                    
         }                            
@@ -52,7 +52,7 @@
         public function getInteriorFeatureListFilteredCount($deleted = false, $keyword = NULL) 
         {
 
-            $interiorFeatureObject = InteriorFeature::where(['is_deleted'=>$deleted]);
+            $interiorFeatureObject = InteriorFeature::where(['deleted'=>$deleted]);
 
             if($keyword != NULL){
                 $interiorFeatureObject = $interiorFeatureObject->where('name', 'like', '%'.$keyword.'%');

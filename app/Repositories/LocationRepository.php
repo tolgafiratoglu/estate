@@ -22,7 +22,7 @@
             $locationsObject = Location::select('id', 'name', 'slug')
                                     ->where(
                                         [
-                                            'is_deleted'=>$deleted
+                                            'deleted'=>$deleted
                                         ]
                                     );
 

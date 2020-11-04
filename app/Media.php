@@ -42,7 +42,7 @@ class Media extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'created_at', 'updated_at', 'name', 'folder', 'width', 'height', 'file_type', 'is_deleted'];
+    protected $fillable = ['user_id', 'created_at', 'updated_at', 'name', 'folder', 'width', 'height', 'file_type', 'deleted'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

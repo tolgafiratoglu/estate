@@ -23,9 +23,9 @@ class SystemSettingsSeeder extends Seeder
 
                 foreach($metaContextValue AS $metaKey=>$metaValue)
                 {
-                    $metaValueCheck = $systemSettingsRepository->getSetting($metaContextKey, $metaKey);
+                    $metaValueCheck = $systemSettingsRepository->findWhere(["meta_key"=>$metaKey])->count();
 
-                    if($metaValueCheck == NULL)
+                    if($metaValueCheck == 0)
                     {
                         $systemSettingsRepository->create(['context'=>$metaContextKey, 'meta_key'=>$metaKey, 'meta_value'=>$metaValue]);
                     }
@@ -40,9 +40,9 @@ class SystemSettingsSeeder extends Seeder
         {
             foreach($languages AS $languageKey=>$language)
             {
-                $metaValueCheck = $systemSettingsRepository->getSetting("language", "enable_".$languageKey);
+                $metaValueCheck = $systemSettingsRepository->findWhere(["meta_key"=>$metaKey])->count();
 
-                    if($metaValueCheck == NULL)
+                    if($metaValueCheck == 0)
                     {
                         $metaValue = false;
                         if($languageKey == "en"){

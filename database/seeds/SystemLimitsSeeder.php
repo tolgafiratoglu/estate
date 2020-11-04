@@ -22,11 +22,11 @@ class SystemLimitsSeeder extends Seeder
             {
                 foreach($metaContextValue AS $metaKey=>$metaValue)
                 {
-                    $metaValueCheck = $systemLimitsRepository->getSetting($metaContextKey, $metaKey);
+                    $metaValueCheck = $systemLimitsRepository->findWhere(["meta_key"=>$metaKey])->count();
 
-                    if($metaValueCheck == NULL)
+                    if($metaValueCheck == 0)
                     {
-                        $systemLimitsRepository->create(['context'=>$metaContextKey, 'meta_key'=>$metaKey, 'meta_value'=>$metaValue]);
+                        $systemLimitsRepository->create(['context'=>$metaContextKey, 'meta_key'=>$metaKey, 'meta_value'=>$metaValue["initial"]]);
                     }
                 }
             }
