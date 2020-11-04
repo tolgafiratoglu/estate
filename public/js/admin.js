@@ -173,12 +173,15 @@ function initToggleButton()
     $(".toggle-switch-checkbox").change(
         function(){
             var settingValue = 0;
-            if(this.checked == true){
+            var isSwitchChecked = this.checked;
+            if(isSwitchChecked == true){
                 settingValue = 1;
             }
 
-            var setting = $(this).attr("data-setting");
-            var settingWrapper = $(this).closest(".admin-toggle-item-wrapper");
+            var settingObj = $(this); 
+
+            var setting = settingObj.attr("data-setting");
+            var settingWrapper = settingObj.closest(".admin-toggle-item-wrapper");
 
             settingWrapper.find(".alert").addClass("d-none");
             settingWrapper.find(".alert-warning").removeClass("d-none");
@@ -198,6 +201,7 @@ function initToggleButton()
                             );
                 },
                 error: function(error){
+                    settingObj.prop('checked', !isSwitchChecked);
                     settingWrapper.find(".alert").addClass("d-none");
                         var errorAlert = settingWrapper.find(".alert-danger");
                             errorAlert.removeClass("d-none");
