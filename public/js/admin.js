@@ -180,6 +180,7 @@ function initToggleButton()
 
             var settingObj = $(this); 
 
+            var id = settingObj.attr("data-id");
             var setting = settingObj.attr("data-setting");
             var settingWrapper = settingObj.closest(".admin-toggle-item-wrapper");
 
@@ -189,7 +190,12 @@ function initToggleButton()
             $.ajax({
                 url: "/api/admin/setting/save",
                 type: "post",
-                data: {setting: setting, setting_value: settingValue},
+                data: {
+                    _token: $('meta[name=csrf-token]')[0].content,
+                    id: id,
+                    setting: setting, 
+                    setting_value: settingValue
+                },
                 success: function(data){
                     settingWrapper.find(".alert").addClass("d-none");
                     var successAlert = settingWrapper.find(".alert-success");

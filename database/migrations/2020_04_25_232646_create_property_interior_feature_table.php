@@ -13,12 +13,14 @@ class CreatePropertyInteriorFeatureTable extends Migration
      */
     public function up()
     {
-        Schema::create('property_interior_feature', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('property');
-                $table->foreign('property')->references('id')->on('property');
-            $table->unsignedBigInteger('interior_feature');
-                $table->foreign('interior_feature')->references('id')->on('interior_feature');
-        });
+        if(Schema::hasTable('property_exterior_feature') == false) {
+            Schema::create('property_interior_feature', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->unsignedBigInteger('property');
+                    $table->foreign('property')->references('id')->on('property');
+                $table->unsignedBigInteger('interior_feature');
+                    $table->foreign('interior_feature')->references('id')->on('interior_feature');
+            });
+        }    
     }
 }

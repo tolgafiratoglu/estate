@@ -60,7 +60,7 @@
         public function getSettingByContext($context) 
         {
 
-            $settingsObject = SystemSettings::select('meta_key', 'meta_value')
+            $settingsObject = SystemSettings::select('id', 'meta_key', 'meta_value')
                                     ->where(
                                         [
                                             "context"=>$context
@@ -87,7 +87,7 @@
         public function getSetting($context, $metaKey) 
         {
 
-            $settingsObject = SystemSettings::select('meta_key', 'meta_value')
+            $settingsObject = SystemSettings::select('id', 'meta_key', 'meta_value')
                                     ->where(
                                         [
                                             "context"=>$context,

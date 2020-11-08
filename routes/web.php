@@ -46,4 +46,7 @@ Route::delete('/api/admin/property-status', 'PropertyStatusController@deleteProp
 Route::delete('/api/admin/property-status/remove', 'PropertyStatusController@removePropertyStatus')->name('remove_property_status')->middleware('admin');
 Route::put('/api/admin/property-status/restore', 'PropertyStatusController@restorePropertyStatus')->name('restore_property_status')->middleware('admin');
 
+// Save setting: 
+Route::post('/api/admin/setting/save', 'Admin\SettingsController@save')->name('save_setting')->middleware('admin');
+
 Route::post('media/save', 'MediaController@save')->name('save_media')->middleware('auth');

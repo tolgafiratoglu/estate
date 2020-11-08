@@ -12,6 +12,6 @@ class SystemMedia extends Model
     /**
      * @var array
      */
-    protected $fillable = ['meta_key', 'media'];
+    protected $fillable = ['id', 'meta_key', 'media'];
 
 }

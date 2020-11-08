@@ -36,10 +36,21 @@ class SettingsController extends Controller
         $systemSettings = [];
 
         foreach($systemSettingMetas AS $settingKey=>$settingValue){
-            $systemSettings[$settingValue["context"]][] = ["key"=>$settingValue["meta_key"], "value"=>$settingValue["meta_value"]];
+            $systemSettings[$settingValue["context"]][] = ["id"=>$settingValue["id"], "key"=>$settingValue["meta_key"], "value"=>$settingValue["meta_value"]];
         }
 
         return view('admin.settings')->with(['systemSettings'=>$systemSettings, 'module'=>'settings']);
+
+    }
+
+    public function save(Request $request, SystemSettingsRepository $systemSettingsRepository)
+    {
+        $settingId = $request->id;
+        $settingValue = $request->setting_value;
+
+        $systemSettingsRepository->update(["meta_value"=>$settingValue], $settingId);
+
+        return response()->json(['id'=>$settingId]);
 
     }
     

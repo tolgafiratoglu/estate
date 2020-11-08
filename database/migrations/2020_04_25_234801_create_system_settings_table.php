@@ -15,6 +15,7 @@ class CreateSystemSettingsTable extends Migration
     {
         if(Schema::hasTable('system_settings') == false) {
             Schema::create('system_settings', function (Blueprint $table) {
+                $table->bigIncrements('id');
                 $table->string('context');
                 $table->string('meta_key');
                 $table->boolean('meta_value');

@@ -16,6 +16,6 @@ class SystemDefaults extends Model
     /**
      * @var array
      */
-    protected $fillable = ['context', 'meta_key', 'meta_value'];
+    protected $fillable = ['id', 'context', 'meta_key', 'meta_value'];
 
 }

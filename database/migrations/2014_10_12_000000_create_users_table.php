@@ -13,22 +13,24 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name')->nullable()->default(null);
-            $table->string('lastname')->nullable()->default(null);
-            $table->string('username');
-            $table->string('email')->unique();
-            $table->string('public_email')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->boolean('is_blocked')->default(false);
-            $table->boolean('is_agent')->default(false);
-            $table->boolean('is_admin')->default(false);
-            $table->boolean('is_super_admin')->default(false);
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        if(Schema::hasTable('users') == false) {
+            Schema::create('users', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('name')->nullable()->default(null);
+                $table->string('lastname')->nullable()->default(null);
+                $table->string('username');
+                $table->string('email')->unique();
+                $table->string('public_email')->nullable();
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('password');
+                $table->boolean('is_blocked')->default(false);
+                $table->boolean('is_agent')->default(false);
+                $table->boolean('is_admin')->default(false);
+                $table->boolean('is_super_admin')->default(false);
+                $table->rememberToken();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

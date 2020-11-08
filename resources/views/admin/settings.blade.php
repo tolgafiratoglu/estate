@@ -11,7 +11,7 @@
                             <div class="admin-toggle-item">
                                 <div class="admin-toggle-switch-wrapper">
                                     <label class="toggle-switch">
-                                        <input type="checkbox" data-setting="{{ $systemSetting['key'] }}" class="toggle-switch-checkbox" {{ $systemSetting['value'] == 1 ? 'checked' : '' }}>
+                                        <input type="checkbox" data-id="{{ $systemSetting['id'] }}" class="toggle-switch-checkbox" {{ $systemSetting['value'] == 1 ? 'checked' : '' }}>
                                         <span class="toggle-slider round"></span>
                                     </label>
                                 </div>
