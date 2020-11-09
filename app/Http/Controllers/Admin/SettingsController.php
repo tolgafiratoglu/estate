@@ -20,9 +20,8 @@ class SettingsController extends Controller
     }
 
     /**
-     * Outputs list view
+     * Outputs settings
      * 
-     * @param integer $deleted Switches list into a trash bin when it's 1, otherwise it's a normal list of active items.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
