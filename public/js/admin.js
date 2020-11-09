@@ -223,10 +223,44 @@ function initToggleButton()
     );
 }
 
+function initLimitSave()
+{
+    $(".system-limit").change(
+        function(){
+
+            var settingObj = $(this);
+
+            var selectId = $(this).attr("id");
+            var systemId = $(this).attr("data-id");
+            var systemLimit = this.value;
+            var previousValue = $(this).attr("data-pre");
+
+            $.ajax({
+                url: "/api/admin/limit/save",
+                type: "post",
+                data: {
+                    _token: $('meta[name=csrf-token]')[0].content,
+                    id: systemId,
+                    limit: systemLimit
+                },
+                success: function(data){
+                    settingObj.attr("data-pre", systemLimit);
+                },
+                error: function(error){
+                    $("#" + selectId +" option[value="+previousValue+"]").prop('selected', 'selected');
+                } 
+            });
+
+        }
+    );
+}
+
 $( document ).ready(function() {
     
     initPropertyStatusList();
 
     initToggleButton();
+
+    initLimitSave();
 
 });

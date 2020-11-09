@@ -38,7 +38,10 @@ class LimitsController extends Controller
             $systemLimits[$settingValue["context"]][] = ["id"=>$settingValue["id"], "key"=>$settingValue["meta_key"], "value"=>$settingValue["meta_value"]];
         }
 
-        return view('admin.settings')->with(['systemLimits'=>$systemLimits, 'module'=>'settings']);
+        // Default System Limits
+        $defaultSystemLimits = config('settings.system_limits');
+
+        return view('admin.limits')->with(['systemLimits'=>$systemLimits, 'defaultSystemLimits' => $defaultSystemLimits, 'module'=>'settings']);
 
     }
 

@@ -30,6 +30,7 @@ Route::get('/admin/property-status/new', 'PropertyStatusController@newPropertySt
 Route::get('/admin/property-status/edit/{id}', 'PropertyStatusController@editPropertyStatus')->name('edit_property_status')->middleware('admin');
 
 Route::get('/admin/settings', 'Admin\SettingsController@index')->name('list_settings')->middleware('admin');
+Route::get('/admin/limits', 'Admin\LimitsController@index')->name('list_limits')->middleware('admin');
 
 // API methods:
 Route::get('/api/locations', 'LocationController@getLocations')->name('get_locations');
