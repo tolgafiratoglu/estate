@@ -49,5 +49,6 @@ Route::put('/api/admin/property-status/restore', 'PropertyStatusController@resto
 
 // Save setting: 
 Route::post('/api/admin/setting/save', 'Admin\SettingsController@save')->name('save_setting')->middleware('admin');
+Route::post('/api/admin/limit/save', 'Admin\LimitsController@save')->name('save_limit')->middleware('admin');
 
 Route::post('media/save', 'MediaController@save')->name('save_media')->middleware('auth');

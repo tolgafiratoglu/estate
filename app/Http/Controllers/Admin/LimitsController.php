@@ -48,9 +48,9 @@ class LimitsController extends Controller
     public function save(Request $request, SystemLimitsRepository $systemLimitsRepository)
     {
         $settingId = $request->id;
-        $settingValue = $request->setting_value;
+        $limit = $request->limit;
 
-        $systemLimitsRepository->update(["meta_value"=>$settingValue], $settingId);
+        $systemLimitsRepository->update(["meta_value"=>$limit], $settingId);
 
         return response()->json(['id'=>$settingId]);
 
