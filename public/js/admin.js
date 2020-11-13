@@ -184,8 +184,10 @@ function initToggleButton()
             var setting = settingObj.attr("data-setting");
             var settingWrapper = settingObj.closest(".admin-toggle-item-wrapper");
 
-            settingWrapper.find(".alert").addClass("d-none");
-            settingWrapper.find(".alert-warning").removeClass("d-none");
+            settingWrapper.find(".alert-icon").addClass("d-none");
+
+            // settingWrapper.find(".alert-warning").removeClass("d-none");
+            settingWrapper.find(".alert-icon-loading").removeClass("d-none");
 
             $.ajax({
                 url: "/api/admin/setting/save",
@@ -197,8 +199,8 @@ function initToggleButton()
                     setting_value: settingValue
                 },
                 success: function(data){
-                    settingWrapper.find(".alert").addClass("d-none");
-                    var successAlert = settingWrapper.find(".alert-success");
+                    settingWrapper.find(".alert-icon-loading").addClass("d-none");
+                    var successAlert = settingWrapper.find(".alert-icon-success");
                         successAlert.removeClass("d-none");
                             setTimeout(
                                 function(){

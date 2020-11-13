@@ -16,18 +16,28 @@
                                     </label>
                                 </div>
                                 <div class="admin-toggle-label">
-                                    {{ __("admin.settings.meta.".$context.".".$systemSetting["key"]) }}
+                                    <span>    
+                                        {{ __("admin.settings.meta.".$context.".".$systemSetting["key"]) }}
+                                    </span>
+                                    <div class="d-none alert-icon alert-icon-loading">
+                                        <i class="fas fa-cog fa-spin"></i>
+                                    </div>
+                                    <div class="d-none alert-icon alert-icon-success">    
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="d-none alert alert-warning" role="alert">
-                                {{ __("admin.settings.saving") }}
-                            </div> 
-                            <div class="d-none alert alert-success" role="alert">
-                                {{ __("admin.settings.saved") }}
-                            </div>
-                            <div class="d-none alert alert-danger" role="alert">
-                                {{ __("admin.settings.error") }}
-                            </div>
+                            <!--
+                                <div class="d-none alert alert-warning" role="alert">
+                                    {{ __("admin.settings.saving") }}
+                                </div> 
+                                <div class="d-none alert alert-success" role="alert">
+                                    {{ __("admin.settings.saved") }}
+                                </div>
+                                <div class="d-none alert alert-danger" role="alert">
+                                    {{ __("admin.settings.error") }}
+                                </div>
+                            -->    
                         </div>    
                     @endforeach
                 </div>
