@@ -168,10 +168,39 @@ function initPropertyStatusList()
 
 }
 
+var xhr;
+
+function initSuccessIcon(settingWrapper){
+    settingWrapper.find(".alert-icon-loading").addClass("d-none");
+    var successAlert = settingWrapper.find(".alert-icon-success");
+        successAlert.removeClass("d-none");
+            setTimeout(
+                function(){
+                    successAlert.addClass("d-none");
+                }, 2000
+            );
+}
+
+function initErrorAlert(){
+    settingWrapper.find(".alert").addClass("d-none");
+    var errorAlert = settingWrapper.find(".alert-danger");
+        errorAlert.removeClass("d-none");
+        setTimeout(
+            function(){
+                errorAlert.addClass("d-none");
+            }, 2000
+        );
+}
+
 function initToggleButton()
 {
     $(".toggle-switch-checkbox").change(
         function(){
+
+            if(xhr && xhr.readyState != 4){
+                xhr.abort();
+            }
+
             var settingValue = 0;
             var isSwitchChecked = this.checked;
             if(isSwitchChecked == true){
@@ -185,11 +214,9 @@ function initToggleButton()
             var settingWrapper = settingObj.closest(".admin-toggle-item-wrapper");
 
             settingWrapper.find(".alert-icon").addClass("d-none");
-
-            // settingWrapper.find(".alert-warning").removeClass("d-none");
             settingWrapper.find(".alert-icon-loading").removeClass("d-none");
 
-            $.ajax({
+            xhr = $.ajax({
                 url: "/api/admin/setting/save",
                 type: "post",
                 data: {
@@ -199,25 +226,11 @@ function initToggleButton()
                     setting_value: settingValue
                 },
                 success: function(data){
-                    settingWrapper.find(".alert-icon-loading").addClass("d-none");
-                    var successAlert = settingWrapper.find(".alert-icon-success");
-                        successAlert.removeClass("d-none");
-                            setTimeout(
-                                function(){
-                                    successAlert.addClass("d-none");
-                                }, 2000
-                            );
+                    initSuccessIcon(settingWrapper);
                 },
                 error: function(error){
                     settingObj.prop('checked', !isSwitchChecked);
-                    settingWrapper.find(".alert").addClass("d-none");
-                        var errorAlert = settingWrapper.find(".alert-danger");
-                            errorAlert.removeClass("d-none");
-                            setTimeout(
-                                function(){
-                                    errorAlert.addClass("d-none");
-                                }, 2000
-                            );
+                    initErrorAlert()
                 } 
             });
 
@@ -230,14 +243,22 @@ function initLimitSave()
     $(".system-limit").change(
         function(){
 
+            if(xhr && xhr.readyState != 4){
+                xhr.abort();
+            }
+
             var settingObj = $(this);
+            var settingWrapper = settingObj.closest(".admin-limit-item-wrapper");
 
             var selectId = $(this).attr("id");
             var systemId = $(this).attr("data-id");
             var systemLimit = this.value;
             var previousValue = $(this).attr("data-pre");
 
-            $.ajax({
+            settingWrapper.find(".alert-icon").addClass("d-none");
+            settingWrapper.find(".alert-icon-loading").removeClass("d-none");
+
+            xhr = $.ajax({
                 url: "/api/admin/limit/save",
                 type: "post",
                 data: {
@@ -247,6 +268,7 @@ function initLimitSave()
                 },
                 success: function(data){
                     settingObj.attr("data-pre", systemLimit);
+                    initSuccessIcon(settingWrapper);
                 },
                 error: function(error){
                     $("#" + selectId +" option[value="+previousValue+"]").prop('selected', 'selected');

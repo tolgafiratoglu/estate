@@ -8,7 +8,7 @@
                 <div class="admin-toggle-list">
                     @foreach($systemSettingContext AS $key=>$systemSetting)
                         <div class="admin-toggle-item-wrapper">  
-                            <div class="admin-toggle-item">
+                            <div class="admin-toggle-item admin-activity-wrapper">
                                 <div class="admin-toggle-switch-wrapper">
                                     <label class="toggle-switch">
                                         <input type="checkbox" data-id="{{ $systemSetting['id'] }}" class="toggle-switch-checkbox" {{ $systemSetting['value'] == 1 ? 'checked' : '' }}>

@@ -106,18 +106,18 @@ body{
         padding-left: 1rem;
     }    
 
-        .admin-toggle-item .admin-toggle-label .fa-check-circle{
+        .admin-activity-wrapper .fa-check-circle{
             color: green;
         }
 
-    .admin-toggle-item .admin-toggle-label span{
-        float: left;
-    }
+        .admin-activity-wrapper span{
+            float: left;
+        }
 
-    .admin-toggle-item .alert-icon{
-        float: left;
-        margin-left: 1rem;
-    }        
+        .admin-activity-wrapper .alert-icon{
+            float: left;
+            margin-left: 1rem;
+        }        
 
     .admin-toggle-item-wrapper{
         margin-bottom: 1rem;
