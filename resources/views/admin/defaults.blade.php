@@ -28,19 +28,59 @@
         </div>
         <div class="admin-settings-wrapper">
             <h1>{{ __("admin.defalts.context.meta") }}</h1>
-            
-                <div>
-                    <span>{{ __("admin.defalts.context.meta.") }}</span>    
-                </div>
-                <div>
-                    <div class="form-inline">
-                        <div class="form-group mr-2">
-                            <input type="password" class="form-control" id="" placeholder="{{ __('') }}">
-                        </div>
-                        <button type="submit" class="btn btn-primary">{{ __("Save") }}</button>
-                    </div>
-                </div>
-
+                @if(sizeof($systemDefaults["meta"]) > 0)
+                    @foreach($systemDefaults["meta"] AS $systemDefault)
+                        <div class="row admin-activity-wrapper admin-default-wrapper">
+                            <div class="col-md-12">
+                                <span>
+                                    {{ __("admin.defalts.context.meta.".$systemDefault["key"]) }}
+                                </span>
+                                <div class="d-none alert-icon alert-icon-loading">
+                                    <i class="fas fa-cog fa-spin"></i>
+                                </div>
+                                <div class="d-none alert-icon alert-icon-success">    
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control mr-2" value='{{ __($systemDefault["value"]) }}' placeholder='{{ __("admin.defalts.context.meta.placeholder") }}' />
+                                <div class="input-group-btn">
+                                    <button type="button" class="admin-default-save btn btn-primary">{{ __("admin.button.save") }}</button>
+                                </div><!-- /btn-group -->
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-md-12 -->
+                        </div><!-- /.row -->
+                    @endforeach
+                @endif    
+        </div>
+        <div class="admin-settings-wrapper">
+            <h1>{{ __("admin.defalts.context.social_media") }}</h1>
+                @if(sizeof($systemDefaults["social_media"]) > 0)
+                    @foreach($systemDefaults["social_media"] AS $systemDefault)
+                        <div class="row admin-activity-wrapper admin-default-wrapper">
+                            <div class="col-md-12">
+                                <span>
+                                    {{ __("admin.defalts.context.social_media.".$systemDefault["key"]) }}
+                                </span>
+                                <div class="d-none alert-icon alert-icon-loading">
+                                    <i class="fas fa-cog fa-spin"></i>
+                                </div>
+                                <div class="d-none alert-icon alert-icon-success">    
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control mr-2" value='{{ __($systemDefault["value"]) }}' placeholder='{{ __("admin.defalts.context.social_media.placeholder") }}' />
+                                <div class="input-group-btn">
+                                    <button type="button" class="admin-default-save btn btn-primary">{{ __("admin.button.save") }}</button>
+                                </div><!-- /btn-group -->
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-md-12 -->
+                        </div><!-- /.row -->
+                    @endforeach
+                @endif    
         </div>      
     </div>    
 @endsection

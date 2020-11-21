@@ -185,6 +185,20 @@
                             <i class="fas fa-school"></i><a href="{{ url('admin/exterior-feature') }}">Exterior Feature</a>
                         </li>
                     </ul>
+                    <ul style="margin-top: 1rem !important;">
+                        <li @if($module=='system_settings')class="active"@endif>
+                            <i class="fas fa-cogs"></i><a href="{{ url('admin/settings') }}">System Settings</a>
+                        </li>
+                        <li @if($module=='system_defaults')class="active"@endif>
+                            <i class="fas fa-sliders-h"></i><a href="{{ url('admin/defaults') }}">System Defaults</a>
+                        </li>
+                        <li @if($module=='system_limits')class="active"@endif>
+                            <i class="fas fa-screwdriver"></i><a href="{{ url('admin/limits') }}">System Limits</a>
+                        </li>
+                        <li @if($module=='system_images')class="active"@endif>
+                            <i class="fas fa-image"></i><a href="{{ url('admin/images') }}">System Images</a>
+                        </li>
+                    </ul>    
                 </div>
                 <div class="admin-content-wrapper">
                     @yield('content')
