@@ -65,5 +65,25 @@
                     'show_age_of_building'=>'Show age of building filter'
                 ]
             ]    
+        ],
+        'defaults'=>[
+            'context'=>[
+                'units'=>[
+                    'header'=>'Unit Settings',
+                    'measure'=>'Measure',
+                    'currency'=>'Currency'
+                ],
+                'meta'=>[
+                    'header'=>'Meta Settings',
+                    'home_page_title'=>'Home Page Title',
+                    'search_page_title'=>'Search Page Title'
+                ],
+                'social_media'=>[
+                    'header'=>'Social Media Settings',
+                    'facebook'=>'Facebook Page',
+                    'twitter'=>'Twitter Page',
+                    'linkedin'=>'Linkedin'
+                ]
+            ]
         ]
     ];

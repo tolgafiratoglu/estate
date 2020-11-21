@@ -57,7 +57,6 @@
             ],
             'social_media'=>[
                 'facebook'=>'#',
-                'google'=>'#',
                 'twitter'=>'#',
                 'linkedin'=>'#'
             ],
