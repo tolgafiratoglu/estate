@@ -181,8 +181,8 @@ function initSuccessIcon(settingWrapper){
             );
 }
 
-function initErrorAlert(){
-    settingWrapper.find(".alert").addClass("d-none");
+function initErrorAlert(settingWrapper){
+    settingWrapper.find(".alert-icon-loading").addClass("d-none");
     var errorAlert = settingWrapper.find(".alert-danger");
         errorAlert.removeClass("d-none");
         setTimeout(
@@ -230,7 +230,7 @@ function initToggleButton()
                 },
                 error: function(error){
                     settingObj.prop('checked', !isSwitchChecked);
-                    initErrorAlert()
+                    initErrorAlert(settingWrapper);
                 } 
             });
 
@@ -272,6 +272,7 @@ function initLimitSave()
                 },
                 error: function(error){
                     $("#" + selectId +" option[value="+previousValue+"]").prop('selected', 'selected');
+                    initErrorAlert(settingWrapper);
                 } 
             });
 
@@ -279,12 +280,99 @@ function initLimitSave()
     );
 }
 
+function initDefaultSave()
+{
+    $(".admin-default-save").click(
+        function(){
+
+            if(xhr && xhr.readyState != 4){
+                xhr.abort();
+            }
+
+            var settingObj = $(this);
+            var settingWrapper = settingObj.closest(".admin-default-wrapper");
+
+            var settingId = settingWrapper.find(".admin-default-value").attr("data-id");
+            var settingValue = settingWrapper.find(".admin-default-value").val();
+
+            settingWrapper.find(".alert-icon").addClass("d-none");
+            settingWrapper.find(".alert-icon-loading").removeClass("d-none");
+
+            xhr = $.ajax({
+                url: "/api/admin/default/save",
+                type: "post",
+                data: {
+                    _token: $('meta[name=csrf-token]')[0].content,
+                    id: settingId,
+                    setting_value: settingValue
+                },
+                success: function(data){
+                    settingObj.attr("data-pre", settingValue);
+                    initSuccessIcon(settingWrapper);
+                },
+                error: function(error){
+                    initErrorAlert(settingWrapper);
+                } 
+            });
+
+        }
+    );
+}
+
+function initMetaSelectSave(){
+
+    $(".admin-setting-select").click(
+        function(){
+
+            if(xhr && xhr.readyState != 4){
+                xhr.abort();
+            }
+
+            var settingObj = $(this);
+            var settingWrapper = settingObj.closest(".admin-settings-wrapper");
+
+            var settingId = settingWrapper.find(".admin-default-value").attr("data-id");
+            var settingValue = settingWrapper.find(".admin-default-value").val();
+
+            settingWrapper.find(".alert-icon").addClass("d-none");
+            settingWrapper.find(".alert-icon-loading").removeClass("d-none");
+
+            xhr = $.ajax({
+                url: "/api/admin/default/save",
+                type: "post",
+                data: {
+                    _token: $('meta[name=csrf-token]')[0].content,
+                    id: settingId,
+                    setting_value: settingValue
+                },
+                success: function(data){
+                    settingObj.attr("data-pre", settingValue);
+                    initSuccessIcon(settingWrapper);
+                },
+                error: function(error){
+                    initErrorAlert(settingWrapper);
+                } 
+            });
+
+        }
+    );
+
+}
+
 $( document ).ready(function() {
     
     initPropertyStatusList();
 
+    // Init toggle button, for system settings:
     initToggleButton();
 
+    // Save system limits:
     initLimitSave();
+
+    // Save system defaults:
+    initDefaultSave();
+
+    // Admin select setting:
+    initMetaSelectSave();
 
 });

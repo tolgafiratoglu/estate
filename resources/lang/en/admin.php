@@ -23,6 +23,9 @@
         'property_status_name_exists'=> 'Name exists, it should be unique',
         'property_status_name_not_blank'=> "Name shouldn't be blank",
         'property_status_slug_exists'=> 'Slug exists, it should be unique',
+        'button'=>[
+            'save'=>'Save'
+        ],
         'settings'=>[
             'context'=>[
                 'property_save'=>'Property Settings',

@@ -36,7 +36,7 @@ Route::get('/admin/defaults', 'Admin\DefaultsController@index')->name('list_admi
 // API methods:
 Route::get('/api/locations', 'LocationController@getLocations')->name('get_locations');
 Route::get('/api/location/children', 'LocationController@getChildLocations')->name('get_child_locations');
-Route::get('/api/location/children/row', 'LocationController@getChildLocationsMenu')->name('get_child_locations');
+Route::get('/api/location/children/row', 'LocationController@getChildLocationsMenu')->name('get_child_locations_row');
 
 Route::post('/api/property/save', 'PropertyController@save')->name('save_property')->middleware('auth');
 
@@ -51,5 +51,6 @@ Route::put('/api/admin/property-status/restore', 'PropertyStatusController@resto
 // Save setting: 
 Route::post('/api/admin/setting/save', 'Admin\SettingsController@save')->name('save_setting')->middleware('admin');
 Route::post('/api/admin/limit/save', 'Admin\LimitsController@save')->name('save_limit')->middleware('admin');
+Route::post('/api/admin/default/save', 'Admin\DefaultsController@save')->name('save_default')->middleware('admin');
 
 Route::post('media/save', 'MediaController@save')->name('save_media')->middleware('auth');

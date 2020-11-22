@@ -15,17 +15,33 @@ body{
     }
 
     .wide-box{
-        max-width: 1040px;
+        max-width: 1140px;
         margin: 0px auto;
     }
 
     .admin-wrapper{
-        overflow: hidden;
-        padding: 2rem;
-        background-color: #ffffff;
         margin-top: 2rem !important;
         margin-bottom: 2rem !important;
+        overflow: hidden;
+        box-sizing: border-box;
     }
+
+    .admin-wrapper .admin-sidebar-wrapper,
+    .admin-wrapper .admin-content-wrapper{
+        padding: 2rem;
+        background-color: #ffffff;
+    }    
+
+    .admin-wrapper .admin-sidebar-wrapper{
+        float: left;
+        width: 250px;
+    }
+
+    .admin-wrapper .admin-content-wrapper{
+        float: left;
+        margin-left: 1rem;
+        width: calc(100% - 250px - 1rem);
+    }    
 
 /* Overall Design Ends */
 
@@ -131,3 +147,32 @@ body{
     line-height: 28px;
     text-transform: uppercase;
 }    
+
+.admin-settings-wrapper{
+    margin: 1rem 0px;
+}
+
+    .admin-settings-wrapper .admin-setting-label{
+        margin-bottom: 0.5rem;
+    }
+
+        .admin-settings-wrapper .admin-setting-label span{
+            float: left;
+        }
+
+        .admin-settings-wrapper .admin-setting-label svg{
+            float: left;
+            margin-left: 1rem;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }    
+
+    .admin-settings-wrapper input,
+    .admin-settings-wrapper select{
+        max-width: 500px !important;
+    } 
+    
+    .admin-setting-select-wrapper{
+        float: left;
+        width: 100%;
+    }

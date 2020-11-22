@@ -27,17 +27,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--
-                                <div class="d-none alert alert-warning" role="alert">
-                                    {{ __("admin.settings.saving") }}
-                                </div> 
-                                <div class="d-none alert alert-success" role="alert">
-                                    {{ __("admin.settings.saved") }}
-                                </div>
-                                <div class="d-none alert alert-danger" role="alert">
-                                    {{ __("admin.settings.error") }}
-                                </div>
-                            -->    
+                            <div class="d-none alert alert-danger" role="alert">
+                                {{ __("admin.warnings.error") }}
+                            </div>   
                         </div>    
                     @endforeach
                 </div>

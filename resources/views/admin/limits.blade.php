@@ -28,14 +28,8 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="d-none alert alert-warning" role="alert">
-                                {{ __("admin.limits.saving") }}
-                            </div> 
-                            <div class="d-none alert alert-success" role="alert">
-                                {{ __("admin.limits.saved") }}
-                            </div>
                             <div class="d-none alert alert-danger" role="alert">
-                                {{ __("admin.limits.error") }}
+                                {{ __("admin.warnings.error") }}
                             </div>
                         </div>    
                     @endforeach

@@ -148,8 +148,8 @@
         </div>
 
         <main>
-            <div class="admin-wrapper shadowed-content wide-box">
-                <div class="admin-sidebar-wrapper">
+            <div class="admin-wrapper wide-box">
+                <div class="admin-sidebar-wrapper shadowed-content">
                     <ul>
                         <li @if($module=='dashboard')class="active"@endif>
                             <i class="fas fa-tachometer-alt"></i><a href="{{ url('admin') }}">Dashboard</a>
@@ -200,7 +200,7 @@
                         </li>
                     </ul>    
                 </div>
-                <div class="admin-content-wrapper">
+                <div class="admin-content-wrapper shadowed-content">
                     @yield('content')
                 </div>
             </div>
