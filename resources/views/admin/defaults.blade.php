@@ -5,46 +5,35 @@
         <div class="admin-settings-wrapper">
             <h1>{{ __("admin.defaults.context.units.header") }}</h1>
         </div>
-        <div class="admin-settings-wrapper">    
-            <div class="admin-setting-label">
-                <span>{{ __("admin.defaults.context.units.measure") }}</span>
-                <div class="d-none alert-icon alert-icon-loading">
-                    <i class="fas fa-cog fa-spin"></i>
+        @if(sizeof($systemDefaults["units"]) > 0)
+            @foreach($systemDefaults["units"] AS $systemDefault)
+            <div class="admin-settings-wrapper admin-activity-wrapper">    
+                <div class="admin-setting-label">
+                    <span>{{ __("admin.defaults.context.units.".$systemDefault["key"]) }}</span>
+                    <div class="d-none alert-icon alert-icon-loading">
+                        <i class="fas fa-cog fa-spin"></i>
+                    </div>
+                    <div class="d-none alert-icon alert-icon-success">    
+                        <i class="fas fa-check-circle"></i>
+                    </div>    
                 </div>
-                <div class="d-none alert-icon alert-icon-success">    
-                    <i class="fas fa-check-circle"></i>
-                </div>    
-            </div>
-            <div class="admin-setting-select-wrapper">
-                <select class="form-control admin-setting-select" id="unit_measure" data-meta="units" data-key="measure">
-                    <option value="meter">Meter</option>
-                    <option value="mile">Mile</option>
-                </select>
-                <div class="d-none col-md-12 alert alert-danger mt-3" role="alert">
-                    {{ __("admin.warnings.error") }}
-                </div>
-            </div>
-        </div>
-        <div class="admin-settings-wrapper">
-            <div class="admin-setting-label">
-                <span>{{ __("admin.defaults.context.units.currency") }}</span>    
-                <div class="d-none alert-icon alert-icon-loading">
-                    <i class="fas fa-cog fa-spin"></i>
-                </div>
-                <div class="d-none alert-icon alert-icon-success">    
-                    <i class="fas fa-check-circle"></i>
+                <div class="admin-setting-select-wrapper">
+                    <select class="form-control admin-setting-select" id='{{ $systemDefault["key"] }}_measure' data-id='{{ $systemDefault["id"] }}'>
+                        @if($systemDefault["key"] == "default_currency_unit")
+
+                        @else
+                            <option value="meter">Meter</option>
+                            <option value="mile">Mile</option>
+                        @endif
+                    </select>
+                    <div class="d-none col-md-12 alert alert-danger mt-3" role="alert">
+                        {{ __("admin.warnings.error") }}
+                    </div>
                 </div>
             </div>
-            <div class="admin-setting-select-wrapper">
-                <select class="form-control" id="currency_measure" data-meta="units" data-key="currency">
-                    
-                </select>
-                <div class="d-none col-md-12 alert alert-danger mt-3" role="alert">
-                    {{ __("admin.warnings.error") }}
-                </div>
-            </div>
-        </div>
-        <div class="admin-settings-wrapper">
+            @endforeach
+        @endif
+        <div class="admin-settings-wrapper admin-activity-wrapper">
             <h1>{{ __("admin.defaults.context.meta.header") }}</h1>
                 @if(sizeof($systemDefaults["meta"]) > 0)
                     @foreach($systemDefaults["meta"] AS $systemDefault)
@@ -76,7 +65,7 @@
                     @endforeach
                 @endif    
         </div>
-        <div class="admin-settings-wrapper">
+        <div class="admin-settings-wrapper admin-activity-wrapper">
             <h1>{{ __("admin.defaults.context.social_media.header") }}</h1>
                 @if(sizeof($systemDefaults["social_media"]) > 0)
                     @foreach($systemDefaults["social_media"] AS $systemDefault)

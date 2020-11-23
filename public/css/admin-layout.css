@@ -158,13 +158,6 @@ body{
 
         .admin-settings-wrapper .admin-setting-label span{
             float: left;
-        }
-
-        .admin-settings-wrapper .admin-setting-label svg{
-            float: left;
-            margin-left: 1rem;
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
         }    
 
     .admin-settings-wrapper input,
