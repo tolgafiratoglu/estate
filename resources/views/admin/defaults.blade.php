@@ -7,7 +7,7 @@
         </div>
         @if(sizeof($systemDefaults["units"]) > 0)
             @foreach($systemDefaults["units"] AS $systemDefault)
-            <div class="admin-settings-wrapper admin-activity-wrapper">    
+            <div class="admin-settings-section admin-activity-wrapper">    
                 <div class="admin-setting-label">
                     <span>{{ __("admin.defaults.context.units.".$systemDefault["key"]) }}</span>
                     <div class="d-none alert-icon alert-icon-loading">
@@ -37,7 +37,7 @@
             <h1>{{ __("admin.defaults.context.meta.header") }}</h1>
                 @if(sizeof($systemDefaults["meta"]) > 0)
                     @foreach($systemDefaults["meta"] AS $systemDefault)
-                        <div class="row admin-settings-wrapper admin-default-wrapper">
+                        <div class="row admin-settings-section admin-default-wrapper">
                             <div class="col-md-12 admin-setting-label">
                                 <span>
                                     {{ __("admin.defaults.context.meta.".$systemDefault["key"]) }}
@@ -69,7 +69,7 @@
             <h1>{{ __("admin.defaults.context.social_media.header") }}</h1>
                 @if(sizeof($systemDefaults["social_media"]) > 0)
                     @foreach($systemDefaults["social_media"] AS $systemDefault)
-                        <div class="row admin-settings-wrapper admin-default-wrapper">
+                        <div class="row admin-settings-section admin-default-wrapper">
                             <div class="col-md-12 admin-setting-label">
                                 <span>
                                     {{ __("admin.defaults.context.social_media.".$systemDefault["key"]) }}

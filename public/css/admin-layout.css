@@ -149,16 +149,19 @@ body{
 }    
 
 .admin-settings-wrapper{
+    float: left;
+    width: 100%;
+    margin: 1rem 0px;
+}
+
+.admin-settings-section{
     margin: 1rem 0px;
 }
 
     .admin-settings-wrapper .admin-setting-label{
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.5rem !important;
+        float: left;
     }
-
-        .admin-settings-wrapper .admin-setting-label span{
-            float: left;
-        }    
 
     .admin-settings-wrapper input,
     .admin-settings-wrapper select{

@@ -321,7 +321,7 @@ function initDefaultSave()
 
 function initMetaSelectSave(){
 
-    $(".admin-setting-select").click(
+    $(".admin-setting-select").change(
         function(){
 
             if(xhr && xhr.readyState != 4){
@@ -329,10 +329,10 @@ function initMetaSelectSave(){
             }
 
             var settingObj = $(this);
-            var settingWrapper = settingObj.closest(".admin-settings-wrapper");
+            var settingWrapper = settingObj.closest(".admin-settings-section");
 
-            var settingId = settingWrapper.find(".admin-default-value").attr("data-id");
-            var settingValue = settingWrapper.find(".admin-default-value").val();
+            var settingId = settingObj.attr("data-id");
+            var settingValue = settingObj.val();
 
             settingWrapper.find(".alert-icon").addClass("d-none");
             settingWrapper.find(".alert-icon-loading").removeClass("d-none");

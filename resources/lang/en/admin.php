@@ -73,8 +73,8 @@
             'context'=>[
                 'units'=>[
                     'header'=>'Unit Settings',
-                    'measure'=>'Measure',
-                    'currency'=>'Currency'
+                    'default_measurement_unit'=>'Measure',
+                    'default_currency_unit'=>'Currency'
                 ],
                 'meta'=>[
                     'header'=>'Meta Settings',
