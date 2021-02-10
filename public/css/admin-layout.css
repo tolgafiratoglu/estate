@@ -151,14 +151,21 @@ body{
 .admin-settings-wrapper{
     float: left;
     width: 100%;
-    margin: 1rem 0px;
+    margin: 1rem 0px 0px 0px;
+}
+
+.admin-settings-wrapper:first-child{
+    margin: 0px !important;
 }
 
 .admin-settings-section{
     margin: 1rem 0px;
+    float: left;
+    width: 100%;
 }
 
-    .admin-settings-wrapper .admin-setting-label{
+    .admin-settings-wrapper .admin-setting-label,
+    .admin-settings-section .admin-setting-label{
         margin-bottom: 0.5rem !important;
         float: left;
     }
